@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {BarajaService} from "../baraja.service";
-import {baraja} from "../baraja_inteface";
+import {Cartas} from "../cartas_inteface";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {DescarteComponent} from "../descarte/descarte.component";
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-baraja',
@@ -9,13 +14,35 @@ import {baraja} from "../baraja_inteface";
 })
 export class BarajaComponent {
 
-  cartas : any[]=[];
-
+   cartas : Cartas[] =[];
+   baraja : Cartas[]=[];
   constructor( private barajaservice: BarajaService) {
+
   }
 
   ngOnInit(): void {
-    this.cartas= this.barajaservice.getAll();
-
+    this.barajaservice.getAll().subscribe((data: Cartas[])=>{
+      this.cartas= data;
+      this.baraja = this.barajaservice.llenarbaraja(this.cartas);
+      this.barajaservice.barajar(this.baraja);
+      this
+    })
   }
+
+
+  drop(event: CdkDragDrop<Cartas[]>){
+    moveItemInArray(this.cartas, event.previousIndex, event.currentIndex)
+  }
+
+
+  setBaraja(barajaDes: Cartas[]):void{
+    this.baraja = barajaDes;
+  }
+
+  robar():Cartas{
+    // @ts-ignore
+    return this.baraja.pop();
+  }
+
+
 }

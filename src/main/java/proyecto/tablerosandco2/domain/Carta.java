@@ -13,8 +13,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Carta {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String nombre;
     @NotBlank
     private String url;
+    @NotBlank
+    private  String reverso;
 }
