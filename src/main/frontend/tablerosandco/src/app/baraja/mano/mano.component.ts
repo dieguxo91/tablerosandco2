@@ -10,31 +10,32 @@ import {BarajaComponent} from "../baraja/baraja.component";
   templateUrl: './mano.component.html',
   styleUrls: ['./mano.component.css']
 })
-export class ManoComponent implements AfterViewInit{
-
-
+export class ManoComponent{
 
   mano : Cartas[] = [];
-
 
   constructor(private barajaService: BarajaService) {
 
   }
 
-
   getMano():Cartas[]{
     return this.mano;
   }
 
-  agregarMano(carta: Cartas | undefined):void{
+  setMano(cartas:Cartas[]):void{
+    this.mano=cartas;
+}
+
+  agregarMano(carta: Cartas | undefined):Cartas[]{
     if (carta) {
       this.mano.push(carta);
     }
+    return this.mano;
   }
 
-  ngAfterViewInit(): void {
 
-  }
+
+
 
 
 

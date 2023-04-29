@@ -6,6 +6,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { ManoComponent } from './mano/mano.component';
 import { DescarteComponent } from './descarte/descarte.component';
+import {TableroModule} from "../tablero/tablero.module";
 
 
 
@@ -20,6 +21,7 @@ import { DescarteComponent } from './descarte/descarte.component';
     BrowserAnimationsModule,
     HttpClientModule,
     DragDropModule,
+    TableroModule
   ], exports: [
     BarajaComponent,
     DescarteComponent,

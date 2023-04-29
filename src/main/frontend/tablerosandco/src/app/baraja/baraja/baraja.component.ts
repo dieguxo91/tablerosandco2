@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, EventEmitter, Injectable, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterContentInit, Component,Injectable, } from '@angular/core';
 import {BarajaService} from "../baraja.service";
 import {Cartas} from "../cartas_inteface";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -12,45 +12,55 @@ import {ManoComponent} from "../mano/mano.component";
   templateUrl: './baraja.component.html',
   styleUrls: ['./baraja.component.css']
 })
-export class BarajaComponent implements AfterContentInit{
+export class BarajaComponent {
 
    cartas : Cartas[] =[];
-   baraja : Cartas[]=[];
 
+    baraja : Cartas[]=[];
+
+   mano: Cartas[]=[];
 
   constructor( private barajaservice: BarajaService, private manoComponent : ManoComponent) {
+
   }
 
   ngOnInit(): void {
+    this.rellenarMazo();
+  }
+
+  rellenarMazo():void{
     this.barajaservice.getAll().subscribe((data: Cartas[])=>{
       this.cartas= data;
-      this.baraja = this.barajaservice.llenarbaraja(this.cartas);
-      this.barajaservice.barajar(this.baraja);
-      this.ngAfterContentInit()
+      this.baraja = this.barajaservice.barajar(this.barajaservice.maze_full(this.cartas));
     })
   }
+
+  barajaReverso():Cartas{
+
+    // @ts-ignore
+    return this.baraja.at(this.baraja.length-1);
+  }
+
 
   drop(event: CdkDragDrop<Cartas[]>){
     moveItemInArray(this.cartas, event.previousIndex, event.currentIndex)
   }
 
+  getCartas():Cartas[]{
+    return this.baraja;
+  }
 
   setBaraja(barajaDes: Cartas[]):void{
     this.baraja = barajaDes;
   }
 
-  robar():Cartas{
-    // @ts-ignore
-    return this.baraja.pop();
+  robar():void{
+     this.mano= this.manoComponent.agregarMano(this.baraja.pop());
+     console.log(this.mano)
   }
 
-  ngAfterContentInit(): void {
-    for (let num=0; num < 5; num++){
-      let cartaRob = this.robar();
-      console.log(cartaRob)
-      this.manoComponent.agregarMano(cartaRob);
-    }
-  }
+
+
 
 
 

@@ -1,1 +1,8 @@
-<p>tablero works!</p>
+
+<app-baraja ></app-baraja>
+<div class="mano" *ngIf="mano.length>0">
+  <div  style="display: flex" *ngFor="let carta of mano">
+    <img width="100px" src="{{carta.url}}">
+  </div>
+</div>
+

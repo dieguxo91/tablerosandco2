@@ -6,11 +6,11 @@ import { TableroComponent } from './tablero/tablero/tablero.component';
 import {BarajaModule} from "./baraja/baraja.module";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     TableroComponent
+
   ],
   imports: [
     BrowserModule,
