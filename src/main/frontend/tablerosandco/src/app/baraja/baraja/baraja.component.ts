@@ -1,8 +1,8 @@
-import {Component, Injectable} from '@angular/core';
+import {AfterContentInit, Component, EventEmitter, Injectable, OnInit, Output, ViewChild} from '@angular/core';
 import {BarajaService} from "../baraja.service";
 import {Cartas} from "../cartas_inteface";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import {DescarteComponent} from "../descarte/descarte.component";
+import {ManoComponent} from "../mano/mano.component";
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +12,13 @@ import {DescarteComponent} from "../descarte/descarte.component";
   templateUrl: './baraja.component.html',
   styleUrls: ['./baraja.component.css']
 })
-export class BarajaComponent {
+export class BarajaComponent implements AfterContentInit{
 
    cartas : Cartas[] =[];
    baraja : Cartas[]=[];
-  constructor( private barajaservice: BarajaService) {
 
+
+  constructor( private barajaservice: BarajaService, private manoComponent : ManoComponent) {
   }
 
   ngOnInit(): void {
@@ -25,10 +26,9 @@ export class BarajaComponent {
       this.cartas= data;
       this.baraja = this.barajaservice.llenarbaraja(this.cartas);
       this.barajaservice.barajar(this.baraja);
-      this
+      this.ngAfterContentInit()
     })
   }
-
 
   drop(event: CdkDragDrop<Cartas[]>){
     moveItemInArray(this.cartas, event.previousIndex, event.currentIndex)
@@ -43,6 +43,15 @@ export class BarajaComponent {
     // @ts-ignore
     return this.baraja.pop();
   }
+
+  ngAfterContentInit(): void {
+    for (let num=0; num < 5; num++){
+      let cartaRob = this.robar();
+      console.log(cartaRob)
+      this.manoComponent.agregarMano(cartaRob);
+    }
+  }
+
 
 
 }
