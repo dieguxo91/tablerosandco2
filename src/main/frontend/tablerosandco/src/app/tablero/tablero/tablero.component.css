@@ -3,7 +3,6 @@
   padding: 16px 32px;
   display: flex;
   justify-content: space-evenly;
-  position: sticky ;
   border-radius: 15px;
   width: auto;
 }

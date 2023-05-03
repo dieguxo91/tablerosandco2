@@ -4,18 +4,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableroComponent } from './tablero/tablero/tablero.component';
 import {BarajaModule} from "./baraja/baraja.module";
+import {TableroModule} from "./tablero/tablero.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableroComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BarajaModule
+    BarajaModule,
+    TableroModule
   ],
   providers: [],
   bootstrap: [AppComponent]

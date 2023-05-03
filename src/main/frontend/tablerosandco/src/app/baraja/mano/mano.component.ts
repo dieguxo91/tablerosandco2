@@ -1,7 +1,7 @@
-import {AfterContentInit, AfterViewInit, Component, Injectable, ViewChild} from '@angular/core';
+import { Component, Injectable} from '@angular/core';
 import {Cartas} from "../cartas_inteface";
 import {BarajaService} from "../baraja.service";
-import {BarajaComponent} from "../baraja/baraja.component";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,31 +17,22 @@ export class ManoComponent{
   constructor(private barajaService: BarajaService) {
 
   }
-
+//obtener la mano
   getMano():Cartas[]{
     return this.mano;
   }
 
+  //modifica la mano
   setMano(cartas:Cartas[]):void{
     this.mano=cartas;
 }
-
+//agrega carta a la mano
   agregarMano(carta: Cartas | undefined):Cartas[]{
     if (carta) {
       this.mano.push(carta);
     }
     return this.mano;
   }
-
-
-
-
-
-
-
-
-
-
 
 
 }

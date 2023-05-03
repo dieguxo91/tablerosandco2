@@ -12,18 +12,15 @@ import {TableroModule} from "../tablero/tablero.module";
 
 @NgModule({
   declarations: [
-    BarajaComponent,
-    ManoComponent,
+    ManoComponent, // dar una vuelta a los componentes en que modulo y orden
     DescarteComponent,
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    DragDropModule,
-    TableroModule
+    DragDropModule
   ], exports: [
-    BarajaComponent,
     DescarteComponent,
     ManoComponent
   ]

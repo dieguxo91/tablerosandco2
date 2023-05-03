@@ -1,8 +1,10 @@
 
 <app-baraja ></app-baraja>
-<div class="mano" *ngIf="mano.length>0">
-  <div  style="display: flex" *ngFor="let carta of mano">
+<!-- Esta parte de codigo ira en el juego para que la mano se cree con 5 cartas -->
+<div class=" mano"  cdkDropListOrientation="horizontal" cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="mano.length>0 ">
+  <div   cdkDrag  *ngFor="let carta of mano">
     <img width="100px" src="{{carta.url}}">
   </div>
 </div>
+
 

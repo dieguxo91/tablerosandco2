@@ -23,7 +23,8 @@ export class DescarteComponent {
     this.barajaService.make_maze(mazo_desc);
   }
 
-  pasar_mazo(cartas: Cartas[]):void{
+  pasar_mazo():void{
+    this.barajaService.barajar(this.mazo_descarte);
     this.barajaComponent.setBaraja(this.mazo_descarte);
   }
 

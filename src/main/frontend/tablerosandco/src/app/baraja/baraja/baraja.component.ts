@@ -1,4 +1,4 @@
-import {AfterContentInit, Component,Injectable, } from '@angular/core';
+import { Component,Injectable, } from '@angular/core';
 import {BarajaService} from "../baraja.service";
 import {Cartas} from "../cartas_inteface";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -35,8 +35,7 @@ export class BarajaComponent {
     })
   }
 
-  barajaReverso():Cartas{
-
+  barajaReverso():Cartas{ //mejor en el service, dar una vuelta
     // @ts-ignore
     return this.baraja.at(this.baraja.length-1);
   }
@@ -56,7 +55,7 @@ export class BarajaComponent {
 
   robar():void{
      this.mano= this.manoComponent.agregarMano(this.baraja.pop());
-     console.log(this.mano)
+
   }
 
 
