@@ -24,7 +24,8 @@ export class ManoComponent{
 
   //modifica la mano
   setMano(cartas:Cartas[]):void{
-    this.mano=cartas;
+    // @ts-ignore
+    this.mano = cartas;
 }
 //agrega carta a la mano
   agregarMano(carta: Cartas | undefined):Cartas[]{

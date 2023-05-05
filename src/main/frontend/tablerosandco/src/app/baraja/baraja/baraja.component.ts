@@ -1,8 +1,9 @@
-import { Component,Injectable, } from '@angular/core';
+import {Component, Injectable, Input, OnInit, ViewChild,} from '@angular/core';
 import {BarajaService} from "../baraja.service";
 import {Cartas} from "../cartas_inteface";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {ManoComponent} from "../mano/mano.component";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +13,13 @@ import {ManoComponent} from "../mano/mano.component";
   templateUrl: './baraja.component.html',
   styleUrls: ['./baraja.component.css']
 })
-export class BarajaComponent {
+export class BarajaComponent implements OnInit{
+
+  @Input()baraja : Cartas[]|undefined;
 
    cartas : Cartas[] =[];
 
-    baraja : Cartas[]=[];
+
 
    mano: Cartas[]=[];
 
@@ -27,6 +30,7 @@ export class BarajaComponent {
   ngOnInit(): void {
     this.rellenarMazo();
   }
+
 
   rellenarMazo():void{
     this.barajaservice.getAll().subscribe((data: Cartas[])=>{
@@ -45,7 +49,7 @@ export class BarajaComponent {
     moveItemInArray(this.cartas, event.previousIndex, event.currentIndex)
   }
 
-  getCartas():Cartas[]{
+  getCartas():Cartas[] | undefined{
     return this.baraja;
   }
 
@@ -54,7 +58,8 @@ export class BarajaComponent {
   }
 
   robar():void{
-     this.mano= this.manoComponent.agregarMano(this.baraja.pop());
+     // @ts-ignore
+    this.mano= this.manoComponent.agregarMano(this.baraja.pop());
 
   }
 

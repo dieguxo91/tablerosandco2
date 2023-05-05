@@ -1,9 +1,17 @@
 
 <app-baraja ></app-baraja>
 <!-- Esta parte de codigo ira en el juego para que la mano se cree con 5 cartas -->
-<div class=" mano"  cdkDropListOrientation="horizontal" cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="mano.length>0 ">
-  <div   cdkDrag  *ngFor="let carta of mano">
-    <img width="100px" src="{{carta.url}}">
+<div *ngIf="mano.length>0">
+  <div class=" mano"  cdkDropListOrientation="horizontal" cdkDropList (cdkDropListDropped)="drop($event)" >
+    <div cdkDrag  *ngFor="let carta of mano">
+      <img width="100px" src="{{carta.url}}">
+    </div>
+  </div>
+</div>
+
+<button (click)="iniciartablero()"></button>
+<div class="tablero" *ngFor="let casilla of tablero" >
+  <div>{{casilla.nombre}}
   </div>
 </div>
 
