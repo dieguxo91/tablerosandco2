@@ -26,6 +26,7 @@ export class TableroComponent {
   fila!:HTMLDivElement  ;
   casilla!:HTMLDivElement ;
   imagen !:HTMLImageElement
+  boton !: HTMLButtonElement;
 
 
   constructor() {
@@ -38,24 +39,44 @@ export class TableroComponent {
   }
 
   iniciartablero(){
+    let carta:Cartas;
     for (let filas = 1 ; filas <= 4 ;filas++){
       this.fila = document.createElement("div")
       // @ts-ignore
       this.fila.style = "width: auto; margin: auto ; display:flex; justify-content: space-evenly ; "
       this.fila.id= "fila"+filas; // id filaX
+
       for (let col = 1; col <= 3; col++){
         this.imagen = document.createElement("img");
         this.casilla =  document.createElement("div");
-        this.casilla.id= this.fila.id + "casilla" + col; // id filaXcasillaX
         // @ts-ignore
-        this.imagen.src=this.baraja?.pop().url;
+        carta=this.baraja?.pop();
+        this.casilla.id= carta.nombre; // id filaXcasillaX
+        // @ts-ignore
+        this.imagen.src= carta.url;
         // @ts-ignore
         this.imagen.style="width:80px;"
 
         this.casilla.appendChild(this.imagen);
+
+
         this.fila.appendChild(this.casilla);
       }
+      //  Botones izquierdos
+      this.boton= document.createElement("button");
+      this.boton.id = "izq" + this.fila.id;   //izqfilaX
+      this.boton.innerHTML="der";
+      this.filas?.nativeElement.appendChild(this.boton);
+
+      //hacer eventos de botones para meter las cartas, no se puede drag and drop
+      //  Fila agregada al tablero
       this.filas?.nativeElement.appendChild(this.fila);
+
+      //  botones derechos
+      this.boton= document.createElement("button");
+      this.boton.id = "der" + this.fila.id;  //derfilaX
+      this.boton.innerHTML="izq";
+      this.filas?.nativeElement.appendChild(this.boton);
     }
   }
 
