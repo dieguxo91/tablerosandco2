@@ -28,12 +28,6 @@ export class ManoComponent{
     this.mano = cartas;
 }
 //agrega carta a la mano
-  agregarMano(carta: Cartas | undefined):Cartas[]{
-    if (carta) {
-      this.mano.push(carta);
-    }
-    return this.mano;
-  }
 
 
 }

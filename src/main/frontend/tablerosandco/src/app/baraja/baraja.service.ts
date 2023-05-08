@@ -57,6 +57,10 @@ export class BarajaService {
         for (let i = 0; i < 10; i++) {
           barajaProvi.push(value);
         }
+      }else if(value.nombre == "cerdo"){
+        for (let i = 0; i < 10; i++) {
+          barajaProvi.push(value);
+        }
       }
     })
     return barajaProvi;
