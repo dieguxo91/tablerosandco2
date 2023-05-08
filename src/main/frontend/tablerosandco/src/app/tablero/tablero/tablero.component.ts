@@ -1,7 +1,6 @@
 import {Component, ElementRef, Injectable, ViewChild} from '@angular/core';
 import {Cartas} from "../../baraja/cartas_inteface";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
-import {ManoComponent} from "../../baraja/mano/mano.component";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,7 @@ export class TableroComponent {
   imagen !:HTMLImageElement
 
 
-  constructor(  ) {
+  constructor() {
   }
   dataIsHere(event: any) {
     this.baraja = event;
@@ -43,16 +42,16 @@ export class TableroComponent {
       this.fila = document.createElement("div")
       // @ts-ignore
       this.fila.style = "width: auto; margin: auto ; display:flex; justify-content: space-evenly ; "
-
+      this.fila.id= "fila"+filas; // id filaX
       for (let col = 1; col <= 3; col++){
         this.imagen = document.createElement("img");
         this.casilla =  document.createElement("div");
+        this.casilla.id= this.fila.id + "casilla" + col; // id filaXcasillaX
         // @ts-ignore
         this.imagen.src=this.baraja?.pop().url;
         // @ts-ignore
         this.imagen.style="width:80px;"
 
-        // @ts-ignore
         this.casilla.appendChild(this.imagen);
         this.fila.appendChild(this.casilla);
       }
