@@ -1,5 +1,5 @@
 import {Component, ElementRef, Injectable, ViewChild} from '@angular/core';
-import {Cartas} from "../../baraja/cartas_inteface";
+import {Carta} from "../../baraja/carta_inteface";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 // @ts-ignore
 import * as events from "events";
@@ -19,9 +19,9 @@ export class TableroComponent {
   @ViewChild("filas") filas: ElementRef |undefined;
 
 
-  mano: Cartas[] =[];
+  mano: Carta[] =[];
   showChild: boolean = false;
-  baraja!: Cartas[];
+  baraja!: Carta[];
 
   // Elementos del DOM
 
@@ -29,7 +29,6 @@ export class TableroComponent {
   casilla!:HTMLDivElement ;
   imagen !:HTMLImageElement
   boton !: HTMLButtonElement;
-  botonTemp !: HTMLButtonElement ;
 
   seleccionada!: Boolean;
 
@@ -37,13 +36,16 @@ export class TableroComponent {
   }
   dataIsHere(event: any) {
     this.baraja = event;
+
     this.iniciartablero();
+
     this.showChild = true;
     this.iniciarMano();
+
   }
 
   iniciartablero(){
-    let carta:Cartas;
+    let carta:Carta;
 
     for (let filas = 1 ; filas <= 4 ;filas++){
       this.fila = document.createElement("div") // creamos las filas individualmente
@@ -92,7 +94,7 @@ export class TableroComponent {
     }
   }
 
-  drop(event: CdkDragDrop<Cartas[]>) {
+  drop(event: CdkDragDrop<Carta[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -111,7 +113,7 @@ export class TableroComponent {
       console.log("la baraja esta vacia")
     }
   }
-  agregarMano(carta: Cartas | undefined){
+  agregarMano(carta: Carta | undefined){
     if (carta) {
       this.mano.push(carta);
     }
@@ -119,7 +121,7 @@ export class TableroComponent {
 
   iniciarMano(){
     for(let cont =1; cont <=5; cont++){
-      this.mano.push(<Cartas>this.baraja.pop());
+      this.mano.push(<Carta>this.baraja.pop());
     }
   }
 
@@ -131,15 +133,18 @@ export class TableroComponent {
       let filaProv:any;
       let botonProvi:any;
       let restoFila:any;
-      let carta:Cartas;
+      let carta:Carta;
       filaProv = document.querySelector("#"+fila);
       botonProvi= filaProv.firstChild;
       filaProv.removeChild(filaProv.firstChild);
+
       this.imagen = document.createElement("img");
       this.casilla =  document.createElement("div");
       restoFila = document.createElement("div");
+
       //prueba, arreglar
       carta=this.robarmano();
+      // @ts-ignore
       this.casilla.id= carta.nombre; // id filaXcasillaX
       // @ts-ignore
       this.imagen.src= carta.url;
@@ -161,15 +166,14 @@ export class TableroComponent {
   }
 
   botonDer(boton: HTMLButtonElement, fila:string){
-    if(!this.seleccionada)
+
     boton.addEventListener("click",()=>{
       let filaProv:any;
       let botonProvi:any;
       let restoFila:any;
-      let carta:Cartas;
+      let carta:Carta;
       this.imagen = document.createElement("img");
       this.casilla =  document.createElement("div");
-      restoFila = document.createElement("div");
       filaProv = document.querySelector("#"+fila);
       botonProvi= filaProv.lastChild;
       filaProv.removeChild(filaProv.lastChild);
@@ -190,14 +194,16 @@ export class TableroComponent {
     });// Funcion insertar por detras
   }
   // prueba con la mano para el tablero
-  robarmano():Cartas{
-    let cartaMano!: Cartas;
+  robarmano():Carta{
+    let cartaMano!: Carta;
     if(this.mano.length> 0) {
       for (let cont = 0; cont < this.mano.length; cont++){
         // @ts-ignore
         if(this.mano.at(cont).seleccionado){
           // @ts-ignore
           cartaMano= this.mano.at(cont);
+          // @ts-ignore
+          this.mano.splice(cont, 1);
           return cartaMano;
         }
       }
@@ -206,7 +212,7 @@ export class TableroComponent {
 
   }
 
-  cartaSeleccionada(carta: Cartas){
+  cartaSeleccionada(carta: Carta){
     carta.seleccionado=true;
     //this.aumentar(carta.nombre) Dar una vuelta
   }

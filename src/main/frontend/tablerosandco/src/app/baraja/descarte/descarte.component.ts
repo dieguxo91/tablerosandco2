@@ -1,5 +1,5 @@
 import {Component, Injectable} from '@angular/core';
-import {Cartas} from "../cartas_inteface";
+import {Carta} from "../carta_inteface";
 import {BarajaService} from "../baraja.service";
 import {BarajaComponent} from "../baraja/baraja.component";
 
@@ -11,7 +11,7 @@ import {BarajaComponent} from "../baraja/baraja.component";
 })
 export class DescarteComponent {
 
-  mazo_descarte: Cartas[];
+  mazo_descarte: Carta[];
 
   titulo : string = "descarte";
   constructor(private barajaService: BarajaService, private barajaComponent : BarajaComponent ) {
@@ -19,7 +19,7 @@ export class DescarteComponent {
   }
 
 
-  vaciar_mazo(mazo_desc: Cartas[]):void{
+  vaciar_mazo(mazo_desc: Carta[]):void{
     this.barajaService.make_maze(mazo_desc);
   }
 

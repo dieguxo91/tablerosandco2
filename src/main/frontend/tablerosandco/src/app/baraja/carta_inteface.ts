@@ -1,7 +1,7 @@
-export interface Cartas {
+export interface Carta {
   nombre:string,
   url:string,
   reverso: string,
-  seleccionado:Boolean
+  seleccionado:boolean
 
 }

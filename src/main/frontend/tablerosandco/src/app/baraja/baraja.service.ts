@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
-import {Cartas} from "./cartas_inteface";
+import {Carta} from "./carta_inteface";
 import { catchError } from 'rxjs/operators';
-import {BarajaComponent} from "./baraja/baraja.component";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ import {BarajaComponent} from "./baraja/baraja.component";
 export class BarajaService {
 
 
-  cartas : Cartas[] =[];
+  cartas : Carta[] =[];
 
   private url = "http://localhost:8080/carta"; // url para conseguir las cartas de la BBDD/api
 
@@ -19,21 +18,21 @@ export class BarajaService {
   }
 
 //accede a la api en busca de las cartas
-  getAll (): Observable<Cartas[]>{
-    return this.httpClient.get<Cartas[]>(this.url).pipe(
+  getAll (): Observable<Carta[]>{
+    return this.httpClient.get<Carta[]>(this.url).pipe(
       catchError(this.errorHandler)
     );
   }
 
 
   //metodo para llenar la baraja nueva o de descarte
-  maze_full(bar:Cartas[]): Cartas[]{
+  maze_full(bar:Carta[]): Carta[]{
     return this.make_maze(bar);
   }
 
   // Metodo para crear la baraja
-  make_maze(array: Cartas[] ): Cartas[]{
-    let barajaProvi : Cartas[]=[];
+  make_maze(array: Carta[] ): Carta[]{
+    let barajaProvi : Carta[]=[];
     array.forEach((value)=>{
 
       if (value.nombre== "oso"){
@@ -67,7 +66,7 @@ export class BarajaService {
   }
 
   // Metodo para barajar las cartas
-  barajar(cartas:Cartas[]):Cartas[]{
+  barajar(cartas:Carta[]):Carta[]{
     return cartas.sort(() => Math.random() - 0.5);
   }
 
