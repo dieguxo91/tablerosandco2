@@ -135,32 +135,37 @@ export class TableroComponent {
       let restoFila:any;
       let carta:Carta;
       filaProv = document.querySelector("#"+fila);
-      botonProvi= filaProv.firstChild;
-      filaProv.removeChild(filaProv.firstChild);
+
 
       this.imagen = document.createElement("img");
       this.casilla =  document.createElement("div");
       restoFila = document.createElement("div");
 
       //prueba, arreglar
-      carta=this.robarmano();
-      // @ts-ignore
-      this.casilla.id= carta.nombre; // id filaXcasillaX
-      // @ts-ignore
-      this.imagen.src= carta.url;
-      // @ts-ignore
-      this.imagen.style="width:80px;"
+      if(this.mano.length>0) {
+        carta = this.robarmano();
+        if (carta.seleccionado == true) {
+          botonProvi= filaProv.firstChild;
+          filaProv.removeChild(filaProv.firstChild);
+          // @ts-ignore
+          this.casilla.id = carta.nombre; // id filaXcasillaX
+          // @ts-ignore
+          this.imagen.src = carta.url;
+          // @ts-ignore
+          this.imagen.style = "width:80px;"
 
-      this.casilla.appendChild(this.imagen);
-      restoFila.style = filaProv.style;
+          this.casilla.appendChild(this.imagen);
+          restoFila.style = filaProv.style;
 
-      while(filaProv.firstChild){
-        restoFila.appendChild(filaProv.removeChild(filaProv.firstChild))
-      }
-      filaProv.appendChild(botonProvi);
-      filaProv.appendChild(this.casilla);
-      while(restoFila.firstChild){
-        filaProv.appendChild(restoFila.removeChild(restoFila.firstChild))
+          while (filaProv.firstChild) {
+            restoFila.appendChild(filaProv.removeChild(filaProv.firstChild))
+          }
+          filaProv.appendChild(botonProvi);
+          filaProv.appendChild(this.casilla);
+          while (restoFila.firstChild) {
+            filaProv.appendChild(restoFila.removeChild(restoFila.firstChild))
+          }
+        }
       }
     });// Funcion insertar por delante
   }
@@ -175,11 +180,15 @@ export class TableroComponent {
       this.imagen = document.createElement("img");
       this.casilla =  document.createElement("div");
       filaProv = document.querySelector("#"+fila);
-      botonProvi= filaProv.lastChild;
-      filaProv.removeChild(filaProv.lastChild);
 
       //prueba, arreglar
+
+      if(this.mano.length>0){
       carta=this.robarmano();
+      if(carta.seleccionado== true){
+
+        botonProvi= filaProv.lastChild;
+        filaProv.removeChild(filaProv.lastChild);
       this.casilla.id= carta.nombre; // id filaXcasillaX
       // @ts-ignore
       this.imagen.src= carta.url;
@@ -190,6 +199,8 @@ export class TableroComponent {
 
       filaProv.appendChild(this.casilla);
       filaProv.appendChild(botonProvi);
+      }
+      }
 
     });// Funcion insertar por detras
   }
@@ -204,6 +215,7 @@ export class TableroComponent {
           cartaMano= this.mano.at(cont);
           // @ts-ignore
           this.mano.splice(cont, 1);
+
           return cartaMano;
         }
       }
