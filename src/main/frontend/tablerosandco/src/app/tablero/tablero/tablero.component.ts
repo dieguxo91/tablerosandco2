@@ -198,7 +198,6 @@ export class TableroComponent {
         if(this.mano.at(cont).seleccionado){
           // @ts-ignore
           cartaMano= this.mano.at(cont);
-          this.mano.splice(cont, 1);
           return cartaMano;
         }
       }

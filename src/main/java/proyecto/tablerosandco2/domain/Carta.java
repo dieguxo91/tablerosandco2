@@ -18,4 +18,7 @@ public class Carta {
     private String url;
     @NotBlank
     private  String reverso;
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    @NotBlank
+    private  Boolean seleccionado;
 }
