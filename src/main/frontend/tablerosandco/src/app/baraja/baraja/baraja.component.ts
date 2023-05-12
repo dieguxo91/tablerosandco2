@@ -27,7 +27,6 @@ export class BarajaComponent implements OnInit{
 
   ngOnInit(): void {
     this.rellenarMazo();
-
   }
 
 
@@ -35,12 +34,12 @@ export class BarajaComponent implements OnInit{
     this.barajaservice.getAll().subscribe((data: Carta[])=>{
       this.cartas= data;
       this.baraja = this.barajaservice.barajar(this.barajaservice.maze_full(this.cartas));
-      this.onChildInit.emit(this.baraja);
+      this.onChildInit.emit(this.baraja); // para lanzar a la vista
       this.reverso = this.barajaReverso().reverso;
     })
   }
 
-  barajaReverso():Carta{ //mejor en el service, dar una vuelta
+  barajaReverso():Carta{
     // @ts-ignore
     return this.baraja.at(this.baraja.length-1);
   }

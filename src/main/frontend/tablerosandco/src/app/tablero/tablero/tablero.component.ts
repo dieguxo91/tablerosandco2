@@ -27,8 +27,11 @@ export class TableroComponent {
 
   fila!:HTMLDivElement  ;
   casilla!:HTMLDivElement ;
-  imagen !:HTMLImageElement
+  imagen !:HTMLImageElement;
   boton !: HTMLButtonElement;
+
+  imagenBotonDer !: HTMLImageElement;
+  imagenBotonIzq !: HTMLImageElement;
 
   seleccionada!: Boolean;
 
@@ -36,9 +39,7 @@ export class TableroComponent {
   }
   dataIsHere(event: any) {
     this.baraja = event;
-
     this.iniciartablero();
-
     this.showChild = true;
     this.iniciarMano();
 
@@ -50,15 +51,21 @@ export class TableroComponent {
     for (let filas = 1 ; filas <= 4 ;filas++){
       this.fila = document.createElement("div") // creamos las filas individualmente
       // @ts-ignore
+
       this.fila.style = "width: auto; margin: auto ; display:flex; justify-content: space-evenly ;" // damos estilos a la fila
       this.fila.id= "fila"+filas; // id filaX
       //  Botones izquierdos
       this.boton= document.createElement("button"); // creamos el boton
       this.boton.id = "izq" + this.fila.id;   //izqfilaX
-      this.boton.innerHTML="izq"; // nombre de prueba
+      this.imagenBotonIzq= document.createElement('img');
+      this.imagenBotonIzq.src= "./assets/images/flecha-izq.png";
+      // @ts-ignore
+      this.imagenBotonIzq.style = "width:80px";
+      // @ts-ignore
+      this.boton.style = "border:none; background-color: #03C03C";
+      this.boton.appendChild(this.imagenBotonIzq);
 
       this.fila.appendChild(this.boton);
-
 
       for (let col = 1; col <= 3; col++){
         this.imagen = document.createElement("img");
@@ -87,24 +94,21 @@ export class TableroComponent {
       //  botones derechos
       this.boton= document.createElement("button");
       this.boton.id = "der" + this.fila.id;  //derfilaX
-      this.boton.innerHTML="der";
+      this.imagenBotonDer= document.createElement('img');
+      this.imagenBotonDer.src= "./assets/images/flecha-der.png";
+      // @ts-ignore
+      this.imagenBotonDer.style = "width:80px";
+      // @ts-ignore
+      this.boton.style = "border:none;background-color: #03C03C";
+      this.boton.appendChild(this.imagenBotonDer);
       this.botonDer(this.boton, this.fila.id)// Funcion insertar por detras, tiene que ser lambda
       this.fila.appendChild(this.boton);
 
     }
   }
 
-  drop(event: CdkDragDrop<Carta[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
+  drop(event: CdkDragDrop<{title: string; poster: string}[]>) {
+    moveItemInArray(this.mano, event.previousIndex, event.currentIndex);
   }
   robar():void{
     if (this.baraja.length>0){
@@ -133,40 +137,42 @@ export class TableroComponent {
       let filaProv:any;
       let botonProvi:any;
       let restoFila:any;
-      let carta:Carta;
+      let cartas:Carta[];
       filaProv = document.querySelector("#"+fila);
 
-
-      this.imagen = document.createElement("img");
-      this.casilla =  document.createElement("div");
-      restoFila = document.createElement("div");
-
-      //prueba, arreglar
       if(this.mano.length>0) {
-        carta = this.robarmano();
-        if (carta.seleccionado == true) {
-          botonProvi= filaProv.firstChild;
-          filaProv.removeChild(filaProv.firstChild);
-          // @ts-ignore
-          this.casilla.id = carta.nombre; // id filaXcasillaX
-          // @ts-ignore
-          this.imagen.src = carta.url;
-          // @ts-ignore
-          this.imagen.style = "width:80px;"
+        cartas = this.robarmano();
+        restoFila = document.createElement("div");
+        botonProvi = filaProv.removeChild(filaProv.firstChild)
+        while (filaProv.firstChild) {
+          restoFila.appendChild(filaProv.removeChild(filaProv.firstChild))
+        }
 
-          this.casilla.appendChild(this.imagen);
-          restoFila.style = filaProv.style;
+        filaProv = document.querySelector("#"+fila);
+        filaProv.appendChild(botonProvi);
+        if (cartas) {
+          console.log(cartas)
+          for (let cont = 0; cont < cartas.length; cont++) {
+            this.imagen = document.createElement("img");
+            this.casilla = document.createElement("div");
 
-          while (filaProv.firstChild) {
-            restoFila.appendChild(filaProv.removeChild(filaProv.firstChild))
-          }
-          filaProv.appendChild(botonProvi);
-          filaProv.appendChild(this.casilla);
-          while (restoFila.firstChild) {
-            filaProv.appendChild(restoFila.removeChild(restoFila.firstChild))
+            // @ts-ignore
+            this.casilla.id = cartas.at(cont).nombre; // id filaXcasillaX
+            //imagen y estilos, arreglar con bootstrap
+            // @ts-ignore
+            this.imagen.src = cartas.at(cont).url;
+            // @ts-ignore
+            this.imagen.style = "width:80px;"
+
+            this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
+            filaProv.appendChild(this.casilla);// insertar la casilla en la fila
           }
         }
+        while (restoFila.firstChild) {
+          filaProv.appendChild(restoFila.removeChild(restoFila.firstChild))
+        }
       }
+
     });// Funcion insertar por delante
   }
 
@@ -175,8 +181,7 @@ export class TableroComponent {
     boton.addEventListener("click",()=>{
       let filaProv:any;
       let botonProvi:any;
-      let restoFila:any;
-      let carta:Carta;
+      let cartas :Carta[];
       this.imagen = document.createElement("img");
       this.casilla =  document.createElement("div");
       filaProv = document.querySelector("#"+fila);
@@ -184,43 +189,64 @@ export class TableroComponent {
       //prueba, arreglar
 
       if(this.mano.length>0){
-      carta=this.robarmano();
-      if(carta.seleccionado== true){
+        cartas=this.robarmano();
+        if(cartas){
+          botonProvi = filaProv.lastChild;
+          filaProv.removeChild(filaProv.lastChild);
+          for (let cont = 0; cont < cartas.length; cont++){
+            this.imagen = document.createElement("img");
+            this.casilla =  document.createElement("div");
 
-        botonProvi= filaProv.lastChild;
-        filaProv.removeChild(filaProv.lastChild);
-      this.casilla.id= carta.nombre; // id filaXcasillaX
-      // @ts-ignore
-      this.imagen.src= carta.url;
-      // @ts-ignore
-      this.imagen.style="width:80px;"
+            // @ts-ignore
+            this.casilla.id= cartas.at(cont).nombre; // id filaXcasillaX
+            //imagen y estilos, arreglar con bootstrap
+            // @ts-ignore
+            this.imagen.src= cartas.at(cont).url;
+            // @ts-ignore
+            this.imagen.style="width:80px;"
 
-      this.casilla.appendChild(this.imagen);
+            this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
+            filaProv.appendChild(this.casilla);// insertar la casilla en la fila
 
-      filaProv.appendChild(this.casilla);
-      filaProv.appendChild(botonProvi);
+
+          }
+          filaProv.appendChild(botonProvi); // insertamos el boton al final de la fila
+        }
+
+
       }
-      }
-
     });// Funcion insertar por detras
   }
-  // prueba con la mano para el tablero
-  robarmano():Carta{
+  // prueba echar carta, nombre regu, dar una vuelta
+  robarmano():Carta[]{
     let cartaMano!: Carta;
+    let arrayCartas : Carta []=[];
+
     if(this.mano.length> 0) {
       for (let cont = 0; cont < this.mano.length; cont++){
+        console.log("2")
         // @ts-ignore
         if(this.mano.at(cont).seleccionado){
           // @ts-ignore
           cartaMano= this.mano.at(cont);
-          // @ts-ignore
-          this.mano.splice(cont, 1);
+          for (let i = 0; i < this.mano.length; i++){
+            // @ts-ignore
+            if(cartaMano.nombre == this.mano.at(i).nombre){
+              // @ts-ignore
+              console.log(this.mano.at(i).seleccionado)
+              // @ts-ignore
+              this.mano.at(i).seleccionado=true;
+              // @ts-ignore
+              arrayCartas.push(this.mano.splice(i, 1));
+            }
+          }
 
-          return cartaMano;
+          return arrayCartas;
+
         }
       }
     }
-    return cartaMano;
+    return arrayCartas;
 
   }
 
@@ -228,11 +254,6 @@ export class TableroComponent {
     carta.seleccionado=true;
     //this.aumentar(carta.nombre) Dar una vuelta
   }
-  aumentar(nombre:string){
-    let divCarta!: any;
-    console.log("paco")
-    divCarta = document.querySelector(nombre);
-    divCarta.style="width:100px"
-  }
+
 
 }

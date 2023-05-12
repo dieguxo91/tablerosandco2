@@ -24,4 +24,5 @@ import { DescarteComponent } from './descarte/descarte.component';
 })
 export class BarajaModule {
 
+
 }

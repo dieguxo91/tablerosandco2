@@ -2,17 +2,17 @@
 <app-baraja [ngClass]="showChild?'':'hidden'" (onChildInit)="dataIsHere($event)" (click)="robar()"></app-baraja>
 <!-- Esta parte de codigo ira en el juego para que la mano se cree con 5 cartas -->
 
-<div cdkDropListGroup>
-  <div #filas style="display: flex;justify-self: center ; justify-content: center; flex-direction: column" cdkDropList  >
+
+  <div #filas style="display: flex;justify-self: center ; justify-content: center; flex-direction: column; background-color: #03C03C" cdkDropList  >
 
   </div>
   <div style="display: flex;  "  *ngIf="mano.length>0">
     <div  class=" mano"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
-      <div cdkDrag   *ngFor="let carta of mano">
-        <img  width="60" id="{{carta.nombre}}" (click)="cartaSeleccionada(carta)" src="{{carta.url}}">
+      <div cdkDrag   (click)="cartaSeleccionada(carta)" *ngFor="let carta of mano">
+        <img  width="60" id="{{carta.nombre}}" src="{{carta.url}}">
       </div>
     </div>
   </div>
-</div>
+
 
 

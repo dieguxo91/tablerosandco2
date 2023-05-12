@@ -14,6 +14,7 @@ export class DescarteComponent {
   mazo_descarte: Carta[];
 
   titulo : string = "descarte";
+
   constructor(private barajaService: BarajaService, private barajaComponent : BarajaComponent ) {
     this.mazo_descarte = [];
   }
