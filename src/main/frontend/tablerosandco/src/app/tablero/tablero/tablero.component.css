@@ -1,9 +1,11 @@
-.mano{
+.manoClass{
   background-color: #ff9688;
   padding: 16px 32px;
   display: flex;
   justify-content: space-evenly;
   border-radius: 15px;
   width: auto;
-  margin: auto
+  margin: auto;
+  align-items: center;
 }
+

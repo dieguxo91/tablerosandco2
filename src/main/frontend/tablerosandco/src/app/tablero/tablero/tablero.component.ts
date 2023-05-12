@@ -1,6 +1,6 @@
 import {Component, ElementRef, Injectable, ViewChild} from '@angular/core';
 import {Carta} from "../../baraja/carta_inteface";
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 // @ts-ignore
 import * as events from "events";
 
@@ -19,7 +19,7 @@ export class TableroComponent {
   @ViewChild("filas") filas: ElementRef |undefined;
 
 
-  mano: Carta[] =[];
+  mano: Carta[]=[];
   showChild: boolean = false;
   baraja!: Carta[];
 
@@ -33,10 +33,10 @@ export class TableroComponent {
   imagenBotonDer !: HTMLImageElement;
   imagenBotonIzq !: HTMLImageElement;
 
-  seleccionada!: Boolean;
 
   constructor() {
   }
+
   dataIsHere(event: any) {
     this.baraja = event;
     this.iniciartablero();
@@ -116,6 +116,10 @@ export class TableroComponent {
     }else{
       console.log("la baraja esta vacia")
     }
+    for (let i = 0; i < this.mano.length; i++){
+      // @ts-ignore
+      this.mano.at(i).seleccionado= false;
+    }
   }
   agregarMano(carta: Carta | undefined){
     if (carta) {
@@ -151,7 +155,6 @@ export class TableroComponent {
         filaProv = document.querySelector("#"+fila);
         filaProv.appendChild(botonProvi);
         if (cartas) {
-          console.log(cartas)
           for (let cont = 0; cont < cartas.length; cont++) {
             this.imagen = document.createElement("img");
             this.casilla = document.createElement("div");
@@ -196,7 +199,6 @@ export class TableroComponent {
           for (let cont = 0; cont < cartas.length; cont++){
             this.imagen = document.createElement("img");
             this.casilla =  document.createElement("div");
-
             // @ts-ignore
             this.casilla.id= cartas.at(cont).nombre; // id filaXcasillaX
             //imagen y estilos, arreglar con bootstrap
@@ -204,27 +206,46 @@ export class TableroComponent {
             this.imagen.src= cartas.at(cont).url;
             // @ts-ignore
             this.imagen.style="width:80px;"
-
             this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
             filaProv.appendChild(this.casilla);// insertar la casilla en la fila
-
-
           }
           filaProv.appendChild(botonProvi); // insertamos el boton al final de la fila
         }
-
-
       }
     });// Funcion insertar por detras
   }
   // prueba echar carta, nombre regu, dar una vuelta
+  cartaSeleccionada(carta: Carta){
+    for (let i = 0; i < this.mano.length; i++){
+      // @ts-ignore
+      this.mano.at(i).seleccionado= false;
+    }
+    carta.seleccionado=true;
+    this.aumentar(carta);
+  }
+
+  aumentar(carta:Carta):void{
+    let manoProvi !: NodeListOf<HTMLDivElement>;
+    for (let i = 0; i < this.mano.length; i++){
+      // @ts-ignore
+      if(this.mano.at(i).nombre == carta.nombre){
+        manoProvi = document.querySelectorAll("#mano"+ carta.nombre);
+        for (let j = 0; j < manoProvi.length; j++){
+          // @ts-ignore
+          manoProvi.item(j).style= "width:80px";
+        }
+        break;
+      }
+    }
+  }
+
   robarmano():Carta[]{
     let cartaMano!: Carta;
     let arrayCartas : Carta []=[];
+    let indicesEliminados: number[] = []
 
     if(this.mano.length> 0) {
       for (let cont = 0; cont < this.mano.length; cont++){
-        console.log("2")
         // @ts-ignore
         if(this.mano.at(cont).seleccionado){
           // @ts-ignore
@@ -233,26 +254,21 @@ export class TableroComponent {
             // @ts-ignore
             if(cartaMano.nombre == this.mano.at(i).nombre){
               // @ts-ignore
-              console.log(this.mano.at(i).seleccionado)
-              // @ts-ignore
               this.mano.at(i).seleccionado=true;
               // @ts-ignore
-              arrayCartas.push(this.mano.splice(i, 1));
+              arrayCartas.push(this.mano.at(i));
+              indicesEliminados.push(i);
             }
           }
-
+          for (let i = 0; i < indicesEliminados.length; i++) {
+            this.mano.splice(indicesEliminados[indicesEliminados.length-1-i],1);
+          }
           return arrayCartas;
-
         }
       }
     }
     return arrayCartas;
 
-  }
-
-  cartaSeleccionada(carta: Carta){
-    carta.seleccionado=true;
-    //this.aumentar(carta.nombre) Dar una vuelta
   }
 
 

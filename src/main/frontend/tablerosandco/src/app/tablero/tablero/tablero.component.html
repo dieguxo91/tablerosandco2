@@ -7,9 +7,10 @@
 
   </div>
   <div style="display: flex;  "  *ngIf="mano.length>0">
-    <div  class=" mano"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
-      <div cdkDrag   (click)="cartaSeleccionada(carta)" *ngFor="let carta of mano">
-        <img  width="60" id="{{carta.nombre}}" src="{{carta.url}}">
+    <div  class=" manoClass"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
+      <div cdkDrag id="mano"   (click)="cartaSeleccionada(carta)" *ngFor="let carta of mano">
+        <img *ngIf="carta.seleccionado != true" width="60" id="mano{{carta.nombre}}" src="{{carta.url}}">
+        <img *ngIf="carta.seleccionado == true" width="80" id="mano{{carta.nombre}}" src="{{carta.url}}">
       </div>
     </div>
   </div>
