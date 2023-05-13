@@ -21,4 +21,9 @@ public class Carta {
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     @NotBlank
     private boolean seleccionado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_juego_carta",nullable = false)
+    private Juego id_juego_carta ;
+
 }

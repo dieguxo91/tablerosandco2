@@ -1,4 +1,5 @@
 package proyecto.tablerosandco2.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Data
 @Builder
@@ -29,15 +31,19 @@ public class Juego {
     @Size(max = 500)
     private String Description;
 
-    @ManyToOne()
-    @JoinColumn(name = "id",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_admin",nullable = false)
     private Usuario id_admin ;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "partida",
-            joinColumns = @JoinColumn(name = "id_juego", referencedColumnName = "id_juego"),
-            inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id_user"))
-    Set<Usuario> usuarios;
+    @OneToMany(mappedBy = "id_juego_partida")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Partida> id_juego_partida;
 
+
+
+    @OneToMany(mappedBy = "id_juego_carta")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Carta> juegosCartas;
 }

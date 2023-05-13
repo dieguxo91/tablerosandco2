@@ -49,20 +49,15 @@ public class Usuario {
     @Size(max = 30)
     private String apodo;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Rol> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "id_admin")
     @JsonIgnore
     @ToString.Exclude
     private List<Juego> usuarioJuegos;
 
-    @ManyToMany(
-            mappedBy = "usuarios", fetch = FetchType.EAGER)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "id_jugador_partida")
     @JsonIgnore
-    Set<Juego> juegos = new HashSet<>();
+    @ToString.Exclude
+    private List<Partida> id_jugador_partida;
+
 }
