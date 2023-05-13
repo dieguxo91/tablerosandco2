@@ -7,11 +7,13 @@ import {BarajaModule} from "./baraja/baraja.module";
 import {TableroModule} from "./tablero/tablero.module";
 import { HeaderComponent } from './body/header/header.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { FooterComponent } from './body/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
 
   ],
   imports: [

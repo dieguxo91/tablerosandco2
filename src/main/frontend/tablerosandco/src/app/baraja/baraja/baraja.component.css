@@ -1,10 +1,9 @@
 .baraja{
-  background-color: #ff9688;
-  padding: 16px 32px;
+  padding: 8px;
   display: flex;
-  justify-content: space-evenly;
-  position: absolute ;
   border-radius: 15px;
-  bottom: 50% ;
-  width: auto;
+  justify-content: center;
+  width: 100px;
+  border: solid;
+  border-color: #0dcaf0 ;
 }

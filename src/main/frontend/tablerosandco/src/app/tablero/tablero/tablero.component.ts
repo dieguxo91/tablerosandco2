@@ -36,7 +36,7 @@ export class TableroComponent {
 
   constructor() {
   }
-
+// Inicia el tablero, la baraja y la mano
   dataIsHere(event: any) {
     this.baraja = event;
     this.iniciartablero();
@@ -45,24 +45,28 @@ export class TableroComponent {
 
   }
 
+
+
   iniciartablero(){
     let carta:Carta;
 
-    for (let filas = 1 ; filas <= 4 ;filas++){
+    for (let filas = 1 ; filas <= 4 ;filas++){// para
       this.fila = document.createElement("div") // creamos las filas individualmente
       // @ts-ignore
 
       this.fila.style = "width: auto; margin: auto ; display:flex; justify-content: space-evenly ;" // damos estilos a la fila
+
       this.fila.id= "fila"+filas; // id filaX
       //  Botones izquierdos
       this.boton= document.createElement("button"); // creamos el boton
       this.boton.id = "izq" + this.fila.id;   //izqfilaX
+      // @ts-ignore
+      this.boton.style = "border: 0 ; background-color: #9fe1fd;"
       this.imagenBotonIzq= document.createElement('img');
       this.imagenBotonIzq.src= "./assets/images/flecha-izq.png";
       // @ts-ignore
-      this.imagenBotonIzq.style = "width:80px";
-      // @ts-ignore
-      this.boton.style = "border:none; background-color: #03C03C";
+      this.imagenBotonIzq.style = "width:60px";
+
       this.boton.appendChild(this.imagenBotonIzq);
 
       this.fila.appendChild(this.boton);
@@ -94,12 +98,13 @@ export class TableroComponent {
       //  botones derechos
       this.boton= document.createElement("button");
       this.boton.id = "der" + this.fila.id;  //derfilaX
+      // @ts-ignore
+      this.boton.style = "border: 0 ; background-color: #9fe1fd;"
       this.imagenBotonDer= document.createElement('img');
       this.imagenBotonDer.src= "./assets/images/flecha-der.png";
       // @ts-ignore
-      this.imagenBotonDer.style = "width:80px";
-      // @ts-ignore
-      this.boton.style = "border:none;background-color: #03C03C";
+      this.imagenBotonDer.style = "  width:60px;";
+
       this.boton.appendChild(this.imagenBotonDer);
       this.botonDer(this.boton, this.fila.id)// Funcion insertar por detras, tiene que ser lambda
       this.fila.appendChild(this.boton);

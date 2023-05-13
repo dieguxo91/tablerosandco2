@@ -8,4 +8,24 @@
   margin: auto;
   align-items: center;
 }
+.colorfila{
+  background-color: #9fe1fd;
+}
+.filas{
+  display: flex;
+  justify-self: center ;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 16px;
+}
+.fondoTablero{
+  background-color: #9fe1fd;
+}
+.main{
+  background: linear-gradient(to right ,#cfeffd , #9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd, #cfeffd );
+}
+header{
+  background-color: #9fe1fd;
+}
+
 
