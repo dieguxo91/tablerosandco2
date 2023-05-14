@@ -5,15 +5,19 @@ import { AppComponent } from './app.component';
 import { TableroComponent } from './tablero/tablero/tablero.component';
 import {BarajaModule} from "./baraja/baraja.module";
 import {TableroModule} from "./tablero/tablero.module";
-import { HeaderComponent } from './body/header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import { FooterComponent } from './body/footer/footer.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { PrincipalComponent } from './pages/principal/principal.component';
+import {UsuarioModule} from "./pages/usuario/usuario.module";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    PrincipalComponent,
 
   ],
   imports: [
@@ -21,7 +25,9 @@ import { FooterComponent } from './body/footer/footer.component';
     AppRoutingModule,
     BarajaModule,
     TableroModule,
-    NgbModule
+    NgbModule,
+    UsuarioModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

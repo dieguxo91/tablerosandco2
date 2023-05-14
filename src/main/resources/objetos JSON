@@ -1,0 +1,24 @@
+usuario JSON
+{
+	"apellidos": "garcia",
+	"apodo": "dieguxo91",
+	"email": "paco",
+	"name": "diego",
+	"password": "12345",
+	"telefono": "123"
+}
+
+Juego JSON
+{
+	"description": "to guapo",
+	"name": "granja",
+	"id_admin": {
+	"apellidos": "garcia",
+	"apodo": "dieguxo91",
+	"email": "paco",
+	"name": "diego",
+	"password": "12345",
+	"telefono": "123",
+	"id_user": 1
+}
+}

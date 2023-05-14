@@ -1,0 +1,76 @@
+<form class="container-xl col-sm-10 col-md-8 col-10  p-5 pb-1 d-grid gap-3 m-auto form-group "  [formGroup]="formlogin" (submit)="enviar()">
+  <div class="form-group-item" >
+    <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Nombre</label>
+    <input   type="text" id="name" formControlName="name" class="form-control" placeholder="Introduzca su Nombre">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['name'].errors &&
+                            formlogin.controls['name'].touched">
+                        No puede estar vacío
+                    </span>
+  </div>
+  <div class="form-group-item">
+    <label class="mb-1 fw-bolder form-group-item fs-5 "  style=" font-family:  Arial, Helvetica, sans-serif;">Apellidos</label>
+    <input type="text" type="text" id="apellidos" formControlName="apellidos" class="form-control" placeholder="Introduzca su/sus Apellidos">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['apellidos'].errors &&
+                            formlogin.controls['apellidos'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+  </div>
+  <div class="form-group ">
+    <label class="mb-1 fw-bolder fs-5 "  style=" font-family:  Arial, Helvetica, sans-serif;">Telefono</label>
+    <input type="text" id="telefono"  formControlName="telefono" class="form-control" placeholder="Introduzca su número de telefono">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['telefono'].errors &&
+                            formlogin.controls['telefono'].touched">
+                        No puede estar vacío y deber ser un telefono español, 9 digitos
+                    </span>
+  </div>
+  <div class="form-group ">
+    <label class="mb-1 fw-bolder fs-5"   style="font-family:  Arial, Helvetica, sans-serif;">Correo electronico</label>
+    <input type="email"id="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Introduzca su Email">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['email'].errors &&
+                            formlogin.controls['email'].touched">
+                        No puede estar vacío y debe ser un email nombre@dominio
+                    </span>
+  </div>
+  <div class="form-group ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Contraseña</label>
+    <input type="password"  id="password" formControlName="password"  class="form-control" placeholder="Introduzca contraseña">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['password'].errors &&
+                            formlogin.controls['password'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+  </div><!--  -->
+  <div class="form-group ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Repita Contraseña</label>
+    <input type="password" id="repeat_password" formControlName="repeat_password" class="form-control" placeholder="Contraseña">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['repeat_password'].errors &&
+                            formlogin.controls['repeat_password'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+    <span class="form-text text-danger"
+          *ngIf="  distntas(this.formlogin.value['password'],  this.formlogin.value['repeat_password']) &&
+                            formlogin.controls['repeat_password'].dirty"><br>
+                        Las contraseñas tienen que ser iguales
+                    </span>
+
+  </div>
+  <div class="form-group ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Nick</label>
+    <input  type="text" id="apodo" formControlName="apodo" class="form-control" placeholder="Player Name">
+    <span class="form-text text-danger"
+          *ngIf="this.formlogin.controls['apodo'].errors &&
+                            formlogin.controls['apodo'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" >
+    <label class="form-check-label" style="font-family:  Arial, Helvetica, sans-serif;" >Estoy de acuerdo</label>
+  </div>
+</form>
+<a class="d-flex justify-content-center my-3" ><button [disabled]="formlogin.invalid"  type="submit" class="btn btn-primary fs-4 " style=" font-family:  Arial, Helvetica, sans-serif;">Aceptar</button></a>

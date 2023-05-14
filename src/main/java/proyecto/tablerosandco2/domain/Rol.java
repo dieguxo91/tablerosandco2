@@ -13,7 +13,6 @@ public class Rol {
     private ERol rol;
 
     public Rol() {
-
     }
 
     public Rol(ERol rol) {
