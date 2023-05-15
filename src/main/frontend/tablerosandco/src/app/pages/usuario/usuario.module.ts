@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UsuarioComponent} from "./crear/usuario.component";
-
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -10,7 +10,8 @@ import {UsuarioComponent} from "./crear/usuario.component";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],exports:[UsuarioComponent]
 })
 export class UsuarioModule { }

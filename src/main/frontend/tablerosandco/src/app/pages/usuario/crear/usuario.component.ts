@@ -16,6 +16,7 @@ import {UsuarioService} from "../usuario.service";
 export class UsuarioComponent implements OnInit {
   formlogin!: FormGroup;
 
+  private logueado:boolean=false;
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService ) {
 
@@ -38,10 +39,13 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
+ getLogue():boolean{
+    return this.logueado;
+ }
 
-
-
-
+ setLogue(estado:boolean):void{
+    this.logueado=estado;
+ }
 
   distntas(pas1: string, pas2: string){
     if(pas1 !== pas2)
