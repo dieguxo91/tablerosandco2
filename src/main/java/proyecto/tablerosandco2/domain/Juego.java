@@ -34,6 +34,11 @@ public class Juego {
     @NotBlank
     @Size(max = 100)
     private String url;
+
+    @NotBlank
+    @Size(max = 100)
+    private String urlHexa;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_admin",nullable = false)
     private Usuario id_admin ;

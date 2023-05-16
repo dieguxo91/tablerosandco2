@@ -13,6 +13,7 @@ Juego JSON
 	"description": "to guapo",
 	"name": "granja",
 	"url":"./assets/images/juegos/galaxia/galaxia_prohibida.png",
+	"urlHexa": "./assets/images/juegos/galaxia/galaxia.png",
 	"id_admin": {
 	"apellidos": "garcia",
 	"apodo": "dieguxo91",
@@ -29,6 +30,7 @@ JSON editar juego  path+/id
 	"id_juego": 1,
 	"name": "granja",
 	"url": "./assets/images/juegos/galaxia/galaxia_prohibida.png",
+	"urlHexa": "./assets/images/juegos/galaxia/galaxia.png",
 	"id_admin": {
 		"id_user": 1,
 		"name": "diego",
@@ -39,4 +41,21 @@ JSON editar juego  path+/id
 		"apodo": "dieguxo91"
 	},
 	"description": "La Galaxia U-128 esta a punto de desaparecer, ¿Seréis capaces de conseguir las gemas antes de que llegue el meteorito?"
+}
+
+Juego sushi
+{
+	"name": "sushi",
+	"url": "./assets/images/juegos/sushi/sushi_go.png",
+	"urlHexa": "./assets/images/juegos/sushi/sushi.png",
+	"id_admin": {
+		"id_user": 1,
+		"name": "diego",
+		"apellidos": "garcia",
+		"telefono": "123",
+		"email": "paco",
+		"password": "12345",
+		"apodo": "dieguxo91"
+	},
+	"description": "Te gusta el sushi y los juegos de mesa, pues este es tu sitio, intenta hacerte con mas puntos que tus rivales y sobre todo no te olvides del postre. "
 }

@@ -10,6 +10,7 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import {UsuarioModule} from "./pages/usuario/usuario.module";
 import {FormsModule} from "@angular/forms";
 
+
 @NgModule({
   declarations: [
     AppComponent,

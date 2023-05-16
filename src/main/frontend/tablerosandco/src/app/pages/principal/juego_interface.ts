@@ -4,5 +4,7 @@ export interface Juego_interface {
   description : string;
   name : string;
   url: string;
+
+  urlHexa:string;
   id_admin : number;
 }

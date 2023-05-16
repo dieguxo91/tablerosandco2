@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {UsuarioComponent} from "./pages/usuario/crear/usuario.component";
 import {PrincipalComponent} from "./pages/principal/principal.component";
+import {VistaAdminComponent} from "./pages/usuario/admin/vista-admin/vista-admin.component";
+import {TableroComponent} from "./tablero/tablero/tablero.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
   { path: '', component: PrincipalComponent , pathMatch: "full" },
   { path: 'inicio', component: PrincipalComponent },
+  { path: 'admin', component: VistaAdminComponent },
+  { path: 'inicio/juego2', component: TableroComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 ];
 

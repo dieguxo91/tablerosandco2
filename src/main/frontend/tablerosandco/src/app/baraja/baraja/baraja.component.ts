@@ -22,7 +22,6 @@ export class BarajaComponent implements OnInit{
 
 
   constructor( private barajaservice: BarajaService) {
-
   }
 
   ngOnInit(): void {

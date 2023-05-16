@@ -19,7 +19,7 @@ import {UsuarioService} from "../usuario.service";
 export class UsuarioComponent implements OnInit {
   formlogin!: FormGroup;
 
-  private logueado:boolean=true;
+  private logueado:boolean=false;
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService ) {
 

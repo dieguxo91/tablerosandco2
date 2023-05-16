@@ -1,19 +1,11 @@
-<main>
+<main class="container-xl">
   <h1 class="d-flex justify-content-center mt-3">Nuestros Juegos</h1>
-<div class="container-xl"  *ngIf="noLogue(); else siLogue;"  >
-  <div class="d-flex-col   mb-5" *ngFor="let juego of juegos" >
-    <img src="{{juego.url}}" class="d-flex col-12 col-sm-6 justify-content-center my-3 m-auto">
-    <p class="d-flex m-auto col-sm-6 col-12 text-center fs-sm-4 fs-md-3 fs-lg-2 fw-bolder" >{{juego.description}}</p>
+<div class=" d-flex-col d-sm-flex justify-content-evenly"   *ngIf="noLogue(); else siLogue;"  >
+  <div class="d-flex-col col-12 col-sm-6  mb-5" *ngFor="let juego of juegos" >
+    <img src="{{juego.url}}" class=" d-flex my-3 m-auto col-10"  >
+    <p class=" m-auto col-12 col-sm-10 text-center fs-sm-4 fs-md-3 fs-lg-2 fw-bolder" >{{juego.description}}</p>
   </div>
 
-  <!--La Galaxia U-128 esta a punto de desaparecer,<br>¿Seréis capaces de conseguir las gemas antes de que llegue el meteorito?
-  <div class="d-flex-col justify-content-center">
-    <img src="./images/sushi.png" class="d-flex justify-content-center my-3 m-auto" style="width: 80%; ">
-    <p class="d-flex justify-content-center text-center fs-sm-4 fs-md-3 fs-lg-2 fw-bolder" >SUSHIIIII!!! <br>
-      Te gusta el sushi y los juegos de mesa, pues este es tu sitio, intenta <br>
-      hacerte con mas puntos que tus rivales y sobre todo <br>
-      no te olvides del postre. </p>
-  </div>-->
 </div>
   <ng-template #siLogue>
   <div class="container-xl ">
@@ -24,33 +16,19 @@
       <div class="mx-2 input-group mx-5 mx-sm-2 mx-md-5">
         <input type="text" class="form-control position-relative" style="height: 30px; font-family:  Arial, Helvetica, sans-serif;" aria-label="" aria-describedby="basic-addon1"  >
         <div class="input-group-prepend">
-          <button class="bg-secondary border-success" ><img   src="./images/transparency.png" style="width: 24px;"> </button>
+          <button class="bg-secondary border-success" ><img src="./assets/images/lupa.png" style="width: 24px;"> </button>
         </div>
       </div>
       <div class="d-sm-flex d-none  ms-5 ">
         <button  type="button" class=" fs-4 px-5 btn btn-info text-decoration-none text-white text-center"   style="font-family:  Arial, Helvetica, sans-serif;">Participantes</button>
       </div>
     </div>
-    <div id="juegos1" class="d-flex-row  my-2 bg-info rounded p-4 border-top border  border-primary w-100" >
-      <div class="d-flex justify-content-around">
-        <div class="col-3" >
-          <a href="./src/app/tablero/tablero/tablero.component.html"  >
-            <img src="../../../assets/images/juegos/galaxia/galaxia.png " class="w-100 h-auto d-inline-block" style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">
+    <div  class="d-flex-row  my-2 rounded p-4 border-top border  border-primary w-100" style="background-color: #9fe1fd" >
+      <div class="d-flex justify-content-around" >
+        <div class="col-3" *ngFor="let juego of juegos">
+          <a  routerLink="juego2" >
+            <img src="{{juego.urlHexa}}" class="w-100 h-auto d-inline-block" style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">
           </a>
-        </div>
-        <div class="col-3" >
-          <img src="../assets/images/2.2.png " class="w-100 h-auto d-inline-block"  style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%); ">
-        </div>
-        <div class="col-3">
-          <img src="../../../assets/images/juegos/galaxia/galaxia.png " class="w-100 h-auto d-inline-block" style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">
-        </div>
-      </div>
-      <div class="d-flex justify-content-around">
-        <div class="col-3" >
-          <img src="../../../assets/images/juegos/galaxia/galaxia.png " class="w-100 h-auto d-inline-block" style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">
-        </div>
-        <div class="col-3" >
-          <img src="../assets/images/2.2.png " class="w-100 h-auto d-inline-block "  style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%); ">
         </div>
       </div>
     </div>
