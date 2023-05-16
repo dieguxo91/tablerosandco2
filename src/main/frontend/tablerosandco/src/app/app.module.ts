@@ -9,7 +9,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import {UsuarioModule} from "./pages/usuario/usuario.module";
 import {FormsModule} from "@angular/forms";
-import { RegistradoComponent } from './pages/registrado/registrado.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,6 @@ import { RegistradoComponent } from './pages/registrado/registrado.component';
     HeaderComponent,
     FooterComponent,
     PrincipalComponent,
-    RegistradoComponent,
-
   ],
   imports: [
     BrowserModule,

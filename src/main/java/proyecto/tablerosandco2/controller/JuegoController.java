@@ -13,7 +13,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/Juego")
+@RequestMapping("/Juego/")
 public class JuegoController {
     private final JuegoService juegoService;
 

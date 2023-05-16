@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,6 +6,9 @@ import {
 } from "@angular/forms";
 import {UsuarioService} from "../usuario.service";
 
+@Injectable({
+  providedIn: 'root'
+})
 
 
 @Component({
@@ -16,7 +19,7 @@ import {UsuarioService} from "../usuario.service";
 export class UsuarioComponent implements OnInit {
   formlogin!: FormGroup;
 
-  private logueado:boolean=false;
+  private logueado:boolean=true;
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService ) {
 

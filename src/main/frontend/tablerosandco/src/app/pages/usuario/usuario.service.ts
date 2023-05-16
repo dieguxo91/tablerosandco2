@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {Users} from "./users";
+import {Usuario_interface} from "./usuario_interface";
 import {catchError} from "rxjs/operators";
 
 @Injectable({
@@ -17,27 +17,27 @@ export class UsuarioService {
   };
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<Users[]> {
-    return this.httpClient.get<Users[]>(this.apiURL)
+  getAll(): Observable<Usuario_interface[]> {
+    return this.httpClient.get<Usuario_interface[]>(this.apiURL)
   }
 
-  create(usuario: Users): Observable<Users> {
-    return this.httpClient.post<Users>(this.apiURL, JSON.stringify(usuario), this.httpOptions)
+  create(usuario: Usuario_interface): Observable<Usuario_interface> {
+    return this.httpClient.post<Usuario_interface>(this.apiURL, JSON.stringify(usuario), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
-  find(id: number): Observable<Users> {
-    return this.httpClient.get<Users>(this.apiURL + id)
+  find(id: number): Observable<Usuario_interface> {
+    return this.httpClient.get<Usuario_interface>(this.apiURL + id)
   }
 
-  update(id: number, usuario: Users): Observable<Users> {
-    return this.httpClient.put<Users>(this.apiURL + id, JSON.stringify(usuario), this.httpOptions)
+  update(id: number, usuario: Usuario_interface): Observable<Usuario_interface> {
+    return this.httpClient.put<Usuario_interface>(this.apiURL + id, JSON.stringify(usuario), this.httpOptions)
   }
 
   delete(id: number){
-    return this.httpClient.delete<Users>(this.apiURL + id, this.httpOptions)
+    return this.httpClient.delete<Usuario_interface>(this.apiURL + id, this.httpOptions)
   }
   errorHandler(error: any) {
 

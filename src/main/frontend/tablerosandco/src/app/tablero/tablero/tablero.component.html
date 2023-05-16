@@ -1,9 +1,6 @@
 <div class="main">
 <div class="fondoTablero container-xl">
 
-<!-- Esta parte de codigo ira en el juego para que la mano se cree con 5 cartas -->
-
-
   <div #filas class=" filas" ></div>
   <app-baraja [ngClass]="showChild?'':'hidden'" (onChildInit)="dataIsHere($event)" (click)="robar()"></app-baraja>
   <div style="display: flex;  "  *ngIf="mano.length>0">
@@ -11,7 +8,7 @@
       <div cdkDrag id="mano"   (click)="cartaSeleccionada(carta)" *ngFor="let carta of mano">
         <img *ngIf="carta.seleccionado != true; else noSelecionada" width="60" id="mano{{carta.nombre}}" src="{{carta.url}}">
         <ng-template #noSelecionada> <img  width="80" id="mano{{carta.nombre}}" src="{{carta.url}}"></ng-template>
-      </div>
+        </div>
     </div>
   </div>
 </div>

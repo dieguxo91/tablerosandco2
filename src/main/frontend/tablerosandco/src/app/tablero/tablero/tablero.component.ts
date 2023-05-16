@@ -63,7 +63,7 @@ export class TableroComponent {
       // @ts-ignore
       this.boton.style = "border: 0 ; background-color: #9fe1fd;"
       this.imagenBotonIzq= document.createElement('img');
-      this.imagenBotonIzq.src= "./assets/images/flecha-izq.png";
+      this.imagenBotonIzq.src= "./assets/images/izquierda.png";
       // @ts-ignore
       this.imagenBotonIzq.style = "width:60px";
 
@@ -101,7 +101,7 @@ export class TableroComponent {
       // @ts-ignore
       this.boton.style = "border: 0 ; background-color: #9fe1fd;"
       this.imagenBotonDer= document.createElement('img');
-      this.imagenBotonDer.src= "./assets/images/flecha-der.png";
+      this.imagenBotonDer.src= "./assets/images/derecha.png";
       // @ts-ignore
       this.imagenBotonDer.style = "  width:60px;";
 

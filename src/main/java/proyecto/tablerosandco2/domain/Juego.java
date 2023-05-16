@@ -31,6 +31,9 @@ public class Juego {
     @Size(max = 500)
     private String Description;
 
+    @NotBlank
+    @Size(max = 100)
+    private String url;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_admin",nullable = false)
     private Usuario id_admin ;
@@ -39,8 +42,6 @@ public class Juego {
     @JsonIgnore
     @ToString.Exclude
     private List<Partida> id_juego_partida;
-
-
 
     @OneToMany(mappedBy = "id_juego_carta")
     @JsonIgnore

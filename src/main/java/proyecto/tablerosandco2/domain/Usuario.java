@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users",
+@Table(name = "user",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "apodo"),
                 @UniqueConstraint(columnNames = "email")
@@ -48,7 +48,6 @@ public class Usuario {
     @NotBlank
     @Size(max = 30)
     private String apodo;
-
 
     @OneToMany(mappedBy = "id_admin")
     @JsonIgnore
