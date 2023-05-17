@@ -1,5 +1,5 @@
 export interface Usuario_interface {
-  id:number;
+  id_user:number;
 
   name: string;
 

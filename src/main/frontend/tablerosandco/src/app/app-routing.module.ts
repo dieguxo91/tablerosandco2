@@ -4,12 +4,17 @@ import {UsuarioComponent} from "./pages/usuario/crear/usuario.component";
 import {PrincipalComponent} from "./pages/principal/principal.component";
 import {VistaAdminComponent} from "./pages/usuario/admin/vista-admin/vista-admin.component";
 import {TableroComponent} from "./tablero/tablero/tablero.component";
+import {ListarComponent} from "./pages/usuario/admin/game/listar/listar.component";
+import {IndexComponent} from "./pages/usuario/admin/index/index.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
   { path: '', component: PrincipalComponent , pathMatch: "full" },
   { path: 'inicio', component: PrincipalComponent },
-  { path: 'admin', component: VistaAdminComponent },
+  { path: 'admin', component: VistaAdminComponent ,children:[
+    {path: 'juegos', component: ListarComponent},
+      {path: 'usuarios', component: IndexComponent }
+    ]},
   { path: 'inicio/juego2', component: TableroComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 ];

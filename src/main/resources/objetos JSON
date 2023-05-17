@@ -17,12 +17,12 @@ Juego JSON
 	"id_admin": {
 	"apellidos": "garcia",
 	"apodo": "dieguxo91",
-	"email": "paco",
+	"email": "paco@gmail.com",
 	"name": "diego",
-	"password": "12345",
+	"password": "123456",
 	"telefono": "123",
 	"id_user": 1
-}
+    }
 }
 
 JSON editar juego  path+/id

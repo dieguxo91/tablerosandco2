@@ -1,4 +1,10 @@
-<div class="container-xl col-12 d-flex">
-  <app-aside class="col-2" ></app-aside>
-  <app-index class="col-10"></app-index>
+<div class="container-xl d-flex mt-2">
+  <aside class="col-2" style="background-color: #9fe1fd ; height: 600px">
+    <h1 class="pt-4 ms-2">Menú</h1>
+    <ul class="list-group mx-2" >
+      <a routerLink="./juegos" routerLinkActive="active" class="list-group-item list-group-item-action list-group-item-info text-center">Juegos</a>
+      <a routerLink="./usuarios" routerLinkActive="active" class="list-group-item  list-group-item-action list-group-item-info text-center">Usuarios</a>
+      </ul>
+    </aside>
+<router-outlet></router-outlet>
 </div>

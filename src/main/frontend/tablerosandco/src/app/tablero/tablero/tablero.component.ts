@@ -115,6 +115,7 @@ export class TableroComponent {
   drop(event: CdkDragDrop<{title: string; poster: string}[]>) {
     moveItemInArray(this.mano, event.previousIndex, event.currentIndex);
   }
+
   robar():void{
     if (this.baraja.length>0){
       this.agregarMano(this.baraja.pop());

@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
 
   private logueado:boolean=false;
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService ) {
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService   ) {
 
     this.formlogin= this.formBuilder.group({
       name: ['', Validators.required],
@@ -38,7 +38,7 @@ export class UsuarioComponent implements OnInit {
     console.log(this.formlogin.value);
     this.usuarioService.create(this.formlogin.value).subscribe(res => {
       console.log('Usuario creado');
-      //this.router.navigateByUrl('categoria/index').then();
+      // echar un ojo a los apuntes para volver a la pagina principal
     })
   }
 

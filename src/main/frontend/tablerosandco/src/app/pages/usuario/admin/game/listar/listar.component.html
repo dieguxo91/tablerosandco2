@@ -1,0 +1,19 @@
+<section class="ms-2 w-auto" >
+  <div class="d-flex-col justify-content-start">
+    <h1 class="py-2 ps-2" style="background-color: lightgrey">Juegos</h1>
+  </div>
+  <hr class="col-12">
+  <ul class="d-flex" style="list-style: none">
+    <li class="col-1">Id</li>
+    <li class="col-2">Nombre</li>
+    <li class="col-1">Id_admin</li>
+    <li  >descripcion</li>
+  </ul>
+  <hr>
+  <ul *ngFor="let juego of juegos" class="d-flex" style="list-style: none">
+    <li class="col-1">{{juego.id_juego}}</li>
+    <li class="col-2">{{juego.name}}</li>
+    <li class="col-1">{{juego.id_admin}}</li>
+    <li>{{juego.description}}</li>
+  </ul>
+</section>
