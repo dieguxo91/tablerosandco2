@@ -53,7 +53,6 @@ export class TableroComponent {
     for (let filas = 1 ; filas <= 4 ;filas++){// para
       this.fila = document.createElement("div") // creamos las filas individualmente
       // @ts-ignore
-
       this.fila.style = "width: auto; margin: auto ; display:flex; justify-content: space-evenly ;" // damos estilos a la fila
 
       this.fila.id= "fila"+filas; // id filaX
@@ -202,6 +201,8 @@ export class TableroComponent {
         if(cartas){
           botonProvi = filaProv.lastChild;
           filaProv.removeChild(filaProv.lastChild);
+          // Aqui hacer la comprobacion empezando por la derecha
+          // y que cuando se repita el nombre de las cartas de robarmano()
           for (let cont = 0; cont < cartas.length; cont++){
             this.imagen = document.createElement("img");
             this.casilla =  document.createElement("div");

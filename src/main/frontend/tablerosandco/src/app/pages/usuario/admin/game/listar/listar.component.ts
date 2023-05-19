@@ -16,4 +16,12 @@ export class ListarComponent {
       this.juegos= data;
     })
   }
+
+  delete(id: any){
+    console.log(id)
+    this.juegoService.delete(id).subscribe(res => {
+      this.juegos = this.juegos.filter(juego => juego.id_juego !== id);
+      console.log('Juego id =' + id + ' eliminado!');
+    })
+  }
 }

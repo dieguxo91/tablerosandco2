@@ -5,6 +5,7 @@ import {
   Validators
 } from "@angular/forms";
 import {UsuarioService} from "../usuario.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,11 @@ import {UsuarioService} from "../usuario.service";
 export class UsuarioComponent implements OnInit {
   formlogin!: FormGroup;
 
+  private admin :boolean=true;
+
   private logueado:boolean=false;
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService   ) {
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService,private router: Router) {
 
     this.formlogin= this.formBuilder.group({
       name: ['', Validators.required],
@@ -38,6 +41,7 @@ export class UsuarioComponent implements OnInit {
     console.log(this.formlogin.value);
     this.usuarioService.create(this.formlogin.value).subscribe(res => {
       console.log('Usuario creado');
+      this.router.navigateByUrl('inicio').then();
       // echar un ojo a los apuntes para volver a la pagina principal
     })
   }

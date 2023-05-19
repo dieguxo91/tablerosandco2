@@ -9,6 +9,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import {UsuarioModule} from "./pages/usuario/usuario.module";
 import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {FormsModule} from "@angular/forms";
     TableroModule,
     NgbModule,
     UsuarioModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

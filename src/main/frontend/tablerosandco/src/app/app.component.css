@@ -1,1 +1,4 @@
 
+body > app-root > app-vista-admin > div > app-index{
+  width: 100%;
+}

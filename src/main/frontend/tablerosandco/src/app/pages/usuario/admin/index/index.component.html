@@ -1,22 +1,24 @@
-<section class="ms-2 w-auto">
-  <div class="d-flex-col justify-content-start">
+<section class="ms-2 w-auto ">
+  <div class="d-flex-col justify-content-start ">
     <h1 class="py-2 ps-2" style="background-color: lightgrey">Usuarios</h1>
   </div>
   <hr class="col-12">
   <ul class="d-flex" style="list-style: none">
     <li class="col-1">ID</li>
     <li class="col-2">Nombre</li>
-    <li class="col-3">Apellidos</li>
+    <li class="col-2">Apellidos</li>
     <li class="col-2">Apodo</li>
     <li>Email</li>
-
   </ul>
   <hr>
   <ul *ngFor="let usuario of usuarios" class="d-flex" style="list-style: none">
     <li class="col-1">{{usuario.id_user}}</li>
     <li class="col-2">{{usuario.name}}</li>
-    <li class="col-3">{{usuario.apellidos}}</li>
+    <li class="col-2">{{usuario.apellidos}}</li>
     <li class="col-2">{{usuario.apodo}}</li>
-    <li >{{usuario.email}}</li>
+    <li class="col-3">{{usuario.email}}</li>
+    <div class=" justify-content-md-center">
+      <button type="button" (click)="delete(usuario.id_user)" class="btn btn-danger text-white fw-bold" style="margin-left: 2px; ">&#10007;</button>
+    </div>
   </ul>
 </section>

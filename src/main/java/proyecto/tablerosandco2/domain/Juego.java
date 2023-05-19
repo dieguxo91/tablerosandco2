@@ -39,7 +39,7 @@ public class Juego {
     @Size(max = 100)
     private String urlHexa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_admin",nullable = false)
     private Usuario id_admin ;
 
