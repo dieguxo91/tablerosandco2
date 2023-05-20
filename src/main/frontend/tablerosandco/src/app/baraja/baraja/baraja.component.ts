@@ -51,11 +51,4 @@ export class BarajaComponent implements OnInit{
     this.baraja = barajaDes;
   }
 
-
-
-
-
-
-
-
 }

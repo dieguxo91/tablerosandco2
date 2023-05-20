@@ -3,6 +3,7 @@ import {Carta} from "../../baraja/carta_inteface";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 // @ts-ignore
 import * as events from "events";
+import {BarajaService} from "../../baraja/baraja.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class TableroComponent {
   showChild: boolean = false;
   baraja!: Carta[];
 
+  cartaRepe!: Carta;
   // Elementos del DOM
 
   fila!:HTMLDivElement  ;
@@ -34,7 +36,7 @@ export class TableroComponent {
   imagenBotonIzq !: HTMLImageElement;
 
 
-  constructor() {
+  constructor(private barajaService: BarajaService) {
   }
 // Inicia el tablero, la baraja y la mano
   dataIsHere(event: any) {
@@ -42,7 +44,6 @@ export class TableroComponent {
     this.iniciartablero();
     this.showChild = true;
     this.iniciarMano();
-
   }
 
 
@@ -184,25 +185,81 @@ export class TableroComponent {
     });// Funcion insertar por delante
   }
 
+  encuentraCarta(id:string):Carta{
+    let cartaProvi !: Carta;
+    this.barajaService.find(id).subscribe((data: Carta)=> {
+      cartaProvi = data;
+    })
+    return cartaProvi;
+  }
   botonDer(boton: HTMLButtonElement, fila:string){
 
     boton.addEventListener("click",()=>{
       let filaProv:any;
-      let botonProvi:any;
-      let cartas :Carta[];
+      let botonDere:any;
+      let cartas :Carta[];//Cartas que vienen de la mano
+      let repetida : boolean = false;
+      let botonIzq :any;
+      let filaCompr :HTMLDivElement;
+      let filaTemp : HTMLDivElement;
+      let manoProvi:Carta[];
+
+
       this.imagen = document.createElement("img");
       this.casilla =  document.createElement("div");
       filaProv = document.querySelector("#"+fila);
-
-      //prueba, arreglar
+      filaCompr = document.createElement("div");
+      filaTemp = document.createElement("div");
 
       if(this.mano.length>0){
         cartas=this.robarmano();
-        if(cartas){
-          botonProvi = filaProv.lastChild;
+        if(cartas.length>0){
+          //quitamos los botones y los guardamos en variables temporales
+          botonDere = filaProv.lastChild;
           filaProv.removeChild(filaProv.lastChild);
-          // Aqui hacer la comprobacion empezando por la derecha
-          // y que cuando se repita el nombre de las cartas de robarmano()
+          botonIzq = filaProv.firstChild;
+          filaProv.removeChild(filaProv.firstChild);
+
+          while(filaProv.lastChild){ // guarda las cartas hasta que encuentre alguna repetida
+            if(cartas[0].nombre == filaProv.lastChild.id){
+              repetida = true;
+              break;
+            }else{
+              filaCompr.appendChild(filaProv.lastChild);
+            }
+          }
+
+
+          if(!repetida){ // si encuentra alguna
+            filaProv.appendChild(botonIzq);
+            while (filaCompr.lastChild){
+              filaProv.appendChild(filaCompr.lastChild)
+            }
+          }else{
+            filaTemp.appendChild(botonIzq)
+            while(filaProv.firstChild){
+              filaTemp.appendChild(filaProv.firstChild);
+            }
+            while (filaTemp.firstChild){
+              filaProv.appendChild(filaTemp.firstChild);
+            }
+
+            // @ts-ignore
+
+            while (filaCompr.lastChild){
+
+              // @ts-ignore
+              this.barajaService.find(filaCompr.lastChild.id).subscribe((data: Carta)=> {
+                this.cartaRepe = data;
+                this.mano.push(this.cartaRepe)
+              });
+              // @ts-ignore
+              filaCompr.removeChild(filaCompr.lastChild)
+            }
+
+          }
+          //mete las cartas seleccionadas en la fila por la derecha
+
           for (let cont = 0; cont < cartas.length; cont++){
             this.imagen = document.createElement("img");
             this.casilla =  document.createElement("div");
@@ -216,17 +273,16 @@ export class TableroComponent {
             this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
             filaProv.appendChild(this.casilla);// insertar la casilla en la fila
           }
-          filaProv.appendChild(botonProvi); // insertamos el boton al final de la fila
+          filaProv.appendChild(botonDere); // insertamos el boton al final de la fila
         }
       }
     });// Funcion insertar por detras
   }
   // prueba echar carta, nombre regu, dar una vuelta
   cartaSeleccionada(carta: Carta){
-    for (let i = 0; i < this.mano.length; i++){
-      // @ts-ignore
-      this.mano.at(i).seleccionado= false;
-    }
+    this.mano.forEach(value => {
+      value.seleccionado=false;
+    })
     carta.seleccionado=true;
     this.aumentar(carta);
   }

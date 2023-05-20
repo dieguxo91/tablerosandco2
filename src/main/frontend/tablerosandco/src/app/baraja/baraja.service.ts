@@ -12,7 +12,7 @@ export class BarajaService {
 
   cartas : Carta[] =[];
 
-  private url = "http://localhost:8080/carta"; // url para conseguir las cartas de la BBDD/api
+  private url = "http://localhost:8080/carta/"; // url para conseguir las cartas de la BBDD/api
 
   constructor(private httpClient: HttpClient) {
   }
@@ -22,6 +22,13 @@ export class BarajaService {
     return this.httpClient.get<Carta[]>(this.url).pipe(
       catchError(this.errorHandler)
     );
+  }
+
+  find(nombre: string): Observable<Carta> {
+    return this.httpClient.get<Carta>(this.url + nombre)
+      .pipe(
+        catchError(this.errorHandler)
+      )
   }
 
 
