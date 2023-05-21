@@ -6,6 +6,7 @@ import {VistaAdminComponent} from "./pages/usuario/admin/vista-admin/vista-admin
 import {TableroComponent} from "./tablero/tablero/tablero.component";
 import {ListarComponent} from "./pages/usuario/admin/game/listar/listar.component";
 import {IndexComponent} from "./pages/usuario/admin/index/index.component";
+import {EditUsuarioComponent} from "./pages/usuario/admin/edit/edit-Usuario.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     {path: 'juegos', component: ListarComponent},
       {path: 'usuarios', component: IndexComponent }
     ]},
-  { path: 'inicio/juego2', component: TableroComponent },
+  { path: 'Usuario/edit/:idUsuario', component: EditUsuarioComponent },
+  { path: 'inicio/galaxia', component: TableroComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 ];
 

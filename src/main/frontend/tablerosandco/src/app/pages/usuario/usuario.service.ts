@@ -33,7 +33,8 @@ export class UsuarioService {
   }
 
   update(id: number, usuario: Usuario_interface): Observable<Usuario_interface> {
-    return this.httpClient.put<Usuario_interface>(this.apiURL + id, JSON.stringify(usuario), this.httpOptions)
+    const x = {...usuario, 'id_user': id};
+    return this.httpClient.put<Usuario_interface>(this.apiURL + id, x, this.httpOptions)
   }
 
   delete(id: number){

@@ -2,11 +2,11 @@
 <div class="fondoTablero container-xl">
 
   <div #filas class=" filas" ></div>
-  <div >
+  <div class="col-2 m-auto">
     <app-baraja  [ngClass]="showChild?'':'hidden'" (onChildInit)="dataIsHere($event)" (click)="robar()"></app-baraja>
   </div>
   <div style="display: flex;  "  *ngIf="mano.length>0">
-    <div  class=" manoClass"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
+    <div style="background-color: #77dd77 " class=" manoClass"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
       <div cdkDrag id="mano"  *ngFor="let carta of mano">
         <img (click)="cartaSeleccionada(carta)" *ngIf="!carta.seleccionado ; else noSelecionada" width="60" id="mano{{carta.nombre}}" src="{{carta.url}}">
         <ng-template #noSelecionada> <img  width="80" id="mano{{carta.nombre}}" src="{{carta.url}}"></ng-template>

@@ -145,43 +145,91 @@ export class TableroComponent {
 
     boton.addEventListener("click",()=>{
       let filaProv:any;
-      let botonProvi:any;
+      let botonizq:any;
+      let botonder:any;
       let restoFila:any;
       let cartas:Carta[];
+      let repetida:boolean=false;
+
+      let filaCompr :HTMLDivElement;
       filaProv = document.querySelector("#"+fila);
+      filaCompr = document.createElement("div");
+      restoFila = document.createElement("div");
 
       if(this.mano.length>0) {
         cartas = this.robarmano();
-        restoFila = document.createElement("div");
-        botonProvi = filaProv.removeChild(filaProv.firstChild)
-        while (filaProv.firstChild) {
-          restoFila.appendChild(filaProv.removeChild(filaProv.firstChild))
-        }
+        if (cartas.length > 0) {
 
-        filaProv = document.querySelector("#"+fila);
-        filaProv.appendChild(botonProvi);
-        if (cartas) {
-          for (let cont = 0; cont < cartas.length; cont++) {
-            this.imagen = document.createElement("img");
-            this.casilla = document.createElement("div");
+          botonizq = filaProv.removeChild(filaProv.firstChild)
+          botonder = filaProv.removeChild(filaProv.lastChild);
 
-            // @ts-ignore
-            this.casilla.id = cartas.at(cont).nombre; // id filaXcasillaX
-            //imagen y estilos, arreglar con bootstrap
-            // @ts-ignore
-            this.imagen.src = cartas.at(cont).url;
-            // @ts-ignore
-            this.imagen.style = "width:80px;"
-
-            this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
-            filaProv.appendChild(this.casilla);// insertar la casilla en la fila
+          while (filaProv.firstChild){
+            if(cartas[0].nombre == filaProv.firstChild.id){
+              repetida = true;
+              break;
+            }else{
+              // @ts-ignore
+              filaCompr.appendChild(filaProv.firstChild);
+            }
           }
-        }
-        while (restoFila.firstChild) {
-          filaProv.appendChild(restoFila.removeChild(restoFila.firstChild))
-        }
-      }
+          while (filaProv.firstChild){
+            restoFila.appendChild(filaProv.firstChild)
+          }
+          filaProv.appendChild(botonizq);
+          if(!repetida){ // si encuentra alguna
+            for (let cont = 0; cont < cartas.length; cont++) {
+              this.imagen = document.createElement("img");
+              this.casilla = document.createElement("div");
 
+              // @ts-ignore
+              this.casilla.id = cartas.at(cont).nombre; // id filaXcasillaX
+              //imagen y estilos, arreglar con bootstrap
+              // @ts-ignore
+              this.imagen.src = cartas.at(cont).url;
+              // @ts-ignore
+              this.imagen.style = "width:80px;"
+
+              this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
+              filaProv.appendChild(this.casilla);// insertar la casilla en la fila
+            }
+
+            while (filaCompr.firstChild){
+              filaProv.appendChild(filaCompr.firstChild);
+            }
+          }else{
+            for (let cont = 0; cont < cartas.length; cont++) {
+              this.imagen = document.createElement("img");
+              this.casilla = document.createElement("div");
+
+              // @ts-ignore
+              this.casilla.id = cartas.at(cont).nombre; // id filaXcasillaX
+              //imagen y estilos, arreglar con bootstrap
+              // @ts-ignore
+              this.imagen.src = cartas.at(cont).url;
+              // @ts-ignore
+              this.imagen.style = "width:80px;"
+
+              this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
+              filaProv.appendChild(this.casilla);// insertar la casilla en la fila
+            }
+          }
+          while (filaCompr.lastChild){
+
+            // @ts-ignore
+            this.barajaService.find(filaCompr.lastChild.id).subscribe((data: Carta)=> {
+              this.cartaRepe = data;
+              this.mano.push(this.cartaRepe)
+            });
+            // @ts-ignore
+            filaCompr.removeChild(filaCompr.lastChild)
+          }
+
+          }
+          while (restoFila.firstChild) {
+            filaProv.appendChild(restoFila.removeChild(restoFila.firstChild))
+          }
+        filaProv.appendChild(botonder)
+        }
     });// Funcion insertar por delante
   }
 
@@ -192,6 +240,7 @@ export class TableroComponent {
     })
     return cartaProvi;
   }
+
   botonDer(boton: HTMLButtonElement, fila:string){
 
     boton.addEventListener("click",()=>{
@@ -202,7 +251,6 @@ export class TableroComponent {
       let botonIzq :any;
       let filaCompr :HTMLDivElement;
       let filaTemp : HTMLDivElement;
-      let manoProvi:Carta[];
 
 
       this.imagen = document.createElement("img");
@@ -333,6 +381,8 @@ export class TableroComponent {
     return arrayCartas;
 
   }
+
+
 
 
 }

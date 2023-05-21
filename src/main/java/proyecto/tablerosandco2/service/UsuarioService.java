@@ -56,10 +56,14 @@ public class UsuarioService {
     }
 
     public Usuario replace(Long id, Usuario usuario) {
+        usuario.setId_user(id);
+// otra manera de hacerlo
+        if (!this.usuarioRepository.existsById(id)) {
+            throw new UsuarioNotFoundException(id);
+        }
+        this.usuarioRepository.save(usuario);
 
-        return this.usuarioRepository.findById(id).map( p -> (id.equals(usuario.getId_user())  ?
-                        this.usuarioRepository.save(usuario) : null))
-                .orElseThrow(() -> new UsuarioNotFoundException(id));
+        return usuario;
 
     }
 
