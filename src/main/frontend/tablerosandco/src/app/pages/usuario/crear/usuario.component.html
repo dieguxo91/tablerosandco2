@@ -62,10 +62,10 @@
   </div>
   <div class="form-group-item ">
     <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Nick</label>
-    <input  type="text" id="apodo" formControlName="apodo" class="form-control" placeholder="Player Name">
+    <input  type="text" id="username" formControlName="username" class="form-control" placeholder="Player Name">
     <span class="form-text text-danger"
-          *ngIf="this.formlogin.controls['apodo'].errors &&
-                            formlogin.controls['apodo'].touched">
+          *ngIf="this.formlogin.controls['username'].errors &&
+                            formlogin.controls['username'].touched">
                         No puede estar vacío y debe tener más de 5 caracteres
                     </span>
   </div>

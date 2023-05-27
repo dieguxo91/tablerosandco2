@@ -39,6 +39,7 @@ public class WebSecurityConfig {
 
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
+        System.out.println(authProvider);
 
         return authProvider;
     }

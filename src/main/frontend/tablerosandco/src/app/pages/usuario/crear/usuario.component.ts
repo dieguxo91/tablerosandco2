@@ -31,7 +31,7 @@ export class UsuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.minLength(9)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      apodo: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, Validators.minLength(6)]],
       repeat_password: ['',[Validators.required, Validators.minLength(6)]],
       apellidos: ['', [Validators.required, Validators.minLength(6)]]
     });

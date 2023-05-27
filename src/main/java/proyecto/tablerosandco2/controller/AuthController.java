@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/inicio")
+@RequestMapping("/auth")
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -38,8 +38,11 @@ public class AuthController {
     @Autowired
     TokenUtils tokenUtils;
 
-    @PostMapping("/inicio")
+    @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+
+        //loginRequest.setPassword(encoder.encode(loginRequest.getPassword()));
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
@@ -64,7 +67,7 @@ public class AuthController {
 
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
         if (userRepository.existsByUsername(registerRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username ya en uso!"));
@@ -77,7 +80,10 @@ public class AuthController {
         // Create new user's account
         Usuario user = new Usuario(registerRequest.getUsername(),
                 registerRequest.getEmail(),
-                encoder.encode(registerRequest.getPassword()));
+                encoder.encode(registerRequest.getPassword()),
+                registerRequest.getTelefono(),
+                registerRequest.getApellidos(),
+                registerRequest.getName());
 
         Set<String> strRoles = registerRequest.getRoles();
         Set<Rol> roles = new HashSet<>();

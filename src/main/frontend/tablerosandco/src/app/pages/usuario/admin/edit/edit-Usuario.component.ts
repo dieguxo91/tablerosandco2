@@ -19,12 +19,12 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
     email: ['', Validators.required],
     telefono: ['', Validators.required],
     password: ['', Validators.required],
-    apodo: ['', Validators.required],
+    username: ['', Validators.required],
     apellidos: ['', Validators.required]
   });
 
   id: number = 1;
-  usuario: Usuario_interface = {id_user : this.id, telefono:"0", email:"0", apodo:"0", apellidos:"0", name:"0", password:"0"};
+  usuario: Usuario_interface = {id_user : this.id, telefono:"0", email:"0", username:"0", apellidos:"0", name:"0", password:"0"};
 
   submit(){
     console.log(this.usuario)
@@ -41,7 +41,7 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
       this.usuario = data;
       this.form.get('name')?.setValue(this.usuario.name);
       this.form.get('email')?.setValue(this.usuario.email);
-      this.form.get('apodo')?.setValue(this.usuario.apodo);
+      this.form.get('username')?.setValue(this.usuario.username);
       this.form.get('apellidos')?.setValue(this.usuario.apellidos);
       this.form.get('telefono')?.setValue(this.usuario.telefono);
       this.form.get('password')?.setValue(this.usuario.password);

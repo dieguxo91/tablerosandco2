@@ -66,17 +66,20 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String username, String email, String password) {
+    public Usuario(String username, String email, String password, String telefono, String apellidos, String name) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.name = name;
     }
 
-    public Long getId() {
+    public Long getId_user() {
         return id_user;
     }
 
-    public void setId(Long id) {
+    public void setId_user(Long id) {
         this.id_user = id;
     }
 
@@ -110,6 +113,27 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+    public String getApellidos() {
+        return this.apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 }

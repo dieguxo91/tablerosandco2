@@ -11,5 +11,5 @@ export interface Usuario_interface {
 
   telefono:string;
 
-  apodo:string;
+  username:string;
 }
