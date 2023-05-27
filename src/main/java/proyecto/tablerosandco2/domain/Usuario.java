@@ -10,10 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Table(name = "user",
         uniqueConstraints = {
@@ -64,5 +61,55 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Rol> roles = new HashSet<>();
+
+
+    public Usuario() {
+    }
+
+    public Usuario(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id_user;
+    }
+
+    public void setId(Long id) {
+        this.id_user = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
 
 }

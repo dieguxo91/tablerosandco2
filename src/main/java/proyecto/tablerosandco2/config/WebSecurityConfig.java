@@ -56,14 +56,15 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        //para version de spring  security config de spring boot 3
         http
                 .cors().and()
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() //para que se quede guardado el logeo
                 //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
-                .authorizeHttpRequests().requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/v1/categorias").hasAnyAuthority("ROL_ADMIN")
+                .authorizeHttpRequests().requestMatchers("/**").permitAll()
+                .requestMatchers("/admin").hasAnyAuthority("ROL_ADMIN")
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());
