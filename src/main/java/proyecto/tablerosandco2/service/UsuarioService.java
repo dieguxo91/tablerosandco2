@@ -56,7 +56,7 @@ public class UsuarioService {
     }
 
     public Usuario replace(Long id, Usuario usuario) {
-        usuario.setId_user(id);
+        usuario.setId(id);
 // otra manera de hacerlo
         if (!this.usuarioRepository.existsById(id)) {
             throw new UsuarioNotFoundException(id);
