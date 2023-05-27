@@ -1,7 +1,7 @@
 <main class="container-xl" style="">
   <h1 class="d-flex justify-content-center mt-3">Nuestros Juegos</h1>
-<div class=" d-flex-col d-sm-flex justify-content-evenly"   *ngIf="noLogue(); else siLogue;"  >
-  <div class="d-flex-col col-12 col-sm-6  mb-5" *ngFor="let juego of juegos" >
+<div class=" row  justify-content-evenly"   *ngIf="noLogue(); else siLogue;"  >
+  <div class=" col-12 col-sm-6  mb-5" *ngFor="let juego of juegos" >
     <img src="{{juego.url}}" class=" d-flex my-3 m-auto col-10"  >
     <p class=" m-auto col-12 col-sm-10 text-center fs-sm-4 fs-md-3 fs-lg-2 fw-bolder" >{{juego.description}}</p>
   </div>
@@ -25,7 +25,7 @@
     </div>
     <div  class="d-flex  my-2 rounded p-4 border-top border  border-primary w-100" style="background-color: #9fe1fd" >
       <div class="row mx-4" >
-        <div class="col-4 m-auto" *ngFor="let juego of juegos">
+        <div class="col-4 m-auto mb-4" *ngFor="let juego of juegos">
           <a  routerLink="{{juego.name}}" >
             <img src="{{juego.urlHexa}}" class="w-100 h-auto d-inline-block" style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">
           </a>

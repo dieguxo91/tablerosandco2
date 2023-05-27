@@ -16,9 +16,6 @@ export class PrincipalComponent implements OnInit{
   constructor(private usuario:UsuarioComponent ,private juegoService: JuegoService) {
   }
 
-
-
-
   noLogue(): boolean{
     return this.usuario.getLogue();
   }

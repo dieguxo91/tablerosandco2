@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "apodo"),
+                @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
 public class Usuario {
@@ -47,7 +47,7 @@ public class Usuario {
 
     @NotBlank
     @Size(max = 30)
-    private String apodo;
+    private String username;
 
     @OneToMany(mappedBy = "id_admin")
     @JsonIgnore
@@ -58,5 +58,11 @@ public class Usuario {
     @JsonIgnore
     @ToString.Exclude
     private List<Partida> id_jugador_partida;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Rol> roles = new HashSet<>();
 
 }
