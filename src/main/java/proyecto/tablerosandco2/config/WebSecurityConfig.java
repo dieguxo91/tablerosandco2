@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
-        System.out.println(authProvider);
+
 
         return authProvider;
     }
@@ -64,9 +64,9 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() //para que se quede guardado el logeo
                 //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
-                .authorizeHttpRequests().requestMatchers("/**").permitAll()
+                .authorizeHttpRequests().requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/admin").hasAnyAuthority("ROL_ADMIN")
-                .anyRequest().authenticated();
+                .anyRequest().permitAll();// cambiar a authenticated
 
         http.authenticationProvider(authenticationProvider());
 

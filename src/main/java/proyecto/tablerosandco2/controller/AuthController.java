@@ -41,9 +41,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-
-        //loginRequest.setPassword(encoder.encode(loginRequest.getPassword()));
-
+        System.out.println(loginRequest.getPassword());
+        System.out.println(loginRequest.getEmail());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
