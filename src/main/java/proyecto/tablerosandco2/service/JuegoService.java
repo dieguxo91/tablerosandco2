@@ -7,7 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import proyecto.tablerosandco2.domain.Juego;
 import proyecto.tablerosandco2.exception.JuegoNotFoundException;
+import proyecto.tablerosandco2.exception.UsuarioNotFoundException;
 import proyecto.tablerosandco2.repository.JuegoRepository;
+import proyecto.tablerosandco2.repository.UsuarioRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +18,10 @@ import java.util.Map;
 @Service
 public class JuegoService {
     private final JuegoRepository juegoRepository;
-
-    public JuegoService(JuegoRepository juegoRepository) {
+    private final UsuarioRepository usuarioRepository;
+    public JuegoService(JuegoRepository juegoRepository , UsuarioRepository usuarioRepository) {
         this.juegoRepository = juegoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Juego> all() {
@@ -54,11 +57,15 @@ public class JuegoService {
     }
 
     public Juego replace(Long id, Juego juego) {
+        juego.setId_juego(id);
+        System.out.println(id);
+        juego.setId_admin(usuarioRepository.findById(id).get());
+        if (!this.juegoRepository.existsById(id)) {
+            throw new JuegoNotFoundException(id);
+        }
+        this.juegoRepository.save(juego);
 
-        return this.juegoRepository.findById(id).map( p -> (id.equals(juego.getId_juego())  ?
-                        this.juegoRepository.save(juego) : null))
-                .orElseThrow(() -> new JuegoNotFoundException(id));
-
+        return juego;
     }
 
     public void delete(Long id) {

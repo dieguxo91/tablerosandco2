@@ -1,1 +1,44 @@
-<p>crear-juego works!</p>
+<h2 class="w-25 m-auto mt-4 border border-info rounded text-center">Crear Juego</h2>
+<form class="container-xl col-sm-10 col-md-8 col-10  p-5 pb-1 d-grid gap-3 m-auto form-group " [formGroup]="formlogin" >
+
+  <div class="form-group-item" >
+    <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Nombre</label>
+    <input   type="text" id="name" formControlName="name" class="form-control" placeholder="Introduzca Nombre del Juego">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['name'].errors &&
+                            formlogin.controls['name'].touched">
+                        No puede estar vacío
+                    </span>
+  </div>
+
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Principal</label>
+    <input type="text"  id="fotoPrinc" formControlName="fotoPrinc"  class="form-control" placeholder="Introduzca Foto Inicio juego">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['fotoPrinc'].errors &&
+                            formlogin.controls['fotoPrinc'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+  </div>
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Hexagonal</label>
+    <input type="text" id="fotoHexa" formControlName="fotoHexa" class="form-control" placeholder="Introduzca Foto Hexagonal">
+    <span class="form-text text-danger"
+          *ngIf="formlogin.controls['fotoHexa'].errors &&
+                            formlogin.controls['fotoHexa'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+  </div>
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Descripción</label>
+    <textarea class="form-control" type="text" id="descripcion" formControlName="descripcion" rows="3" placeholder="Descripcion del juego"></textarea>
+    <span class="form-text text-danger"
+          *ngIf="this.formlogin.controls['descripcion'].errors &&
+                            formlogin.controls['descripcion'].touched">
+                        No puede estar vacío y debe tener más de 5 caracteres
+                    </span>
+  </div>
+
+  <div class="d-flex justify-content-center my-3" ><button type="submit" [disabled]="!formlogin.valid" class="btn btn-primary fs-4 " style=" font-family:  Arial, Helvetica, sans-serif;">Aceptar</button></div>
+</form>
+

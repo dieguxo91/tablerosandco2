@@ -1,0 +1,27 @@
+<h2 class="w-25 m-auto mt-4 border border-info rounded text-center">Editar Juego</h2>
+<form class="container-xl col-sm-10 col-md-8 col-10  p-5 pb-1 d-grid gap-3 m-auto form-group " [formGroup]="formlogin" >
+
+  <div class="form-group-item" >
+    <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Nombre</label>
+    <input   type="text" id="name" formControlName="name" class="form-control" placeholder="Introduzca Nombre del Juego">
+
+  </div>
+
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Principal</label>
+    <input type="text"  id="fotoPrinc" formControlName="fotoPrinc"  class="form-control" placeholder="Introduzca Foto Inicio juego">
+
+  </div>
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Hexagonal</label>
+    <input type="text" id="fotoHexa" formControlName="fotoHexa" class="form-control" placeholder="Introduzca Foto Hexagonal">
+
+  </div>
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Descripción</label>
+    <textarea class="form-control" type="text" id="descripcion" formControlName="descripcion" rows="3"></textarea>
+  </div>
+
+  <div class="d-flex justify-content-center my-3" ><button type="submit" [disabled]="!formlogin.valid" class="btn btn-primary fs-4 " (click)="submit()" style=" font-family:  Arial, Helvetica, sans-serif;">Aceptar</button></div>
+</form>
+

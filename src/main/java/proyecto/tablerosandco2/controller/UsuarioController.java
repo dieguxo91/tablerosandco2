@@ -13,7 +13,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/Usuario/")
+@RequestMapping("/usuario/")
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
@@ -37,12 +37,12 @@ public class UsuarioController {
 
         return ResponseEntity.ok(responseAll);
     }
-
+/*
     //@Secured("ROL_ADMIN")
-    @PostMapping({"","/"})
+    // @PostMapping({"","/"})
     public Usuario newUsuario(@RequestBody Usuario usuario) {
         return this.usuarioService.save(usuario);
-    }
+    }*/
 
     @GetMapping("/{id_user}")
     public Usuario one(@PathVariable("id_user") Long id) {

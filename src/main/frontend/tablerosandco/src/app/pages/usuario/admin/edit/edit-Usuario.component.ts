@@ -35,7 +35,7 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
   }
 
   ngOnInit(): void {
-    console.log("oninit");
+
     this.id = this.routes.snapshot.params['idUsuario'];
     this.usuarioService.find(this.id).subscribe((data: Usuario_interface)=>{
       this.usuario = data;

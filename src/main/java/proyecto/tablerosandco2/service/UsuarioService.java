@@ -1,5 +1,6 @@
 package proyecto.tablerosandco2.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import proyecto.tablerosandco2.repository.UsuarioRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Slf4j
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
@@ -51,20 +52,18 @@ public class UsuarioService {
     public Usuario one(Long id) {
         Usuario usuario = this.usuarioRepository.findById(id)
                 .orElseThrow(() -> new UsuarioNotFoundException(id));
-        System.out.println(usuario);
+        log.debug(usuario.toString());
         return usuario;
     }
 
     public Usuario replace(Long id, Usuario usuario) {
         usuario.setId_user(id);
-// otra manera de hacerlo
+
         if (!this.usuarioRepository.existsById(id)) {
             throw new UsuarioNotFoundException(id);
         }
         this.usuarioRepository.save(usuario);
-
         return usuario;
-
     }
 
     public void delete(Long id) {

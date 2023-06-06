@@ -7,6 +7,8 @@ import {TableroComponent} from "./tablero/tablero/tablero.component";
 import {ListarComponent} from "./pages/usuario/admin/game/listar/listar.component";
 import {IndexComponent} from "./pages/usuario/admin/index/index.component";
 import {EditUsuarioComponent} from "./pages/usuario/admin/edit/edit-Usuario.component";
+import {CrearJuegoComponent} from "./pages/usuario/admin/game/crear-juego/crear-juego.component";
+import {EditarJuegoComponent} from "./pages/usuario/admin/editar-juego/editar-juego.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
@@ -14,11 +16,16 @@ const routes: Routes = [
   { path: 'inicio', component: PrincipalComponent },
   { path: 'admin', component: VistaAdminComponent ,children:[
     {path: 'juegos', component: ListarComponent},
-      {path: 'usuarios', component: IndexComponent }
+      {path: 'usuarios', component: IndexComponent },
+
     ]},
+  { path: 'admin/juegos/crearJuego', component: CrearJuegoComponent},
   { path: 'Usuario/edit/:idUsuario', component: EditUsuarioComponent },
+  { path: 'Juego/edit/:idJuego', component: EditarJuegoComponent},
   { path: 'inicio/galaxia', component: TableroComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
+
+
 ];
 
 @NgModule({

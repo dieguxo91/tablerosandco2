@@ -1,6 +1,8 @@
+<router-outlet></router-outlet>
 <section class="ms-2 w-auto" >
-  <div class="d-flex-col justify-content-start">
-    <h1 class="py-2 ps-2" style="background-color: lightgrey">Juegos</h1>
+  <div class="d-flex " style="background-color: lightgrey;">
+    <h1 class="py-2 ps-2 d-flex" style=" justify-self: start">Juegos</h1>
+    <button routerLink="crearJuego"  class="btn btn-outline-info" >Crear</button>
   </div>
   <hr class="col-12">
   <ul class="d-flex" style="list-style: none">
@@ -14,6 +16,7 @@
     <li class="col-2">{{juego.name}}</li>
     <li class="col-6">{{juego.description}}</li>
     <div class="col-md-3 d-md-flex justify-content-md-center">
+      <button type="button" [routerLink]="['/Juego/', 'edit', juego.id_juego]" class="btn btn-outline-warning border-secondary" style="margin-left: 2px; "><img style="width:15px; height: 15px" src="./assets/images/lapiz.png"></button>
       <button type="button" (click)="delete(juego.id_juego)" class="btn btn-danger text-white fw-bold" style="margin-left: 2px; margin-top: 2px;">&#10007;</button>
     </div>
   </ul>

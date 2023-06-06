@@ -9,7 +9,8 @@ import {catchError} from "rxjs/operators";
 })
 export class UsuarioService {
 
-  private apiURL = "http://localhost:8080/Usuario/";
+  private apiURL = "http://localhost:8080/usuario/";
+  private apiCrear = "http://localhost:8080/auth/register";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -22,7 +23,7 @@ export class UsuarioService {
   }
 
   create(usuario: Usuario_interface): Observable<Usuario_interface> {
-    return this.httpClient.post<Usuario_interface>(this.apiURL, JSON.stringify(usuario), this.httpOptions)
+    return this.httpClient.post<Usuario_interface>(this.apiCrear, JSON.stringify(usuario), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
