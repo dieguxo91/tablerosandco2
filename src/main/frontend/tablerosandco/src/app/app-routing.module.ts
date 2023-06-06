@@ -8,7 +8,7 @@ import {ListarComponent} from "./pages/usuario/admin/game/listar/listar.componen
 import {IndexComponent} from "./pages/usuario/admin/index/index.component";
 import {EditUsuarioComponent} from "./pages/usuario/admin/edit/edit-Usuario.component";
 import {CrearJuegoComponent} from "./pages/usuario/admin/game/crear-juego/crear-juego.component";
-import {EditarJuegoComponent} from "./pages/usuario/admin/editar-juego/editar-juego.component";
+import {EditarJuegoComponent} from "./pages/usuario/admin/game/editar-juego/editar-juego.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },

@@ -9,7 +9,10 @@ import { VistaAdminComponent } from './admin/vista-admin/vista-admin.component';
 import { ListarComponent } from './admin/game/listar/listar.component';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import { CrearJuegoComponent } from './admin/game/crear-juego/crear-juego.component';
-import { EditarJuegoComponent } from './admin/editar-juego/editar-juego.component';
+import { EditarJuegoComponent } from './admin/game/editar-juego/editar-juego.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { EditarJuegoComponent } from './admin/editar-juego/editar-juego.componen
     FormsModule,
     HttpClientModule,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],exports:[UsuarioComponent]
 })
 export class UsuarioModule { }

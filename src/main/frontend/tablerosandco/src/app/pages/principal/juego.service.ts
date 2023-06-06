@@ -9,7 +9,7 @@ import {Juego_interface} from "./juego_interface";
 })
 export class JuegoService {
 
-  private apiURL = "http://localhost:8080/Juego/";
+  private apiURL = "http://localhost:8080/juego/";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

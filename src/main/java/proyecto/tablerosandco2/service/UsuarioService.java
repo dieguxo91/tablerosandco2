@@ -7,21 +7,29 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import proyecto.tablerosandco2.domain.ERol;
+import proyecto.tablerosandco2.domain.Rol;
 import proyecto.tablerosandco2.domain.Usuario;
 
 import proyecto.tablerosandco2.exception.UsuarioNotFoundException;
+import proyecto.tablerosandco2.repository.RolRepository;
 import proyecto.tablerosandco2.repository.UsuarioRepository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
+    private final RolRepository rolRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository,RolRepository rolRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.rolRepository = rolRepository;
     }
 
     public List<Usuario> all() {
@@ -54,6 +62,16 @@ public class UsuarioService {
                 .orElseThrow(() -> new UsuarioNotFoundException(id));
         log.debug(usuario.toString());
         return usuario;
+    }
+
+    public List<Usuario> admin(){
+        Rol rol = rolRepository.findByRol(ERol.ROL_ADMIN).get();
+
+        List<Usuario> administadores = this.usuarioRepository.findAll()
+                                                            .stream()
+                                                            .filter(u -> u.getRoles().contains(rol))
+                                                            .collect(Collectors.toList());
+        return administadores;
     }
 
     public Usuario replace(Long id, Usuario usuario) {

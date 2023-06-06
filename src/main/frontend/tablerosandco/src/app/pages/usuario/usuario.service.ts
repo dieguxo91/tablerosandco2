@@ -11,6 +11,8 @@ export class UsuarioService {
 
   private apiURL = "http://localhost:8080/usuario/";
   private apiCrear = "http://localhost:8080/auth/register";
+
+  private apiAdmin ="http://localhost:8080/usuario/listado";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -20,6 +22,9 @@ export class UsuarioService {
 
   getAll(): Observable<Usuario_interface[]> {
     return this.httpClient.get<Usuario_interface[]>(this.apiURL)
+  }
+  getAdmin(): Observable<Usuario_interface[]> {
+    return this.httpClient.get<Usuario_interface[]>(this.apiAdmin)
   }
 
   create(usuario: Usuario_interface): Observable<Usuario_interface> {

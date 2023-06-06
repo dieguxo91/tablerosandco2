@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {JuegoService} from "../../../principal/juego.service";
+import {JuegoService} from "../../../../principal/juego.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Usuario_interface} from "../../usuario_interface";
-import {Juego_interface} from "../../../principal/juego_interface";
+import {Usuario_interface} from "../../../usuario_interface";
+import {Juego_interface} from "../../../../principal/juego_interface";
 
 @Component({
   selector: 'app-editar-juego',
@@ -13,7 +13,7 @@ import {Juego_interface} from "../../../principal/juego_interface";
 export class EditarJuegoComponent implements OnInit{
   formlogin!: FormGroup;
   id: number = 1;
-  juego: Juego_interface = {id_juego : this.id,name:"0", url:"0", urlHexa: "0", description:"0",id_admin:2};
+  juego!: Juego_interface;
   constructor(private formBuilder: FormBuilder, private juegoService:JuegoService,private router: Router,private routes: ActivatedRoute) {
 
     this.formlogin = this.formBuilder.group({

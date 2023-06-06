@@ -61,4 +61,9 @@ public class UsuarioController {
         this.usuarioService.delete(id);
     }
 
+    @GetMapping("/listado")
+    public List<Usuario> listadoAdmin() {
+        return this.usuarioService.admin();
+    }
+
 }
