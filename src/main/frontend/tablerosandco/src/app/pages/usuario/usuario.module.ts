@@ -10,13 +10,16 @@ import { ListarComponent } from './admin/game/listar/listar.component';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import { CrearJuegoComponent } from './admin/game/crear-juego/crear-juego.component';
 import { EditarJuegoComponent } from './admin/game/editar-juego/editar-juego.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { VerJuegoComponent } from './admin/game/ver-juego/ver-juego.component';
+import { VerUsuarioComponent } from './admin/ver-usuario/ver-usuario.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatIconModule} from "@angular/material/icon";
+
 
 
 @NgModule({
-  declarations: [UsuarioComponent, IndexComponent, EditUsuarioComponent, VistaAdminComponent, ListarComponent, CrearJuegoComponent, EditarJuegoComponent],
+  declarations: [UsuarioComponent, IndexComponent, EditUsuarioComponent, VistaAdminComponent, ListarComponent, CrearJuegoComponent, EditarJuegoComponent, VerJuegoComponent, VerUsuarioComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -24,9 +27,9 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     RouterOutlet,
     RouterLink,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule
   ],exports:[UsuarioComponent]
 })
 export class UsuarioModule { }

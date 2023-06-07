@@ -43,7 +43,7 @@ export class EditarJuegoComponent implements OnInit{
       this.formlogin.get('description')?.setValue(this.juego.description);
       this.formlogin.get('urlHexa')?.setValue(this.juego.urlHexa);
       this.formlogin.get('url')?.setValue(this.juego.url);
-      this.formlogin.get('id_admin')?.setValue(this.usu)
+      this.formlogin.get('id_admin')?.setValue(this.usu.id_user)
     });
   }
 

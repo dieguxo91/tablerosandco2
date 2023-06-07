@@ -1,0 +1,35 @@
+<div class="position-relative container-xl">
+  <h2 class="w-25 m-auto mt-4 border border-info rounded text-center">Ver Juego</h2>
+  <a  class="position-absolute" style="right: 10%; top:0%" href="javascript:history.back()"><img src="./assets/images/deshacer.png" height="36" width="36" alt="Botón"></a>
+  <form class="col-12 col-sm-10 col-md-8 col-10 pb-5 p-5 pb-1 d-grid gap-3 m-auto form-group " [formGroup]="formlogin" >
+
+  <div class="form-group-item" >
+    <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">ID</label>
+    <input readonly type="text" id="id_juego" formControlName="id_juego" class="form-control" >
+  </div>
+
+  <div class="form-group-item" >
+    <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Nombre</label>
+    <input readonly type="text" id="name" formControlName="name" class="form-control" >
+  </div>
+
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Principal</label>
+    <input readonly type="text"  id="url" formControlName="url"  class="form-control" >
+
+  </div>
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Hexagonal</label>
+    <input type="text" readonly id="urlHexa" formControlName="urlHexa" class="form-control" >
+
+  </div>
+  <div class="form-group-item ">
+    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Descripción</label>
+    <textarea class="form-control" readonly type="text" id="description" formControlName="description" rows="3"></textarea>
+  </div>
+  <div class="form-group-item ">
+    <label>Id Admin</label>
+    <input type="text" readonly class="form-control" id="id_admin" formControlName="id_admin" >
+  </div>
+</form>
+</div>

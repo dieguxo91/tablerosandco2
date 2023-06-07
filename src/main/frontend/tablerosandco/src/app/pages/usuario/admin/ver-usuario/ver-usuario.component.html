@@ -1,0 +1,39 @@
+<div class="position-relative container-xl">
+  <h2 class="w-25 m-auto mt-4 border border-info rounded text-center">Ver Juego</h2>
+  <a  class="position-absolute" style="right: 10%; top:0%" href="javascript:history.back()"><img src="./assets/images/deshacer.png" height="36" width="36" alt="Botón"></a>
+  <form class="col-12 col-sm-10 col-md-8 col-10 pb-5 p-5 pb-1 d-grid gap-3 m-auto form-group " [formGroup]="formlogin" >
+
+    <div class="form-group-item" >
+      <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">ID</label>
+      <input readonly type="text" id="id_user" formControlName="id_user" class="form-control" >
+    </div>
+
+    <div class="form-group-item" >
+      <label class="mb-1 fs-5 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Nombre</label>
+      <input readonly type="text" id="name" formControlName="name" class="form-control" >
+    </div>
+
+    <div class="form-group-item ">
+      <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Email</label>
+      <input readonly type="text"  id="email" formControlName="email"  class="form-control" >
+
+    </div>
+    <div class="form-group-item ">
+      <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Telefono</label>
+      <input type="text" readonly id="telefono" formControlName="telefono" class="form-control" >
+
+    </div>
+    <div class="form-group-item ">
+      <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Password</label>
+      <input type="password" readonly class="form-control" id="password" formControlName="password" >
+    </div>
+    <div class="form-group-item ">
+      <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Nick</label>
+      <input type="text" readonly class="form-control" id="username" formControlName="username" >
+    </div>
+    <div class="form-group-item ">
+      <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Apellidos</label>
+      <input type="text" readonly class="form-control" id="apellidos" formControlName="apellidos" >
+    </div>
+  </form>
+</div>

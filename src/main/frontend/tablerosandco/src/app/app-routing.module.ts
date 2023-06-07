@@ -9,6 +9,8 @@ import {IndexComponent} from "./pages/usuario/admin/index/index.component";
 import {EditUsuarioComponent} from "./pages/usuario/admin/edit/edit-Usuario.component";
 import {CrearJuegoComponent} from "./pages/usuario/admin/game/crear-juego/crear-juego.component";
 import {EditarJuegoComponent} from "./pages/usuario/admin/game/editar-juego/editar-juego.component";
+import {VerJuegoComponent} from "./pages/usuario/admin/game/ver-juego/ver-juego.component";
+import {VerUsuarioComponent} from "./pages/usuario/admin/ver-usuario/ver-usuario.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
@@ -20,8 +22,11 @@ const routes: Routes = [
 
     ]},
   { path: 'admin/juegos/crearJuego', component: CrearJuegoComponent},
-  { path: 'Usuario/edit/:idUsuario', component: EditUsuarioComponent },
+  { path: 'admin/usuarios/crearUsuario', component: UsuarioComponent},
+  { path: 'usuario/edit/:idUsuario', component: EditUsuarioComponent },
   { path: 'Juego/edit/:idJuego', component: EditarJuegoComponent},
+  { path: 'Juego/details/:idJuego', component: VerJuegoComponent},
+  { path: 'usuario/details/:idUsuario', component: VerUsuarioComponent},
   { path: 'inicio/galaxia', component: TableroComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 
