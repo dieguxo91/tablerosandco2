@@ -58,7 +58,6 @@ public class JuegoService {
 
     public Juego replace(Long id, Juego juego) {
         juego.setId_juego(id);
-        System.out.println(id);
         juego.setId_admin(usuarioRepository.findById(id).get());
         if (!this.juegoRepository.existsById(id)) {
             throw new JuegoNotFoundException(id);

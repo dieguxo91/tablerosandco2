@@ -6,5 +6,5 @@ export interface Juego_interface {
   name : string;
   url: string;
   urlHexa:string;
-  id_admin : number;
+  id_admin : Usuario_interface;
 }
