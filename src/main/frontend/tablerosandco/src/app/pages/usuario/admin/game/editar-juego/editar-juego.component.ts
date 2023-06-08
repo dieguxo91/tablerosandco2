@@ -39,11 +39,12 @@ export class EditarJuegoComponent implements OnInit{
       this.juegoService.find(this.id).subscribe((data: Juego_interface)=>{
       this.juego = data;
       this.usu = this.juego.id_admin;
+        console.log(this.usu.id_user)
       this.formlogin.get('name')?.setValue(this.juego.name);
       this.formlogin.get('description')?.setValue(this.juego.description);
       this.formlogin.get('urlHexa')?.setValue(this.juego.urlHexa);
       this.formlogin.get('url')?.setValue(this.juego.url);
-      this.formlogin.get('id_admin')?.setValue(this.usu.id_user)
+      this.formlogin.get('id_admin')?.setValue(this.usu.id_user);
     });
   }
 
@@ -51,7 +52,9 @@ export class EditarJuegoComponent implements OnInit{
     this.id_admin = this.formlogin.get('id_admin')?.value;
     this.usuarioService.find(this.id_admin).subscribe((data: Usuario_interface) => {
       this.usu = data;
+      console.log(this.usu)
       this.formlogin.get("id_admin")?.setValue(this.usu);
+      console.log(this.formlogin)
       this.id = this.routes.snapshot.params['idJuego'];
       console.log(this.id)
       this.juegoService.update(this.id, this.formlogin.value).subscribe(res => {

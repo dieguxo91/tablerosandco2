@@ -12,4 +12,6 @@ export interface Usuario_interface {
   telefono:string;
 
   username:string;
+
+  roles:any[];
 }

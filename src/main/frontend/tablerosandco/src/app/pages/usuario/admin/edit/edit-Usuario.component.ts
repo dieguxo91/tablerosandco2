@@ -20,11 +20,12 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
     telefono: ['', Validators.required],
     password: ['', Validators.required],
     username: ['', Validators.required],
-    apellidos: ['', Validators.required]
+    apellidos: ['', Validators.required],
+    roles:[],
   });
 
   id: number = 1;
-  usuario: Usuario_interface = {id_user : this.id, telefono:"0", email:"0", username:"0", apellidos:"0", name:"0", password:"0"};
+  usuario!: Usuario_interface ;
 
   submit(){
     console.log(this.usuario)
@@ -45,6 +46,7 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
       this.form.get('apellidos')?.setValue(this.usuario.apellidos);
       this.form.get('telefono')?.setValue(this.usuario.telefono);
       this.form.get('password')?.setValue(this.usuario.password);
+      this.form.get('roles')?.setValue(this.usuario.roles);
     });
   }
 }

@@ -17,7 +17,7 @@ export class PrincipalComponent implements OnInit{
   }
 
   noLogue(): boolean{
-    return this.usuario.getLogue();
+    return true;
   }
 
   ngOnInit(): void {

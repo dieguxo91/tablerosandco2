@@ -1,9 +1,11 @@
 package proyecto.tablerosandco2.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import proyecto.tablerosandco2.domain.Juego;
 import proyecto.tablerosandco2.exception.JuegoNotFoundException;
@@ -18,6 +20,7 @@ import java.util.Map;
 @Service
 public class JuegoService {
     private final JuegoRepository juegoRepository;
+
     private final UsuarioRepository usuarioRepository;
     public JuegoService(JuegoRepository juegoRepository , UsuarioRepository usuarioRepository) {
         this.juegoRepository = juegoRepository;
@@ -58,7 +61,7 @@ public class JuegoService {
 
     public Juego replace(Long id, Juego juego) {
         juego.setId_juego(id);
-        juego.setId_admin(usuarioRepository.findById(id).get());
+
         if (!this.juegoRepository.existsById(id)) {
             throw new JuegoNotFoundException(id);
         }

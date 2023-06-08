@@ -41,10 +41,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-    System.out.println("paco");
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-        System.out.println("paco2");
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = tokenUtils.generateToken(authentication);
 

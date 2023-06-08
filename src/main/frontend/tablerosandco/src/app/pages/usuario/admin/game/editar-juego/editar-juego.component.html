@@ -21,7 +21,6 @@
     <div class="form-group-item ">
       <label>Id Admin</label>
       <select class="form-select" id="id_admin" formControlName="id_admin">
-        <option value="" disabled selected>Escoja un id</option>
         <option *ngFor="let adm of admin" [value]="adm.id_user">{{adm.id_user}}</option>
       </select>
     </div>
