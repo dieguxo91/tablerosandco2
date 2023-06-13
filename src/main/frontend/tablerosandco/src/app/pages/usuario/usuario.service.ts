@@ -11,8 +11,8 @@ export class UsuarioService {
 
   private apiURL = "http://localhost:8080/usuario/";
   private apiCrear = "http://localhost:8080/auth/register";
-
   private apiAdmin ="http://localhost:8080/usuario/listado";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

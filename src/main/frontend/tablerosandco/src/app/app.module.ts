@@ -10,9 +10,8 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import {UsuarioModule} from "./pages/usuario/usuario.module";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { LogueadoComponent } from './pages/logueado/logueado.component';
+import { HttpRequestInterceptor} from "./security/HttpRequestInterceptor";
 
 
 @NgModule({
@@ -21,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
     HeaderComponent,
     FooterComponent,
     PrincipalComponent,
+    LogueadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,8 @@ import {MatButtonModule} from '@angular/material/button';
     RouterModule,
 
   ],
-  providers: [],
+  providers: [HttpRequestInterceptor
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

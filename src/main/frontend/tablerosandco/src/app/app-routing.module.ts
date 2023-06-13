@@ -5,21 +5,22 @@ import {PrincipalComponent} from "./pages/principal/principal.component";
 import {VistaAdminComponent} from "./pages/usuario/admin/vista-admin/vista-admin.component";
 import {TableroComponent} from "./tablero/tablero/tablero.component";
 import {ListarComponent} from "./pages/usuario/admin/game/listar/listar.component";
-import {IndexComponent} from "./pages/usuario/admin/index/index.component";
-import {EditUsuarioComponent} from "./pages/usuario/admin/edit/edit-Usuario.component";
+import {IndexComponent} from "./pages/usuario/admin/user/index/index.component";
+import {EditUsuarioComponent} from "./pages/usuario/admin/user/edit/edit-Usuario.component";
 import {CrearJuegoComponent} from "./pages/usuario/admin/game/crear-juego/crear-juego.component";
 import {EditarJuegoComponent} from "./pages/usuario/admin/game/editar-juego/editar-juego.component";
 import {VerJuegoComponent} from "./pages/usuario/admin/game/ver-juego/ver-juego.component";
-import {VerUsuarioComponent} from "./pages/usuario/admin/ver-usuario/ver-usuario.component";
+import {VerUsuarioComponent} from "./pages/usuario/admin/user/ver-usuario/ver-usuario.component";
+import {LogueadoComponent} from "./pages/logueado/logueado.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
   { path: '', component: PrincipalComponent , pathMatch: "full" },
   { path: 'inicio', component: PrincipalComponent },
+  { path: 'logueado', component: LogueadoComponent },
   { path: 'admin', component: VistaAdminComponent ,children:[
     {path: 'juegos', component: ListarComponent},
       {path: 'usuarios', component: IndexComponent },
-
     ]},
   { path: 'admin/juegos/crearJuego', component: CrearJuegoComponent},
   { path: 'admin/usuarios/crearUsuario', component: UsuarioComponent},
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'Juego/edit/:idJuego', component: EditarJuegoComponent},
   { path: 'Juego/details/:idJuego', component: VerJuegoComponent},
   { path: 'usuario/details/:idUsuario', component: VerUsuarioComponent},
-  { path: 'inicio/galaxia', component: TableroComponent },
+  { path: 'logueado/granja', component: TableroComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 
 

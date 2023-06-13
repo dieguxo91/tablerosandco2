@@ -13,10 +13,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import proyecto.tablerosandco2.security.AuthEntryPointToken;
 import proyecto.tablerosandco2.service.UserDetailsServiceImpl;
 import proyecto.tablerosandco2.security.AuthTokenFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
@@ -59,21 +61,30 @@ public class WebSecurityConfig {
 
         //para version de spring security config de spring boot 3
         http
-                .cors().and()
+                .cors()
+                .and()
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
-                .authorizeHttpRequests().requestMatchers("/admin/**").authenticated()
-                .requestMatchers("/admin").hasAnyAuthority("ROL_ADMIN")
-                .anyRequest().permitAll();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
+                .authorizeHttpRequests()
+                .requestMatchers("/inicio").permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/crear").permitAll()
+                .requestMatchers("/juego/**").permitAll()
+                .requestMatchers("/carta/**").permitAll()
+                .requestMatchers("/usuario/").hasAnyAuthority("ROL_ADMIN")
+                .requestMatchers("/logueado/**").hasAnyAuthority("ROL_USER", "ROL_ADMIN")
+                .requestMatchers("/admin/**").hasAnyAuthority("ROL_ADMIN")
+                .anyRequest().authenticated()
+                ;
 
         http.authenticationProvider(authenticationProvider());
 
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         //https://stackoverflow.com/questions/59302026/spring-security-why-adding-the-jwt-filter-before-usernamepasswordauthenticatio
-        //http.addFilterAfter(authenticationJwtTokenFilter(), ExceptionTranslationFilter.class);
+        http.addFilterAfter(authenticationTokenFilter(), ExceptionTranslationFilter.class);
 
         return http.build();
     }

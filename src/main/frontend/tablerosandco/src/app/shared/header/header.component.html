@@ -1,31 +1,65 @@
 <header>
   <div class="container-xl py-3 d-flex align-items-center justify-content-between">
-    <a routerLink="admin" >
-      <img class="img-fluid " src="./assets/images/logo.png" >
-    </a>
-    <div class=" justify-content-end d-none d-sm-flex">
+
+    <div *ngIf="!isLoggedIn ">
+      <a routerLink="inicio" >
+        <img class="img-fluid " src="./assets/images/logo.png" >
+      </a>
+    </div>
+    <div *ngIf="isLoggedIn ">
+      <a routerLink="logueado" >
+        <img class="img-fluid " src="./assets/images/logo.png" >
+      </a>
+    </div>
+    <div class=" justify-content-end d-none d-sm-flex" *ngIf="!isLoggedIn; else logueado">
       <div>
         <button  type="button" class="btn btn-info text-center text-decoration-none text-white pe-3 ps-3 fs-4 " data-bs-toggle="dropdown" aria-expanded="false"  style="font-family:  Arial, Helvetica, sans-serif;">Inicio</button>
         <ul class="dropdown-menu pt-0" aria-labelledby="dropdownMenuButton1 ">
           <li class=" d-flex py-2 col justify-content-center rounded-top">
-            <form>
+            <form  name="form"
+                   (ngSubmit)="f.form.valid && enviar()"
+                   #f="ngForm"
+                   novalidate>
               <div class="d-flex justify-content-center" style="width: 100%;">
                 <img class="img-fluid d-flex " src="./assets/images/logo.png" style="width: 50% ;">
               </div>
               <div class="form-group d-grid gap-2">
                 <div class="form-group mx-2">
                   <label class="mb-1 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Usuario</label>
-                  <input type="text" class="form-control" placeholder="email">
+                  <input id="usernameLogin"
+                         type="text"
+                         class="form-control"
+                         name="usernameLogin"
+                         [(ngModel)]="form.usernameLogin"
+                         required
+                         #usernameLogin="ngModel"
+                         [ngClass]="{ 'is-invalid': f.submitted && usernameLogin.errors }" placeholder="Nick">
+                  <div *ngIf="usernameLogin.errors && f.touched" class="invalid-feedback">
+                    El username es requerido
+                  </div>
                 </div>
+
                 <div  class="form-group mx-2">
                   <label class="mb-1 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Contraseña</label>
-                  <input type="password" class="form-control" placeholder="contraseña">
+                  <input id="passwordLogin"
+                         type="password"
+                         class="form-control"
+                         name="passwordLogin"
+                         [(ngModel)]="form.passwordLogin"
+                         required
+                         minlength="6"
+                         #passwordLogin="ngModel"
+                         [ngClass]="{ 'is-invalid': f.submitted && passwordLogin.errors }" placeholder="Contraseña">
+                  <div *ngIf="passwordLogin.errors && f.touched" class="invalid-feedback">
+                    <div *ngIf="passwordLogin.errors['required']">La password es requerida</div>
+                    <div *ngIf="passwordLogin.errors['minlength']">
+                      La password debe ser de al menos 6 caracteres
+                    </div>
+                  </div>
                 </div>
-                <div class="form-check  ms-2">
-                  <input type="checkbox" class="form-check-input" >
-                  <label class="form-check-label" style="font-family:  Arial, Helvetica, sans-serif;" >Recordar contraseña</label>
-                </div>
-                <button type="submit"  class="btn btn-info text-center d-flex justify-content-center m-auto" style="font-family:  Arial, Helvetica, sans-serif;"><a class="text-white text-center text-decoration-none" routerLink="inicio" routerLinkActive="active">Aceptar</a></button>
+
+
+                <button type="submit"  class="btn btn-info text-center d-flex justify-content-center m-auto" style="font-family:  Arial, Helvetica, sans-serif;"><a class="text-white text-center text-decoration-none" >Aceptar</a></button>
               </div>
             </form>
           </li>
@@ -33,13 +67,27 @@
       </div>
       <button class="btn btn-info ms-3 "><a routerLink="crear" routerLinkActive="active"  class="text-white text-decoration-none fs-4 "style="font-family: Arial, Helvetica, sans-serif;" >Registrarse</a></button>
     </div>
+    <ng-template #logueado>
+      <div class="d-none d-sm-flex bg-info text-white justify-content-center"  style="width: 100px; height: 100px; clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);" >
+      <p class="text-center align-self-center fs-6">{{nombre}}</p>
+    </div>
+      <div class="d-none d-sm-flex"><button type="submit" (click)="logout()" style="width: 50px; height: 50px; clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">cerrar</button></div>
+    </ng-template>
     <div class="dropdown d-sm-none d-flex">
       <img src="./assets/images/hamburguesa.png" type="button" class="me-3 dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 32px;">
       <ul class="dropdown-menu bg-dark pt-0 " aria-labelledby="dropdownMenuButton1 ">
-        <li class="bg-white d-flex py-2 col justify-content-around rounded-top">
+        <li  class="bg-white d-flex py-2 col justify-content-around rounded-top" *ngIf="!isLoggedIn;else hexagono">
           <button type="button" class="btn btn-info text-decoration-none text-dark font-weight-s p-0 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family:  Arial, Helvetica, sans-serif;">Inicio</button>
           <button class="btn text-white p-0 pe-1 ps-1 btn-info "><a class="text-decoration-none text-dark font-weight-s p-0 pe-1 ps-1" routerLink="crear" style="font-family:  Arial, Helvetica, sans-serif;">Registrarse</a></button>
         </li>
+        <ng-template #hexagono>
+        <li class=" bg-white d-flex justify-content-center py-2  ">
+            <div class="bg-info d-flex justify-content-center text-white"  style="width: 70px; height: 70px; clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);" >
+              <p class="text-center align-self-center fs-6 m-0">{{nombre}}</p>
+            </div>
+        </li>
+        </ng-template>
+
         <div class="border border-dark mb-2" ></div>
         <li class=" pt-2">
           <a class="text-white text-decoration-none d-flex justify-content-center" style="font-family:  Arial, Helvetica, sans-serif;" href="">Contacta US</a>
@@ -79,8 +127,8 @@
         <form>
           <div class="form-group  d-grid gap-2">
             <div class="form-group mx-2">
-              <label class="fw-bolder" style=" font-family:  Arial, Helvetica, sans-serif;">Usuario_interface</label>
-              <input type="text" class="form-control" placeholder="email">
+              <label class="fw-bolder" style=" font-family:  Arial, Helvetica, sans-serif;">Nombre Usuario</label>
+              <input type="text" class="form-control" placeholder="Nick">
             </div>
             <div  class="form-group mx-2">
               <label class="fw-bolder"  style=" font-family:  Arial, Helvetica, sans-serif;">Contraseña</label>

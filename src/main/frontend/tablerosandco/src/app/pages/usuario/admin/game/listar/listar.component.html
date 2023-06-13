@@ -28,7 +28,7 @@
     <div class=" col-md-3 d-flex align-items-center justify-content-center my-2" >
       <button  mat-mini-fab type="button" [routerLink]="['/Juego/', 'details', juego.id_juego]" class="btn btn-success border-secondary mx-1" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="./assets/images/buscar.png"></button>
       <button mat-mini-fab type="button" [routerLink]="['/Juego/', 'edit', juego.id_juego]" class="btn btn-outline-warning border-secondary mx-1" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="./assets/images/lapiz.png"></button>
-      <button mat-mini-fab type="button" (click)="delete(juego.id_juego)" class="btn btn-danger text-secondary fw-bold border-secondary mx-1" style="margin-left: 2px; margin-right: 8px ">&#10007;</button>
+      <button mat-mini-fab type="button" (click)="delete(juego.id_juego)" class="btn btn-danger fw-bold border-secondary mx-1" style="margin-left: 2px; margin-right: 8px ; color:black">&#10007;</button>
     </div>
   </ul>
 </section>

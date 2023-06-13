@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Juego_interface} from "../../../principal/juego_interface";
-import {Usuario_interface} from "../../usuario_interface";
-import {JuegoService} from "../../../principal/juego.service";
-import {UsuarioService} from "../../usuario.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Juego_interface} from "../../../../principal/juego_interface";
+import {Usuario_interface} from "../../../usuario_interface";
+import {UsuarioService} from "../../../usuario.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -16,7 +15,6 @@ export class VerUsuarioComponent {
   id: number = 1;
   juego!: Juego_interface;
   admin!: Usuario_interface[];
-
   usuario !: Usuario_interface;
   constructor(private formBuilder: FormBuilder,private usuarioService:UsuarioService, private router: Router,private routes: ActivatedRoute) {
 

@@ -3,6 +3,7 @@ package proyecto.tablerosandco2.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import proyecto.tablerosandco2.domain.Carta;
 import proyecto.tablerosandco2.service.CartaService;
@@ -14,7 +15,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/carta")
+@RequestMapping("/carta/")
 public class CartaController {
 
     private final CartaService cartaService;
@@ -40,9 +41,9 @@ public class CartaController {
         return ResponseEntity.ok(responseAll);
     }
 
-    //@Secured("ROL_ADMIN")
+    @Secured("ROL_ADMIN")
     @PostMapping({"","/"})
-    public Carta newJuego(@RequestBody Carta carta) {
+    public Carta newCarta(@RequestBody Carta carta) {
         return this.cartaService.save(carta);
     }
 

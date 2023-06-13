@@ -17,8 +17,8 @@
     <li class="col-2 d-flex align-items-center">{{usuario.username}}</li>
     <li class="col-4 d-flex align-items-center">{{usuario.email}}</li>
     <div class="d-flex-column d-md-flex align-items-center justify-content-center">
-      <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', usuario.id_user]" class="btn btn-outline-success border-secondary mx-1 my-1 col-l-12  d-flex justify-content-center" ><img style="width:15px; height: 15px" src="./assets/images/buscar.png"></button>
-      <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', usuario.id_user  ]" class="btn btn-outline-warning border-secondary mx-1 my-1 d-flex col-l-12 justify-content-center" ><img style="width:15px; height: 15px" src="./assets/images/lapiz.png"></button>
+      <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', usuario.id_user]" class="btn btn-outline-success border-secondary mx-1 my-1 col-l-12  d-flex justify-content-center" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
+      <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', usuario.id_user  ]" class="btn btn-outline-warning border-secondary mx-1 my-1 d-flex col-l-12 justify-content-center" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>
       <button mat-mini-fab type="button" (click)="delete(usuario.id_user)" class="btn btn-danger text-secondary fw-bold border-secondary mx-1 my-1 d-flex col-l-12 justify-content-center"  >&#10007;</button>
     </div>
   </ul>
@@ -28,8 +28,8 @@
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Nick:&nbsp;</strong>{{usuario.username}}</li>
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Email:&nbsp;</strong>{{usuario.email}}</li>
     <div class=" col-md-3 d-flex align-items-center justify-content-center my-2">
-      <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', usuario.id_user]" class="btn btn-success border-secondary mx-1" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="./assets/images/buscar.png"></button>
-      <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', usuario.id_user  ]" class="btn btn-outline-warning border-secondary" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="./assets/images/lapiz.png"></button>
+      <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', usuario.id_user]" class="btn btn-success border-secondary mx-1" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
+      <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', usuario.id_user  ]" class="btn btn-outline-warning border-secondary" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>
       <button mat-mini-fab type="button" (click)="delete(usuario.id_user)" class="btn btn-danger text-secondary fw-bold border-secondary" >&#10007;</button>
     </div>
   </ul>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UsuarioService} from "../../usuario.service";
+import {UsuarioService} from "../../../usuario.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Usuario_interface} from "../../usuario_interface";
+import {Usuario_interface} from "../../../usuario_interface";
 
 @Component({
   selector: 'app-edit',
