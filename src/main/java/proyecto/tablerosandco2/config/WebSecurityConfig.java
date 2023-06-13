@@ -74,7 +74,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/juego/**").permitAll()
                 .requestMatchers("/carta/**").permitAll()
                 .requestMatchers("/usuario/").hasAnyAuthority("ROL_ADMIN")
-                .requestMatchers("/logueado/**").hasAnyAuthority("ROL_USER", "ROL_ADMIN")
+                .requestMatchers("/logueado").hasAnyAuthority("ROL_USER", "ROL_ADMIN")
                 .requestMatchers("/admin/**").hasAnyAuthority("ROL_ADMIN")
                 .anyRequest().authenticated()
                 ;

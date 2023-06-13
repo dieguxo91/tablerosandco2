@@ -25,14 +25,12 @@ export class AuthService {
       {
         username,
         password,
-      },
-
+      }, this.httpOptions
     );
   }
 
 
   logout() {
-    console.log("entra")
     this.storageService.clean();
   }
 

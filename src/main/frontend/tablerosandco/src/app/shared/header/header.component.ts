@@ -15,6 +15,10 @@ export class HeaderComponent {
     usernameLogin: null,
     passwordLogin: null
   };
+  form2: any = {
+    usernameLogin2: null,
+    passwordLogin2: null
+  };
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -30,6 +34,7 @@ export class HeaderComponent {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
       this.nombre = this.storageService.getUser().username;
+      this.router.navigateByUrl('logueado')
     }else{
       this.router.navigateByUrl('inicio');
     }
@@ -41,6 +46,26 @@ export class HeaderComponent {
     this.authService.logout()
   }
 
+  enviar2():void{
+    const { usernameLogin2, passwordLogin2 } = this.form2;
+
+    this.authService.login(usernameLogin2, passwordLogin2).subscribe({
+      next: data => {
+        console.log(data)
+        this.storageService.clean();
+        this.storageService.saveUser(data);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        console.log('isLoggedIn = '+ this.isLoggedIn);
+        this.roles = this.storageService.getUser().roles;
+        this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = "Usuario incorrecto";
+        this.isLoginFailed = true;
+      }
+    });
+  }
   enviar(): void {
     const { usernameLogin, passwordLogin } = this.form;
 
@@ -54,10 +79,11 @@ export class HeaderComponent {
         this.isLoggedIn = true;
         console.log('isLoggedIn = '+ this.isLoggedIn);
         this.roles = this.storageService.getUser().roles;
-        this.router.navigateByUrl('logueado')
+        this.reloadPage();
+
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = "Usuario incorrecto";
         this.isLoginFailed = true;
       }
     });

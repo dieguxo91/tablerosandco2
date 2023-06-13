@@ -5,3 +5,4 @@ header{
   border: solid 1px;
  border-color: black;
 }
+.stroke{-webkit-text-stroke: 1px #0dcaf0;}

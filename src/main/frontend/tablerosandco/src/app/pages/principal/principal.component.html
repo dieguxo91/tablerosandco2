@@ -1,8 +1,8 @@
 <main class="container-xl" >
   <h1 class="d-flex justify-content-center mt-3">Nuestros Juegos</h1>
 <div class=" row  justify-content-evenly"    >
-  <div class=" col-12 col-sm-6  mb-5" *ngFor="let juego of juegos" >
-    <img src="{{juego.url}}" class=" d-flex my-3 m-auto col-10"  >
+  <div class=" col-sm-8 col-md-6 mb-5" *ngFor="let juego of juegos" >
+    <img src="{{juego.url}}" class=" d-flex my-3 m-auto col-11 img-fluid "  >
     <p class=" m-auto col-12 col-sm-10 text-center fs-sm-4 fs-md-3 fs-lg-2 fw-bolder" >{{juego.description}}</p>
   </div>
 </div>
