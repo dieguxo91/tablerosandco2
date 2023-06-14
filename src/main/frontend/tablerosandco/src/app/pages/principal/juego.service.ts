@@ -39,6 +39,11 @@ export class JuegoService {
   delete(id: number){
     return this.httpClient.delete<Juego_interface>(this.apiURL + id, this.httpOptions)
   }
+  nombre(nombre:string){
+
+  }
+
+
   errorHandler(error: any) {
 
     let errorMessage = '';

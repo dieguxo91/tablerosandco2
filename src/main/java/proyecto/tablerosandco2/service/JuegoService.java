@@ -16,6 +16,7 @@ import proyecto.tablerosandco2.repository.UsuarioRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class JuegoService {
@@ -57,6 +58,12 @@ public class JuegoService {
                 .orElseThrow(() -> new JuegoNotFoundException(id));
         System.out.println(juego);
         return juego;
+    }
+    public List<Juego> porNombre(String nombre){
+        return this.juegoRepository.findAll()
+                                    .stream()
+                                    .filter(u-> u.getName() == nombre)
+                                    .collect(Collectors.toList());
     }
 
     public Juego replace(Long id, Juego juego) {

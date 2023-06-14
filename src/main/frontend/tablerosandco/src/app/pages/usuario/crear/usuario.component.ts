@@ -42,7 +42,6 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.create(this.formlogin.value).subscribe(res => {
       console.log('Usuario creado');
       this.router.navigateByUrl('inicio').then();
-      // echar un ojo a los apuntes para volver a la pagina principal
     })
   }
 

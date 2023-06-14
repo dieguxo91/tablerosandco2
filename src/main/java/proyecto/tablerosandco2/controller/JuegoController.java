@@ -49,6 +49,11 @@ public class JuegoController {
         return this.juegoService.one(id);
     }
 
+    @GetMapping("/nombre")
+    public List<Juego> porNombre(String nombre) {
+        return this.juegoService.porNombre(nombre);
+    }
+
     @PutMapping("/{id_juego}")
     public Juego replaceJuego(@PathVariable("id_juego") Long id, @RequestBody Juego juego) {
         return this.juegoService.replace(id, juego);

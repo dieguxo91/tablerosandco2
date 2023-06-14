@@ -16,10 +16,6 @@ export class PrincipalComponent implements OnInit{
   constructor(private usuario:UsuarioComponent ,private juegoService: JuegoService) {
   }
 
-  noLogue(): boolean{
-    return true;
-  }
-
   ngOnInit(): void {
     this.juegoService.getAll().subscribe((data: Juego_interface[])=>{
       this.juegos= data;

@@ -71,12 +71,13 @@ public class WebSecurityConfig {
                 .requestMatchers("/inicio").permitAll()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/crear").permitAll()
+                .requestMatchers("/juego/").permitAll()
                 .requestMatchers("/juego/**").permitAll()
                 .requestMatchers("/carta/**").permitAll()
-                .requestMatchers("/usuario/").hasAnyAuthority("ROL_ADMIN")
+                .requestMatchers("/usuario/").permitAll()
                 .requestMatchers("/logueado").hasAnyAuthority("ROL_USER", "ROL_ADMIN")
                 .requestMatchers("/admin/**").hasAnyAuthority("ROL_ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 ;
 
         http.authenticationProvider(authenticationProvider());

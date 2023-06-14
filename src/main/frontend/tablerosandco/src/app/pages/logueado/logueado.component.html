@@ -1,0 +1,25 @@
+<div class="container-xl ">
+  <div class="my-3 d-flex justify-content-between align-items-center">
+    <div class="d-sm-flex d-none me-5 ">
+      <button  type="button" class=" fs-4 px-4 btn btn-info text-decoration-none text-center text-white "   style="font-family:  Arial, Helvetica, sans-serif;">Categoria</button>
+    </div>
+    <div class="mx-2 input-group mx-5 mx-sm-2 mx-md-5  ">
+      <input type="text" #nombre class="form-control position-relative col-md-5" style="height: 30px; font-family:  Arial, Helvetica, sans-serif;" aria-label="" aria-describedby="basic-addon1"  >
+      <div class="input-group-prepend">
+        <button class="bg-info border-info" (click)="buscar(nombre.value)" ><img src="./assets/images/lupa.png" style="width: 24px;"> </button>
+      </div>
+    </div>
+    <div class="d-sm-flex d-none  ms-5 ">
+      <button  type="button" class=" fs-4 px-4 btn btn-info text-decoration-none text-white text-center "   style="font-family:  Arial, Helvetica, sans-serif;">Participantes</button>
+    </div>
+  </div>
+  <div  class="d-flex  my-2 rounded p-4 border-top border  border-primary w-100 align-items-center justify-content-center" style="background-color: #9fe1fd; min-height: 500px" >
+    <div class="row mx-4" >
+      <div class=" d-flex col-sm-8 col-md-4 col-lg-3  m-auto mb-4  " *ngFor="let juego of juegos">
+        <a class="12" routerLink="{{juego.name}}" >
+          <img src="{{juego.urlHexa}}" class="w-100 h-auto d-inline-block " style="clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
