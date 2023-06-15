@@ -85,12 +85,11 @@ public class UsuarioService {
         if (!this.usuarioRepository.existsById(id)) {
             throw new UsuarioNotFoundException(id);
         }
-        if(usuario.getPassword() != key){
-            System.out.println("Hola");
+
+        if(!usuario.getPassword().equals(key) ){
             usuario.setPassword(encoder.encode(usuario.getPassword()));
-        }else{
-            System.out.println("Hola2");
         }
+
         this.usuarioRepository.save(usuario);
         return usuario;
     }
