@@ -79,10 +79,17 @@ public class UsuarioService {
     }
 
     public Usuario replace(Long id, Usuario usuario) {
+        String key = this.usuarioRepository.findById(id).get().getPassword();
         usuario.setId_user(id);
-        usuario.setPassword(encoder.encode(usuario.getPassword()));
+
         if (!this.usuarioRepository.existsById(id)) {
             throw new UsuarioNotFoundException(id);
+        }
+        if(usuario.getPassword() != key){
+            System.out.println("Hola");
+            usuario.setPassword(encoder.encode(usuario.getPassword()));
+        }else{
+            System.out.println("Hola2");
         }
         this.usuarioRepository.save(usuario);
         return usuario;

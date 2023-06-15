@@ -22,7 +22,7 @@
       <button mat-mini-fab type="button" (click)="delete(usuario.id_user)" class="btn btn-danger text-secondary fw-bold border-secondary mx-1 my-1 d-flex col-l-12 justify-content-center"  >&#10007;</button>
     </div>
   </ul>
-  <ul *ngFor="let usuario of usuarios" class="d-flex-column d-md-none align-items-center mt-3 me-2 border border-info p-0 px-2" style="list-style: none">
+  <ul *ngFor="let usuario of usuarios" class="d-flex-column d-md-none align-items-center mt-3 me-2 border border-info rounded p-0 px-2" style="list-style: none">
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>ID:&nbsp;</strong>{{usuario.id_user}}</li>
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Nombre:&nbsp;</strong>{{usuario.name}}</li>
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Nick:&nbsp;</strong>{{usuario.username}}</li>

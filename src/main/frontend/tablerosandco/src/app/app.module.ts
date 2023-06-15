@@ -12,6 +12,9 @@ import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { LogueadoComponent } from './pages/logueado/logueado.component';
 import { HttpRequestInterceptor} from "./security/HttpRequestInterceptor";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { HttpRequestInterceptor} from "./security/HttpRequestInterceptor";
     UsuarioModule,
     FormsModule,
     RouterModule,
-
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule
   ],
   providers: [HttpRequestInterceptor
   ],

@@ -43,7 +43,7 @@ export class CrearJuegoComponent {
       this.formlogin.get("id_admin")?.setValue(this.usuario);
       this.juegoService.create(this.formlogin.value).subscribe(res => {
         console.log('Juego creado');
-        this.router.navigateByUrl('inicio').then();
+        this.router.navigateByUrl('logueado').then();
       })
     })
 

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {Usuario_interface} from "./usuario_interface";
 import {catchError} from "rxjs/operators";
+import {StorageService} from "../../security/Storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,13 @@ export class UsuarioService {
   private apiCrear = "http://localhost:8080/auth/register";
   private apiAdmin ="http://localhost:8080/usuario/listado";
 
+  private user = this.storageService.getUser();
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     })
   };
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient , private storageService: StorageService) { }
 
   getAll(): Observable<Usuario_interface[]> {
     return this.httpClient.get<Usuario_interface[]>(this.apiURL)
@@ -35,7 +37,7 @@ export class UsuarioService {
   }
 
   find(id: number): Observable<Usuario_interface> {
-    return this.httpClient.get<Usuario_interface>(this.apiURL + id)
+    return this.httpClient.get<Usuario_interface>(this.apiURL + id,this.httpOptions)
   }
 
   update(id: number, usuario: Usuario_interface): Observable<Usuario_interface> {

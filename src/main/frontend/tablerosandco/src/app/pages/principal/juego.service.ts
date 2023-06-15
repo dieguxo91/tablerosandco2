@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {Juego_interface} from "./juego_interface";
+import {StorageService} from "../../security/Storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,13 @@ import {Juego_interface} from "./juego_interface";
 export class JuegoService {
 
   private apiURL = "http://localhost:8080/juego/";
+  private user = this.storageService.getUser();
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     })
   };
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private storageService: StorageService) { }
 
   getAll(): Observable<Juego_interface[]> {
     return this.httpClient.get<Juego_interface[]>(this.apiURL)

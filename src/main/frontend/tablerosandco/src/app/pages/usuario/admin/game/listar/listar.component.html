@@ -21,7 +21,7 @@
       <button mat-mini-fab type="button" (click)="delete(juego.id_juego)" class="btn btn-danger text-secondary fw-bold border-secondary mx-1 my-1 d-flex col-md-3 justify-content-center" style="margin-left: 2px; ">&#10007;</button>
     </div>
   </ul>
-  <ul *ngFor="let juego of juegos" class="d-flex-col d-sm-none align-items-center mt-3 me-2 border border-info p-0 px-2" style="list-style: none">
+  <ul *ngFor="let juego of juegos" class="d-flex-col d-sm-none align-items-center mt-3 me-2 border border-info rounded p-0 px-2" style="list-style: none">
     <li class="col-12 d-flex justify-content-center my-1"><strong>ID:&nbsp;</strong>{{juego.id_juego}}</li>
     <li class="col-12 d-flex justify-content-center my-1"><strong>Nombre:&nbsp;</strong>{{juego.name}}</li>
     <li class="col-12 text-center my-1"><strong>Descripcion:&nbsp;</strong>{{juego.description}}</li>

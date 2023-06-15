@@ -22,10 +22,12 @@ export class LogueadoComponent {
   }
 
   buscar(nombre : string){
+
     this.juegoService.getAll().subscribe((data:Juego_interface[])=>{
       this.juegos=data;
-      this.juegos= this.juegos.filter(value => value.name == nombre );
-      if(this.juegos.length == 0){
+      this.juegos= this.juegos.filter(value => value.name.toUpperCase().includes(nombre.toUpperCase()) );
+      console.log("Busqueda de " + nombre)
+      if(nombre == ""){
         this.ngOnInit()
       }
     });

@@ -70,23 +70,35 @@
       <button class="btn btn-info ms-3 "><a routerLink="crear" routerLinkActive="active"  class="text-white text-decoration-none fs-4 "style="font-family: Arial, Helvetica, sans-serif;" >Registrarse</a></button>
     </div>
     <ng-template #logueado>
-      <div class="d-none d-sm-flex  justify-content-center"  >
-        <p class="text-center align-self-center fs-5 mb-0 stroke" style="color: #00ecce; ">{{nombre}}</p>
+      <div class="dropdown d-none d-sm-flex justify-content-center">
+        <p class="text-center align-self-center fs-5 mb-0 stroke dropdown-toggle" id="dropdownMenuButton2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #00ecce; ">{{nombre}}</p>
+        <ul class="dropdown-menu pt-0 " aria-labelledby="dropdownMenuButton2 " style="width: 90px">
+          <li  class="bg-white d-flex py-1 rounded justify-content-evenly " >
+            <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', getid() ]" class="btn btn-outline-success border-secondary mx-1 my-1  d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
+            <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', getid()  ]" class="btn btn-outline-warning border-secondary mx-1 my-1 d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>
+          </li>
+        </ul>
       </div>
       <div class="d-none d-sm-flex align-items-center mx-3"><div type="button" class="d-flex justify-content-center align-items-center" (click)="logout()" style="width: 50px; height: 50px; clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);"><img style="width: 28px;" src="./assets/images/logout.png"></div></div>
       <div class="d-none d-sm-flex me-3 align-items-center" *ngIf="roles.includes('ROL_ADMIN')"><a routerLink="admin"> <img style="width: 36px" src="./assets/images/admin.png"></a></div>
     </ng-template>
     <div class="dropdown d-sm-none d-flex">
-      <img src="./assets/images/hamburguesa.png" type="button" class="me-3 dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 32px;">
+      <img src="./assets/images/hamburguesa.png" type="button" class="me-3 dropdown-toggle" aria-expanded="true"   id="dropdownMenuButton1" data-bs-toggle="dropdown" style="width: 32px;">
       <ul class="dropdown-menu bg-dark pt-0 " aria-labelledby="dropdownMenuButton1 ">
-        <li  class="bg-white d-flex py-2 col justify-content-around rounded-top " *ngIf="!isLoggedIn;else hexagono">
+        <li  class="bg-white d-flex py-2 col justify-content-around rounded-top " *ngIf="!isLoggedIn;else registrado">
           <button type="button" class="btn btn-info text-white text-decoration-none  font-weight-s p-0 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family:  Arial, Helvetica, sans-serif;">Inicio</button>
           <button class="btn text-white p-0 pe-1 ps-1 btn-info "><a class="text-decoration-none text-white font-weight-s p-0 pe-1 ps-1" routerLink="crear" style="font-family:  Arial, Helvetica, sans-serif;">Registrarse</a></button>
         </li>
-        <ng-template #hexagono>
+        <ng-template #registrado>
         <li class=" bg-white col py-2  ">
-          <div class="d-flex d-sm-none  justify-content-center"  >
-            <p class="text-center align-self-center fs-5 mb-0 stroke" style="color: #00ecce; ">{{nombre}}</p>
+          <div class="dropdown d-sm-none d-flex justify-content-center" id="dropdownUsu">
+            <p class="text-center align-self-center fs-5 mb-0 stroke dropdown" id="dropdownMenuButton3"  type="button" data-mdb-toggle="dropdown" aria-expanded="false"style="color: #00ecce; ">{{nombre}}</p>
+            <ul class="dropdown-menu pt-0 desp" aria-labelledby="dropdownMenuButton3 " style="width: 90px">
+              <li  class="bg-white d-flex py-1 rounded justify-content-evenly " >
+                <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', getid() ]" class="btn btn-outline-success border-secondary mx-1 my-1  d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
+                <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', getid()  ]" class="btn btn-outline-warning border-secondary mx-1 my-1 d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>
+              </li>
+            </ul>
           </div>
           <div class="d-flex justify-content-evenly mt-2">
             <div class="d-flex d-sm-none align-items-center mx-3 "><div type="button" class="d-flex justify-content-center align-items-center" (click)="logout()" style="width: 50px; height: 50px; clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);"><img style="width: 28px;" src="./assets/images/logout.png"></div></div>

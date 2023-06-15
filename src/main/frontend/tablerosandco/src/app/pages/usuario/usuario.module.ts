@@ -15,6 +15,7 @@ import { VerUsuarioComponent } from './admin/user/ver-usuario/ver-usuario.compon
 import {MatButtonModule} from "@angular/material/button";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
+import {HttpRequestInterceptor} from "../../security/HttpRequestInterceptor";
 
 
 
@@ -30,6 +31,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatButtonModule,
     MatDividerModule,
     MatIconModule
-  ],exports:[UsuarioComponent]
+  ],exports:[UsuarioComponent],
+  providers: [HttpRequestInterceptor
+  ]
 })
 export class UsuarioModule { }

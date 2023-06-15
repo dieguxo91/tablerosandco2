@@ -11,6 +11,7 @@ export class AuthService {
 
   private apiAuthURL = "http://localhost:8080/auth/";
 
+  private roles: string []=[];
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -32,6 +33,18 @@ export class AuthService {
 
   logout() {
     this.storageService.clean();
+  }
+
+  hasRole(rol:string):boolean{
+    this.roles= this.storageService.getUser().roles;
+    if(this.roles.includes(rol)){
+      return true;
+    }
+    return false;
+  }
+
+  logueado():boolean{
+    return this.storageService.isLoggedIn()
   }
 
   errorHandler(error:any) {

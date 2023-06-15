@@ -3,6 +3,7 @@ import {AuthService} from "../../security/Auth.service";
 import {Router} from "@angular/router";
 import {StorageService} from "../../security/Storage.service";
 import {HttpRequestInterceptor} from "../../security/HttpRequestInterceptor";
+import {HttpHeaders} from "@angular/common/http";
 
 
 @Component({
@@ -11,6 +12,8 @@ import {HttpRequestInterceptor} from "../../security/HttpRequestInterceptor";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  valid = new HttpHeaders().keys();
+
   form: any = {
     usernameLogin: null,
     passwordLogin: null
@@ -46,26 +49,7 @@ export class HeaderComponent {
     this.authService.logout()
   }
 
-  enviar2():void{
-    const { usernameLogin2, passwordLogin2 } = this.form2;
 
-    this.authService.login(usernameLogin2, passwordLogin2).subscribe({
-      next: data => {
-        console.log(data)
-        this.storageService.clean();
-        this.storageService.saveUser(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        console.log('isLoggedIn = '+ this.isLoggedIn);
-        this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
-      },
-      error: err => {
-        this.errorMessage = "Usuario incorrecto";
-        this.isLoginFailed = true;
-      }
-    });
-  }
   enviar(): void {
     const { usernameLogin, passwordLogin } = this.form;
 
@@ -83,10 +67,19 @@ export class HeaderComponent {
 
       },
       error: err => {
+        console.log("esto es un error")
         this.errorMessage = "Usuario incorrecto";
         this.isLoginFailed = true;
       }
     });
+  }
+
+  getError(){
+    return this.errorMessage;
+  }
+
+  getid(){
+    return this.storageService.getUser().id;
   }
 
   reloadPage(): void {

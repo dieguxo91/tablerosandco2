@@ -29,9 +29,10 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
 
   submit(){
     console.log(this.usuario)
+
     this.usuarioService.update(this.id, this.form.value).subscribe(res => {
       console.log('Usuario actualizado satisfactoriamente!');
-      this.router.navigateByUrl('admin/usuarios').then();
+      javascript:history.back()
     })
   }
 
