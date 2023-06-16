@@ -15,8 +15,8 @@
     <div class=" justify-content-end d-flex aligns-center">
     <div class=" justify-content-end d-none d-sm-flex aligns-center" *ngIf="!isLoggedIn; else logueado">
       <div>
-        <button  type="button" class="btn btn-info text-center text-decoration-none text-white pe-3 ps-3 fs-4 " data-bs-toggle="dropdown" aria-expanded="false"  style="font-family:  Arial, Helvetica, sans-serif;">Inicio</button>
-        <ul class="dropdown-menu pt-0" aria-labelledby="dropdownMenuButton1 ">
+        <button  type="button" class="btn btn-info text-center text-decoration-none text-white  fs-4 " data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" style="font-family:  Arial, Helvetica, sans-serif;">Inicio</button>
+        <ul class="dropdown-menu pt-1 " aria-labelledby="dropdownMenuButton1 ">
           <li class=" d-flex py-2 col justify-content-center rounded-top">
             <form  name="form"
                    (ngSubmit)="f.form.valid && enviar()"
@@ -61,10 +61,12 @@
                 </div>
 
 
-                <button type="submit"  class="btn btn-info text-center d-flex justify-content-center m-auto" style="font-family:  Arial, Helvetica, sans-serif;"><a class="text-white text-center text-decoration-none" >Aceptar</a></button>
+                <button type="submit"  class="btn btn-info text-center d-flex justify-content-center m-auto" data-bs-target="Modallogin" style="font-family:  Arial, Helvetica, sans-serif;"><a class="text-white text-center text-decoration-none" >Aceptar</a></button>
+
               </div>
+              <div  *ngIf="isLoginFailed"><div id="alertlogin" class=" mx-2 mt-2 alert alert-danger justify-content-center " role="alert">  Nick o contraseña incorrecto</div></div>
             </form>
-          </li>
+            </li>
         </ul>
       </div>
       <button class="btn btn-info ms-3 "><a routerLink="crear" routerLinkActive="active"  class="text-white text-decoration-none fs-4 "style="font-family: Arial, Helvetica, sans-serif;" >Registrarse</a></button>
@@ -74,8 +76,8 @@
         <p class="text-center align-self-center fs-5 mb-0 stroke dropdown-toggle" id="dropdownMenuButton2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #00ecce; ">{{nombre}}</p>
         <ul class="dropdown-menu pt-0 " aria-labelledby="dropdownMenuButton2 " style="width: 90px">
           <li  class="bg-white d-flex py-1 rounded justify-content-evenly " >
-            <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', getid() ]" class="btn btn-outline-success border-secondary mx-1 my-1  d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
-            <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', getid()  ]" class="btn btn-outline-warning border-secondary mx-1 my-1 d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>
+            <button  type="button" [routerLink]="['/usuario/', 'details', getid() ]" class="border-0 bg-white mt-1  d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:25px; height: 25px" src="../../../../../../assets/images/ver-detalle.png"></button>
+            <button  type="button" [routerLink]="['/usuario/', 'edit', getid()  ]" class="border-0 bg-white mt-1  d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:30px; height: 30px" src="../../../../../../assets/images/editar-usuario.png"></button>
           </li>
         </ul>
       </div>
@@ -95,8 +97,8 @@
             <p class="text-center align-self-center fs-5 mb-0 stroke dropdown" id="dropdownMenuButton3"  type="button" data-mdb-toggle="dropdown" aria-expanded="false"style="color: #00ecce; ">{{nombre}}</p>
             <ul class="dropdown-menu pt-0 desp" aria-labelledby="dropdownMenuButton3 " style="width: 90px">
               <li  class="bg-white d-flex py-1 rounded justify-content-evenly " >
-                <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', getid() ]" class="btn btn-outline-success border-secondary mx-1 my-1  d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
-                <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', getid()  ]" class="btn btn-outline-warning border-secondary mx-1 my-1 d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>
+                <button  type="button" [routerLink]="['/usuario/', 'details', getid() ]" class="border-0 bg-white   d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:25px; height: 25px" src="../../../../../../assets/images/ver-detalle.png"></button>
+                <button  type="button" [routerLink]="['/usuario/', 'edit', getid()  ]" class="border-0 bg-white   d-flex-col justify-content-center" style="width:35px; height: 35px" ><img style="width:30px; height: 30px" src="../../../../../../assets/images/editar-usuario.png"></button>
               </li>
             </ul>
           </div>
@@ -188,10 +190,13 @@
 
 
             <button type="submit"  class="btn btn-info text-center d-flex justify-content-center m-auto" style="font-family:  Arial, Helvetica, sans-serif;"><a class="text-white text-center text-decoration-none" >Aceptar</a></button>
+            <div  class="modalLogin mt-2 "></div>
           </div>
         </form>
+        <div  *ngIf="isLoginFailed"><div class=" mx-2 alert alert-danger justify-content-center " role="alert">  Nick o contraseña incorrecto</div></div>
     </div>
   </div>
 </div>
 
 </div>
+

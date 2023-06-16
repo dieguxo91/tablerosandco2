@@ -53,8 +53,8 @@ export class HeaderComponent {
   enviar(): void {
     const { usernameLogin, passwordLogin } = this.form;
 
-    this.authService.login(usernameLogin, passwordLogin).subscribe({
-      next: data => {
+    this.authService.login(usernameLogin, passwordLogin).subscribe(
+       data => {
         console.log(data)
         this.storageService.clean();
         this.storageService.saveUser(data);
@@ -66,12 +66,12 @@ export class HeaderComponent {
         this.reloadPage();
 
       },
-      error: err => {
+      error => {
         console.log("esto es un error")
-        this.errorMessage = "Usuario incorrecto";
+        // @ts-ignore
         this.isLoginFailed = true;
-      }
-    });
+      });
+
   }
 
   getError(){
