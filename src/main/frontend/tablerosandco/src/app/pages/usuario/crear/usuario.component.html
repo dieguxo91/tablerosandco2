@@ -1,5 +1,5 @@
 <div class="position-relative container-xl">
-<h2 class="w-25 m-auto mt-4 border border-info rounded text-center">Crear Juego</h2>
+<h2 class="w-25 m-auto mt-4 border border-info rounded text-center">Crear Usuario</h2>
 <a  class="position-absolute" style="right: 10%; top:0%" href="javascript:history.back()"><img src="./assets/images/deshacer.png" height="36" width="36" alt="Botón"></a>
 <form class=" col-sm-8 col-md-10 col-10  p-5 pb-1 d-grid gap-3 m-auto form-group " [formGroup]="formlogin" (ngSubmit)="enviar()">
   <div class="form-group-item" >
@@ -35,17 +35,19 @@
     <span class="form-text text-danger"
           *ngIf="formlogin.controls['email'].errors &&
                             formlogin.controls['email'].touched">
-                        No puede estar vacío y debe ser un email nombre@dominio
+                         Deberia ser un email valido, por ejemplo: nombre@dominio.extension
                     </span>
+
   </div>
   <div class="form-group-item ">
     <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Contraseña</label>
-    <input type="password"  id="password" formControlName="password"  class="form-control" placeholder="Introduzca contraseña">
+    <input type="text"  id="password" formControlName="password"  class="form-control" placeholder="Introduzca contraseña">
     <span class="form-text text-danger"
           *ngIf="formlogin.controls['password'].errors &&
                             formlogin.controls['password'].touched">
-                        No puede estar vacío y debe tener más de 5 caracteres
+                        La contraseña debe tener mínimo 6 caracteres y llevar una minúscula, una mayúscula y un número
                     </span>
+
   </div>
   <div class="form-group-item ">
     <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Repita Contraseña</label>

@@ -68,18 +68,13 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
                 .authorizeHttpRequests()
-                .requestMatchers("/inicio").permitAll()
-                .requestMatchers("/auth/login").permitAll()
-                .requestMatchers("/auth/register").permitAll()
-                .requestMatchers("/crear").permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/carta/**").hasAnyAuthority("ROL_USER")
                 .requestMatchers("/juego/").permitAll()
-                .requestMatchers("/juego").permitAll()
-                .requestMatchers("/carta/**").permitAll()
-                .requestMatchers("/usuario/**").permitAll()
-                .requestMatchers("/usuario/").permitAll()
-                //.requestMatchers("/logueado").hasAnyAuthority("ROL_USER", "ROL_ADMIN")
-                //.requestMatchers("/admin/**").hasAnyAuthority("ROL_ADMIN")
-                .anyRequest().permitAll()
+                .requestMatchers("/juego/**").hasAnyAuthority("ROL_ADMIN")
+                .requestMatchers("/usuario/").hasAnyAuthority("ROL_ADMIN")
+                .requestMatchers("/usuario/**").hasAnyAuthority("ROL_USER","ROL_ADMIN")
+                .anyRequest().authenticated()
                 ;
 
         http.authenticationProvider(authenticationProvider());
@@ -87,7 +82,7 @@ public class WebSecurityConfig {
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         //https://stackoverflow.com/questions/59302026/spring-security-why-adding-the-jwt-filter-before-usernamepasswordauthenticatio
-        http.addFilterAfter(authenticationTokenFilter(), ExceptionTranslationFilter.class);
+        //http.addFilterAfter(authenticationTokenFilter(), ExceptionTranslationFilter.class);
 
         return http.build();
     }

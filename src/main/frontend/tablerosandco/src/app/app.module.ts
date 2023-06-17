@@ -11,10 +11,11 @@ import {UsuarioModule} from "./pages/usuario/usuario.module";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { LogueadoComponent } from './pages/logueado/logueado.component';
-import { HttpRequestInterceptor} from "./security/HttpRequestInterceptor";
+import {httpInterceptorProviders} from "./security/HttpRequestInterceptor";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
+import { CommingSoonComponent } from './pages/principal/comming-soon/comming-soon.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {MatIconModule} from "@angular/material/icon";
     FooterComponent,
     PrincipalComponent,
     LogueadoComponent,
+    CommingSoonComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatDividerModule,
     MatIconModule
   ],
-  providers: [HttpRequestInterceptor
+  providers: [httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

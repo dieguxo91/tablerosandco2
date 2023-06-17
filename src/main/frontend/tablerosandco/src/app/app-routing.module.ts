@@ -12,6 +12,7 @@ import {EditarJuegoComponent} from "./pages/usuario/admin/game/editar-juego/edit
 import {VerJuegoComponent} from "./pages/usuario/admin/game/ver-juego/ver-juego.component";
 import {VerUsuarioComponent} from "./pages/usuario/admin/user/ver-usuario/ver-usuario.component";
 import {LogueadoComponent} from "./pages/logueado/logueado.component";
+import {CommingSoonComponent} from "./pages/principal/comming-soon/comming-soon.component";
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'Juego/details/:idJuego', component: VerJuegoComponent},
   { path: 'usuario/details/:idUsuario', component: VerUsuarioComponent},
   { path: 'logueado/granja', component: TableroComponent },
+  { path: 'logueado/sushi', component: CommingSoonComponent },
+  { path: 'logueado/galaxia', component: CommingSoonComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 
 

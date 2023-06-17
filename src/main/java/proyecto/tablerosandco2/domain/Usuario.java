@@ -56,7 +56,7 @@ public class Usuario {
     @ToString.Exclude
     private List<Partida> id_jugador_partida;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

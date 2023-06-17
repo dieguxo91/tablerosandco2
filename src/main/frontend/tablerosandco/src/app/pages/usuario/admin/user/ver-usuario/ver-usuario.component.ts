@@ -23,7 +23,6 @@ export class VerUsuarioComponent {
       name: [''],
       email: [''],
       telefono: [''],
-      password: [''],
       username: [''],
       apellidos: ['']
     });
@@ -39,7 +38,6 @@ export class VerUsuarioComponent {
       this.formlogin.get('username')?.setValue(this.usuario.username);
       this.formlogin.get('apellidos')?.setValue(this.usuario.apellidos);
       this.formlogin.get('telefono')?.setValue(this.usuario.telefono);
-      this.formlogin.get('password')?.setValue(this.usuario.password);
     });
   }
 

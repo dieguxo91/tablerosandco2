@@ -18,6 +18,7 @@ export class UsuarioService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+
     })
   };
   constructor(private httpClient: HttpClient , private storageService: StorageService) { }

@@ -27,13 +27,13 @@ export class UsuarioComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService,private router: Router) {
 
     this.formlogin= this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required, Validators.minLength(9)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      username: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', Validators.required, Validators.minLength(3)],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$')]],
+      telefono: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\d){6,}")]],
+      username: ['', [Validators.required, Validators.minLength(6),Validators.pattern('^[A-Za-z0-9]+$')]],
       repeat_password: ['',[Validators.required, Validators.minLength(6)]],
-      apellidos: ['', [Validators.required, Validators.minLength(6)]]
+      apellidos: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
 
