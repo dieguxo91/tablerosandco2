@@ -18,7 +18,6 @@ export class UsuarioService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-
     })
   };
   constructor(private httpClient: HttpClient , private storageService: StorageService) { }
@@ -32,9 +31,6 @@ export class UsuarioService {
 
   create(usuario: Usuario_interface): Observable<Usuario_interface> {
     return this.httpClient.post<Usuario_interface>(this.apiCrear, JSON.stringify(usuario), this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
-      )
   }
 
   find(id: number): Observable<Usuario_interface> {
@@ -58,7 +54,6 @@ export class UsuarioService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
     return throwError(() => errorMessage);
   }
 

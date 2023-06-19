@@ -67,7 +67,6 @@ export class HeaderComponent {
 
       },
       error => {
-        console.log("esto es un error")
         // @ts-ignore
         this.isLoginFailed = true;
       });

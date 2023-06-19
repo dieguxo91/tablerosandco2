@@ -3,6 +3,7 @@ package proyecto.tablerosandco2.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -34,12 +35,15 @@ public class Usuario {
     @Size(max = 9)// por ahora solo números nacionales
     private String telefono;
 
-    @NotBlank
-    @Size(max = 50)
-    private String email;
 
     @NotBlank
-    @Size(max = 120)
+    @Size(max = 50)
+    @Pattern(regexp = "^[^@]+@[^@]+\\.[a-zA-Z]{2,}$")
+    private String email;
+
+
+    @NotBlank
+    @Size(min = 6,max = 120)
     private String password;
 
     @NotBlank

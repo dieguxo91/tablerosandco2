@@ -39,9 +39,12 @@
                     </span>
 
   </div>
-  <div class="form-group-item ">
-    <label class="mb-1 fw-bolder fs-5" style="font-family:  Arial, Helvetica, sans-serif;">Contraseña</label>
-    <input type="text"  id="password" formControlName="password"  class="form-control" placeholder="Introduzca contraseña">
+  <div class="form-group-item position-relative">
+    <label class="mb-1 fw-bolder fs-5 col-12" style="font-family:  Arial, Helvetica, sans-serif;">Contraseña</label>
+
+      <input type="password"  id="password" formControlName="password"  class="form-control" placeholder="Introduzca contraseña">
+      <img  class="position-absolute align-self-center d-none d-sm-flex" (click)="mostrar()" style=" width: 26px; right: 4%; top: 30px; " src="./assets/images/ojo.png">
+
     <span class="form-text text-danger"
           *ngIf="formlogin.controls['password'].errors &&
                             formlogin.controls['password'].touched">
@@ -55,10 +58,10 @@
     <span class="form-text text-danger"
           *ngIf="formlogin.controls['repeat_password'].errors &&
                             formlogin.controls['repeat_password'].touched">
-                        No puede estar vacío y debe tener más de 5 caracteres
+                        No puede estar vacío
                     </span>
     <span class="form-text text-danger"
-          *ngIf="  distntas(this.formlogin.value['password'],  this.formlogin.value['repeat_password']) &&
+          *ngIf="  distintas(this.formlogin.value['password'],  this.formlogin.value['repeat_password']) &&
                             formlogin.controls['repeat_password'].dirty"><br>
                         Las contraseñas tienen que ser iguales
                     </span>
@@ -81,3 +84,21 @@
 </form>
 </div>
 
+<div class="modal" id="modalError" style="display:none;" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex justify-content-center w-100" >
+          <img class="img-fluid d-flex " src="./assets/images/logo.png" style="width: 30% ;">
+        </div>
+        <button type="button" class="btn-close" (click)="cerrar()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fw-bold">
+        <h3 >{{error}}</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info text-white" (click)="cerrar()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

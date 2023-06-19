@@ -26,7 +26,7 @@
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>ID:&nbsp;</strong>{{usuario.id_user}}</li>
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Nombre:&nbsp;</strong>{{usuario.name}}</li>
     <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Nick:&nbsp;</strong>{{usuario.username}}</li>
-    <li class="col-12 d-flex align-items-center justify-content-center my-1"><strong>Email:&nbsp;</strong>{{usuario.email}}</li>
+    <li class="col-12 d-flex align-items-center justify-content-center my-1 text-break"><strong>Email:&nbsp;</strong>{{usuario.email}}</li>
     <div class=" col-md-3 d-flex align-items-center justify-content-center my-2">
       <button  mat-mini-fab type="button" [routerLink]="['/usuario/', 'details', usuario.id_user]" class="btn btn-success border-secondary mx-1" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="../../../../../../assets/images/buscar.png"></button>
       <button mat-mini-fab type="button" [routerLink]="['/usuario/', 'edit', usuario.id_user  ]" class="btn btn-outline-warning border-secondary" style="margin-left: 2px; margin-right: 8px "><img style="width:15px; height: 15px" src="../../../../../../assets/images/lapiz.png"></button>

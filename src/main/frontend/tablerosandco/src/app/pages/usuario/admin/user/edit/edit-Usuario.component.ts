@@ -10,19 +10,20 @@ import {Usuario_interface} from "../../../usuario_interface";
   styleUrls: ['./edit-Usuario.component.css']
 })
 export class EditUsuarioComponent implements OnInit{
-
+form !: FormGroup;
 
 constructor(private usuarioService : UsuarioService, private routes: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
-}
-  form:FormGroup = this.formBuilder.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    telefono: ['', Validators.required],
-    password: ['', Validators.required],
-    username: ['', Validators.required],
-    apellidos: ['', Validators.required],
+  this.form = this.formBuilder.group({
+    name: ['', [Validators.required ,Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email, Validators.pattern('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$')]],
+    telefono: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+    password: ['',[]],
+    username: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^[A-Za-z0-9]+$')]],
+    apellidos: ['', [Validators.required, Validators.minLength(3)]],
     roles:[],
   });
+
+}
 
   id: number = 1;
   usuario!: Usuario_interface ;
@@ -30,10 +31,27 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
   submit(){
     console.log(this.usuario)
 
+      if(!this.form.get('password')?.value){
+        this.form.get('password')?.setValue(this.usuario.password);
+      }
+
     this.usuarioService.update(this.id, this.form.value).subscribe(res => {
       console.log('Usuario actualizado satisfactoriamente!');
       javascript:history.back()
     })
+  }
+  mostrar(){
+    let password1 = document.querySelector('#password');
+
+    // @ts-ignore
+    if(password1.type == 'text'){
+      // @ts-ignore
+      password1.type = 'password';
+    }else{
+      // @ts-ignore
+      password1.type = 'text';
+
+    }
   }
 
   ngOnInit(): void {
@@ -46,7 +64,6 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
       this.form.get('username')?.setValue(this.usuario.username);
       this.form.get('apellidos')?.setValue(this.usuario.apellidos);
       this.form.get('telefono')?.setValue(this.usuario.telefono);
-      this.form.get('password')?.setValue(this.usuario.password);
       this.form.get('roles')?.setValue(this.usuario.roles);
     });
   }
