@@ -59,6 +59,7 @@ public class UsuarioController {
     @DeleteMapping("/{id_user}")
     public void deleteUsuario(@PathVariable("id_user") Long id) {
         this.usuarioService.delete(id);
+        log.info("Usuario " + id + " eliminado");
     }
 
     @GetMapping("/listado")

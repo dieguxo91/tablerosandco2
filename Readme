@@ -1,0 +1,17 @@
++ Para empezar a utilizar la aplicación se necesario:
+
+    - un ide para servidor en el que tener el framework de spring boot para java,
+      con el lombok a ser posible.(Ej:  eclipse)
+    - un ide para cliente en el que tener el framework de angular en el que tendremos que
+      agregar el node_,odules.(Ej: Visual Studio Code)
+    - un gestor de BBDD. (Ej: Workbench)
+
++ Para añadir el rol de usuario es necesario hacerlo desde la base datos,
+  añadiendo el id de usuario a un de los id de roles en la tabla "user_roles".
+
++ Una vez tengamos el Rol_admin tendremos que crear los juegos,las imagenes se encontraran
+  en la carpeta "assets/images", escoger la ruta mas acorde al modelo de juego (Ej: juego = "Granja", assets/images/granja)
+
++ Las cartas se añadiran por consulta en la BBDD, iran asociada a un juego.
+
++ los componentes de los juegos nuevos tendremos que conectarlos con el routing, poniendo su nombre en el path.

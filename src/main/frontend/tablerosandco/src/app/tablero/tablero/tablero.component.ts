@@ -197,12 +197,27 @@ export class TableroComponent implements OnInit{
       console.log(this.descartadas.length)
       console.log(this.descartadas[0].numeroDescarte)
       if(this.descartadas.length+1 >= this.descartadas[0].numeroDescarte){
+
+        this.descarte = this.descarte.concat(this.descartadas);
+        console.log(this.descartadas)
+        let manoProvi = document.querySelector('#mano')
+        let manoFinal = document.createElement("div");
         // @ts-ignore
-        this.descarte.push(this.descartadas)
-        console.log("hola")
-        this.mano.forEach(value =>{
-          console.log(this.descarte)
-        })
+        while(manoProvi.lastChild){
+        // @ts-ignore
+          console.log(manoProvi.lastChild.id)
+          // @ts-ignore
+          console.log(this.descartadas[0].id)
+          // @ts-ignore
+          if(manoProvi.lastChild.id === "mano"+this.descartadas[0].id){
+            // @ts-ignore
+            manoProvi.removeChild(manoProvi.lastChild);
+          }else{
+            // @ts-ignore
+            manoFinal = manoProvi.removeChild(manoProvi.lastChild);
+          }
+        }
+        manoProvi= manoFinal;
       }
     }
     this.descartadas=[];
