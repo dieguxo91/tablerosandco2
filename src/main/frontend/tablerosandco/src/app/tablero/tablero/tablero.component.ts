@@ -1,9 +1,17 @@
-import {Component, ElementRef, Injectable, ViewChild} from '@angular/core';
+import {Component, ElementRef, Injectable, OnInit, ViewChild} from '@angular/core';
 import {Carta} from "../../baraja/carta_inteface";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 // @ts-ignore
 import * as events from "events";
 import {BarajaService} from "../../baraja/baraja.service";
+import {StorageService} from "../../security/Storage.service";
+import {Usuario_interface} from "../../pages/usuario/usuario_interface";
+import {JuegoService} from "../../pages/principal/juego.service";
+import {UsuarioService} from "../../pages/usuario/usuario.service";
+import {Juego_interface} from "../../pages/principal/juego_interface";
+import {Observable} from "rxjs";
+import {PartidaService} from "../partida.service";
+import {Partida_interface} from "../partida_interface";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +23,7 @@ import {BarajaService} from "../../baraja/baraja.service";
   styleUrls: ['./tablero.component.css']
 })
 
-export class TableroComponent {
+export class TableroComponent implements OnInit{
 
   @ViewChild("filas") filas: ElementRef |undefined;
 
@@ -23,8 +31,12 @@ export class TableroComponent {
   mano: Carta[]=[];
   showChild: boolean = false;
   baraja!: Carta[];
-
+  descarte !: Carta[];
+  descartadas !: Carta[];
+  contadorDesc !: number;
   cartaRepe!: Carta;
+
+
   // Elementos del DOM
 
   fila!:HTMLDivElement  ;
@@ -35,9 +47,35 @@ export class TableroComponent {
   imagenBotonDer !: HTMLImageElement;
   imagenBotonIzq !: HTMLImageElement;
 
+  private id_jugador !: Usuario_interface;
+  private  id_juego !: Juego_interface;
 
-  constructor(private barajaService: BarajaService) {
+  private partidaNueva!: Partida_interface;
+  constructor(private barajaService: BarajaService, private juegoService: JuegoService, private usuarioService: UsuarioService, private storageService : StorageService, private partidaService: PartidaService) {
+
   }
+
+  ngOnInit(): void {
+
+     /*this.juegoService.find(7).subscribe((data: Juego_interface)=>{
+      this.id_juego = data;
+       this.usuarioService.find(this.storageService.getUser().id).subscribe((data: Usuario_interface)=>{
+         this.id_jugador = data;
+         this.partidaNueva = {
+           id_juego_partida : this.id_juego,
+           id_jugador_partida : this.id_jugador
+         }
+         this.partidaService.create(this.partidaNueva).subscribe(res => {
+           console.log('Partida creada');
+         })
+       });
+    });*/
+  this.descarte=[];
+  this.descartadas=[]
+  this.contadorDesc = 0;
+
+  }
+
 // Inicia el tablero, la baraja y la mano
   dataIsHere(event: any) {
     this.baraja = event;
@@ -82,7 +120,9 @@ export class TableroComponent {
         // @ts-ignore
         this.imagen.style="width:80px;"
 
+        this.imagen.classList.add("tablero-mobile")
         this.casilla.appendChild(this.imagen);
+
 
 
         this.fila.appendChild(this.casilla);
@@ -124,7 +164,7 @@ export class TableroComponent {
     }
     for (let i = 0; i < this.mano.length; i++){
       // @ts-ignore
-      this.mano.at(i).seleccionado= false;
+      this.mano[i].seleccionado= false;
     }
   }
   agregarMano(carta: Carta | undefined){
@@ -134,13 +174,45 @@ export class TableroComponent {
   }
 
   iniciarMano(){
+    let carta: any;
     for(let cont =1; cont <=5; cont++){
-      this.mano.push(<Carta>this.baraja.pop());
+      carta = <Carta>this.baraja.pop()
+      this.imagen.classList.add("mano-mobile")
+      this.mano.push(carta);
     }
   }
 
-  //funcion para el boton izq
+  botonDescartar():void {
+    let  manoProv: Carta[];
+    this.mano.forEach((value, index) => {
+        if(value.seleccionado == true){
+          this.contadorDesc++;
+          this.descartadas.push(value)
+          console.log(this.descartadas)
+          console.log(index)
+        }
+    })
 
+    if(this.descartadas.length > 0){
+      console.log(this.descartadas.length)
+      console.log(this.descartadas[0].numeroDescarte)
+      if(this.descartadas.length+1 >= this.descartadas[0].numeroDescarte){
+        // @ts-ignore
+        this.descarte.push(this.descartadas)
+        console.log("hola")
+        this.mano.forEach(value =>{
+          console.log(this.descarte)
+        })
+      }
+    }
+    this.descartadas=[];
+this.contadorDesc=0;
+  }
+  descartar():void{
+    this.barajaService.addBaraja(this.descarte, this.descartadas);
+  }
+
+  //funcion para el boton izq
   botonizq(boton: HTMLButtonElement, fila: string){
 
     boton.addEventListener("click",()=>{
@@ -209,7 +281,10 @@ export class TableroComponent {
               // @ts-ignore
               this.imagen.style = "width:80px;"
 
+              this.imagen.classList.add("tablero-mobile")
               this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
+              // @ts-ignore
+
               filaProv.appendChild(this.casilla);// insertar la casilla en la fila
             }
           }
@@ -218,7 +293,9 @@ export class TableroComponent {
             // @ts-ignore
             this.barajaService.find(filaCompr.lastChild.id).subscribe((data: Carta)=> {
               this.cartaRepe = data;
+              this.cartaRepe.seleccionado = false;
               this.mano.push(this.cartaRepe)
+
             });
             // @ts-ignore
             filaCompr.removeChild(filaCompr.lastChild)
@@ -299,6 +376,7 @@ export class TableroComponent {
               // @ts-ignore
               this.barajaService.find(filaCompr.lastChild.id).subscribe((data: Carta)=> {
                 this.cartaRepe = data;
+                this.cartaRepe.seleccionado = false;
                 this.mano.push(this.cartaRepe)
               });
               // @ts-ignore
@@ -319,6 +397,7 @@ export class TableroComponent {
             // @ts-ignore
             this.imagen.style="width:80px;"
             this.casilla.appendChild(this.imagen);// insertar imagen en la ficha
+            this.casilla.className += " tablero-mobile";
             filaProv.appendChild(this.casilla);// insertar la casilla en la fila
           }
           filaProv.appendChild(botonDere); // insertamos el boton al final de la fila
@@ -328,24 +407,30 @@ export class TableroComponent {
   }
   // prueba echar carta, nombre regu, dar una vuelta
   cartaSeleccionada(carta: Carta){
-    this.mano.forEach(value => {
+    for(let i = 0; i<this.mano.length; i++){
+      this.mano[i].seleccionado= false;
+    }
+    /*this.mano.forEach(value => {
       value.seleccionado=false;
-    })
+    })*/
     carta.seleccionado=true;
     this.aumentar(carta);
   }
 
+  // pone las cartas de la mano con 80px
   aumentar(carta:Carta):void{
     let manoProvi !: NodeListOf<HTMLDivElement>;
     for (let i = 0; i < this.mano.length; i++){
       // @ts-ignore
-      if(this.mano.at(i).nombre == carta.nombre){
+      if(this.mano[i].nombre == carta.nombre){
         manoProvi = document.querySelectorAll("#mano"+ carta.nombre);
+        console.log(manoProvi)
+        this.mano[i].seleccionado = true;
         for (let j = 0; j < manoProvi.length; j++){
           // @ts-ignore
           manoProvi.item(j).style= "width:80px";
         }
-        break;
+
       }
     }
   }
@@ -381,6 +466,8 @@ export class TableroComponent {
     return arrayCartas;
 
   }
+
+
 
 
 

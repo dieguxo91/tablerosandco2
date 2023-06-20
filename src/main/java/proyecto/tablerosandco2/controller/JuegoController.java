@@ -3,6 +3,7 @@ package proyecto.tablerosandco2.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import proyecto.tablerosandco2.domain.Juego;
 import proyecto.tablerosandco2.service.JuegoService;
@@ -38,7 +39,7 @@ public class JuegoController {
         return ResponseEntity.ok(responseAll);
     }
 
-    //@Secured("ROL_ADMIN")
+
     @PostMapping({"","/"})
     public Juego newJuego(@RequestBody Juego juego) {
         return this.juegoService.save(juego);

@@ -43,28 +43,28 @@ export class BarajaService {
     array.forEach((value)=>{
 
       if (value.nombre== "oso"){
-        for (let i = 0; i < 2 ; i++) {
+        for (let i = 0; i < 3 ; i++) {
           barajaProvi.push(value);
         }
       }else if(value.nombre == "raton" ){
-        for (let i = 0; i < 4 ; i++) {
+        for (let i = 0; i < 10 ; i++) {
           barajaProvi.push(value);
         }
       }else if(value.nombre == "tigre" ){
-        for (let i = 0; i < 6 ; i++) {
+        for (let i = 0; i < 10 ; i++) {
           barajaProvi.push(value);
         }
       }
       else if(value.nombre == "perro" ){
-        for (let i = 0; i < 8 ; i++) {
+        for (let i = 0; i < 17 ; i++) {
           barajaProvi.push(value);
         }
       }else if(value.nombre == "zorro" ) {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 12; i++) {
           barajaProvi.push(value);
         }
       }else if(value.nombre == "cerdo"){
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 15; i++) {
           barajaProvi.push(value);
         }
       }
@@ -75,6 +75,10 @@ export class BarajaService {
   // Metodo para barajar las cartas
   barajar(cartas:Carta[]):Carta[]{
     return cartas.sort(() => Math.random() - 0.5);
+  }
+
+  addBaraja(baraja1 : Carta[], baraja2: Carta[]):void{
+    baraja1 = baraja2;
   }
 
 

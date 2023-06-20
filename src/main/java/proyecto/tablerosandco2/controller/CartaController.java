@@ -52,11 +52,12 @@ public class CartaController {
         return this.cartaService.one(nombre);
     }
 
+    @Secured("ROL_ADMIN")
     @PutMapping("/{nombre}")
     public Carta replaceCarta(@PathVariable("nombre") String nombre, @RequestBody Carta carta) {
         return this.cartaService.replace(nombre, carta);
     }
-
+    @Secured("ROL_ADMIN")
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{nombre}")

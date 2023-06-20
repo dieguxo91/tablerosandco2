@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'logueado', component: LogueadoComponent },
   { path: 'admin', component: VistaAdminComponent ,children:[
     {path: 'juegos', component: ListarComponent},
-      {path: 'usuarios', component: IndexComponent },
+      {path: 'usuarios', component: IndexComponent }
     ]},
   { path: 'admin/juegos/crearJuego', component: CrearJuegoComponent},
   { path: 'admin/usuarios/crearUsuario', component: UsuarioComponent},
@@ -33,8 +33,6 @@ const routes: Routes = [
   { path: 'logueado/sushi', component: CommingSoonComponent },
   { path: 'logueado/galaxia', component: CommingSoonComponent },
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
-
-
 ];
 
 @NgModule({

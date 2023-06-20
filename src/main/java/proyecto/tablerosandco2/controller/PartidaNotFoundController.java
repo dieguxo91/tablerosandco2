@@ -7,15 +7,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import proyecto.tablerosandco2.exception.JuegoNotFoundException;
+import proyecto.tablerosandco2.exception.PartidaNotFoundException;
 
 @Slf4j
 @ControllerAdvice
-public class JuegNotFoundController {
+public class PartidaNotFoundController {
     @ResponseBody
-    @ExceptionHandler(JuegoNotFoundException.class)
+    @ExceptionHandler(PartidaNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String JuegoNotFoundHandler(JuegoNotFoundException juegoNotFoundException) {
-        log.debug("Excepción - %s", juegoNotFoundException.toString());
-        return juegoNotFoundException.getMessage();
+    public String PartidaNotFoundHandler(PartidaNotFoundException partidaNotFoundException) {
+        log.debug("Excepción - %s", partidaNotFoundException.toString());
+        return partidaNotFoundException.getMessage();
     }
 }

@@ -19,9 +19,9 @@ public class Carta {
     @NotBlank
     private  String reverso;
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    @NotBlank
     private boolean seleccionado;
-
+    @Column(nullable = true, columnDefinition = "INT")
+    private Integer numeroDescarte;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_juego_carta",nullable = false)
     private Juego id_juego_carta ;

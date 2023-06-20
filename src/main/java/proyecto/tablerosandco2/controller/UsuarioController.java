@@ -38,7 +38,7 @@ public class UsuarioController {
         return ResponseEntity.ok(responseAll);
     }
 /*
-    //@Secured("ROL_ADMIN")
+
     // @PostMapping({"","/"})
     public Usuario newUsuario(@RequestBody Usuario usuario) {
         return this.usuarioService.save(usuario);

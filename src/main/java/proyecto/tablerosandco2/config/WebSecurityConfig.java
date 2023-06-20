@@ -69,11 +69,12 @@ public class WebSecurityConfig {
                 //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/carta/**").hasAnyAuthority("ROL_USER")
+                .requestMatchers("/carta/**").hasAnyAuthority("ROL_USER", "ROL_ADMIN")
                 .requestMatchers("/juego/").permitAll()
-                .requestMatchers("/juego/**").hasAnyAuthority("ROL_ADMIN")
+                .requestMatchers("/juego/**").hasAnyAuthority("ROL_ADMIN", "ROL_USER")
                 .requestMatchers("/usuario/").hasAnyAuthority("ROL_ADMIN", "ROL_USER")
                 .requestMatchers("/usuario/**").hasAnyAuthority("ROL_USER","ROL_ADMIN")
+                .requestMatchers("/partida/").permitAll()
                 .anyRequest().authenticated()
                 ;
 

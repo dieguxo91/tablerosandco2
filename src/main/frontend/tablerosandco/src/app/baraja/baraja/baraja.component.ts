@@ -47,8 +47,6 @@ export class BarajaComponent implements OnInit{
     return this.baraja;
   }
 
-  setBaraja(barajaDes: Carta[]):void{
-    this.baraja = barajaDes;
-  }
+
 
 }

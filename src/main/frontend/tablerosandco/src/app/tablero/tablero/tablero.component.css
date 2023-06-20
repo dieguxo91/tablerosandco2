@@ -8,6 +8,9 @@
   margin: auto;
   align-items: center;
 }
+h1{
+  text-shadow: 0.1em 0.1em 0.2em #9fe1fd
+}
 .colorfila{
   background-color: #9fe1fd;
 }
@@ -18,14 +21,25 @@
   flex-direction: column;
   padding-top: 16px;
 }
-.fondoTablero{
-  background-color: #9fe1fd;
-}
+
 .main{
+  height: 700px;
   background: linear-gradient(to right ,#cfeffd , #9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd,#9fe1fd, #cfeffd );
+
 }
-header{
-  background-color: #9fe1fd;
+
+@media  screen and (max-width: 500px) {
+  img {
+    width: 30px;
+  }
+  .tablero-mobile{
+    width: 30px ;
+  }
+  .mano-mobile{
+    width: 25px;
+  }
 }
+
+
 
 

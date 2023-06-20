@@ -1,17 +1,23 @@
-<div class="main">
+<h1 class="m-auto w-auto text-center my-2 text-info">La Granja</h1>
+<div class="main ">
 <div class="fondoTablero container-xl">
-
+<div class="d-flex justify-content-center">
   <div #filas class=" filas" ></div>
-  <div class="col-2 m-auto">
+</div>
+  <div class="-flex-col text-center ">
+  <div class="col-2 m-auto justify-self-center">
     <app-baraja  [ngClass]="showChild?'':'hidden'" (onChildInit)="dataIsHere($event)" (click)="robar()"></app-baraja>
   </div>
+  <button class="btn btn-warning my-2 justify-self-center " (click)="botonDescartar()">Descarte</button>
   <div style="display: flex;  "  *ngIf="mano.length>0">
-    <div style="background-color: #77dd77 " class=" manoClass"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
-      <div cdkDrag id="mano"  *ngFor="let carta of mano">
-        <img (click)="cartaSeleccionada(carta)" *ngIf="!carta.seleccionado ; else noSelecionada" width="60" id="mano{{carta.nombre}}" src="{{carta.url}}">
-        <ng-template #noSelecionada> <img  width="80" id="mano{{carta.nombre}}" src="{{carta.url}}"></ng-template>
+    <div style="background-color: #77dd77 " class=" manoClass mb-2"  cdkDropListOrientation="horizontal" cdkDropList   (cdkDropListDropped)="drop($event)" >
+
+      <div cdkDrag id="mano" *ngFor="let carta of mano">
+        <img title="Para descartar necesitas : {{carta.numeroDescarte}}" (click)="cartaSeleccionada(carta)" *ngIf="!carta.seleccionado ; else noSelecionada" width="60" id="mano{{carta.nombre}}" src="{{carta.url}}">
+        <ng-template #noSelecionada> <img title="Para descartar necesitas : {{carta.numeroDescarte}}"  width="80" id="mano{{carta.nombre}}" src="{{carta.url}}"></ng-template>
         </div>
     </div>
+  </div>
   </div>
 </div>
 </div>

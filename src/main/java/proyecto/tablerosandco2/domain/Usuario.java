@@ -60,7 +60,7 @@ public class Usuario {
     @ToString.Exclude
     private List<Partida> id_jugador_partida;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

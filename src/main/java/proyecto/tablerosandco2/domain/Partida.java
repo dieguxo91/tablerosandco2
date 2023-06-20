@@ -18,11 +18,11 @@ public class Partida {
     private Long id_partida;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_juego",nullable = false)
+    @JoinColumn(name = "id_juego")
     private Juego id_juego_partida ;
 
     @ManyToOne()
-    @JoinColumn(name = "id_jugador",nullable = false)
+    @JoinColumn(name = "id_jugador" )
     private Usuario id_jugador_partida ;
 
 

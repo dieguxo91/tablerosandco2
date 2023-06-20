@@ -2,6 +2,7 @@ export interface Carta {
   nombre:string,
   url:string,
   reverso: string,
-  seleccionado:boolean
+  seleccionado:boolean,
+  numeroDescarte:Number
 
 }

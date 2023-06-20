@@ -3,6 +3,8 @@ import {UsuarioService} from "../../../usuario.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Usuario_interface} from "../../../usuario_interface";
+import {StorageService} from "../../../../../security/Storage.service";
+import {AuthService} from "../../../../../security/Auth.service";
 
 @Component({
   selector: 'app-edit',
@@ -12,9 +14,9 @@ import {Usuario_interface} from "../../../usuario_interface";
 export class EditUsuarioComponent implements OnInit{
 form !: FormGroup;
 
-constructor(private usuarioService : UsuarioService, private routes: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
+constructor(private usuarioService : UsuarioService, private routes: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
   this.form = this.formBuilder.group({
-    name: ['', [Validators.required ,Validators.minLength(3)]],
+    name: ['', [Validators.required ,Validators.minLength(3),Validators.pattern('^[A-Za-z]+$')]],
     email: ['', [Validators.required, Validators.email, Validators.pattern('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$')]],
     telefono: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
     password: ['',[]],
@@ -39,6 +41,8 @@ constructor(private usuarioService : UsuarioService, private routes: ActivatedRo
       console.log('Usuario actualizado satisfactoriamente!');
       javascript:history.back()
     })
+
+
   }
   mostrar(){
     let password1 = document.querySelector('#password');
