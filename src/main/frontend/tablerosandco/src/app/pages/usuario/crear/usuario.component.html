@@ -8,7 +8,7 @@
     <span class="form-text text-danger"
           *ngIf="formlogin.controls['name'].errors &&
                             formlogin.controls['name'].touched">
-                        No puede estar vacío
+                        No puede estar vacío y debe tener al menos de 3 caracteres
                     </span>
   </div>
   <div class="form-group-item">
@@ -17,7 +17,7 @@
     <span class="form-text text-danger"
           *ngIf="formlogin.controls['apellidos'].errors &&
                             formlogin.controls['apellidos'].touched">
-                        No puede estar vacío y debe tener más de 5 caracteres
+                        No puede estar vacío y debe tener al menos de 3 caracteres
                     </span>
   </div>
   <div class="form-group-item ">
