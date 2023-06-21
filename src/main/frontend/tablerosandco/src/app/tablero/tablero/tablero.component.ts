@@ -27,6 +27,7 @@ export class TableroComponent implements OnInit{
 
   @ViewChild("filas") filas: ElementRef |undefined;
 
+  mensaje !: string;
 
   mano: Carta[]=[];
   showChild: boolean = false;
@@ -35,6 +36,7 @@ export class TableroComponent implements OnInit{
   descartadas !: Carta[];
   contadorDesc !: number;
   cartaRepe!: Carta;
+  conseguidas !: Carta[];
 
 
   // Elementos del DOM
@@ -73,6 +75,7 @@ export class TableroComponent implements OnInit{
   this.descarte=[];
   this.descartadas=[]
   this.contadorDesc = 0;
+  this.conseguidas=[];
 
   }
 
@@ -188,39 +191,64 @@ export class TableroComponent implements OnInit{
         if(value.seleccionado == true){
           this.contadorDesc++;
           this.descartadas.push(value)
-          console.log(this.descartadas)
-          console.log(index)
         }
     })
-
     if(this.descartadas.length > 0){
-      console.log(this.descartadas.length)
-      console.log(this.descartadas[0].numeroDescarte)
-      if(this.descartadas.length+1 >= this.descartadas[0].numeroDescarte){
+
+      if(this.descartadas.length >= this.descartadas[0].numeroDescarte){
 
         this.descarte = this.descarte.concat(this.descartadas);
-        console.log(this.descartadas)
-        let manoProvi = document.querySelector('#mano')
-        let manoFinal = document.createElement("div");
-        // @ts-ignore
-        while(manoProvi.lastChild){
-        // @ts-ignore
-          console.log(manoProvi.lastChild.id)
-          // @ts-ignore
-          console.log(this.descartadas[0].id)
-          // @ts-ignore
-          if(manoProvi.lastChild.id === "mano"+this.descartadas[0].id){
-            // @ts-ignore
-            manoProvi.removeChild(manoProvi.lastChild);
-          }else{
-            // @ts-ignore
-            manoFinal = manoProvi.removeChild(manoProvi.lastChild);
+
+        let longitudMano = this.mano.length;
+        let arrayNum: number[] = [];
+        this.mano.forEach((value, index) => {
+          if (value.seleccionado){
+            arrayNum.push(index)
           }
+        })
+        for(let i = longitudMano-1; i >= 0; i--){
+          arrayNum.forEach(value => {
+            if (value == i){
+              this.mano.splice(i, 1);
+            }
+          })
         }
-        manoProvi= manoFinal;
+
+        this.descarte.concat(this.descartadas);
+        let cartaParaConse = this.descartadas.pop();
+        // @ts-ignore
+        if(this.conseguidas.includes(cartaParaConse)){
+          // @ts-ignore
+          this.descartadas.push(cartaParaConse)
+        }else{
+          // @ts-ignore
+          this.conseguidas.push(cartaParaConse)
+        }
+
+        this.conseguidas.push();
+        this.mensaje = "Cartas descartadas con éxito"
+        let boton = document.querySelector('#modalDescarte');
+        // @ts-ignore
+        boton.style="display:block";
+      }else{
+        this.mensaje = "Número insuficiente de cartas"
+        let boton = document.querySelector('#modalDescarte');
+        // @ts-ignore
+        boton.style="display:block";
       }
     }
-    this.descartadas=[];
+    if(this.conseguidas.length==6){
+      this.mensaje = "Has conseguido todas las cartas"
+      let boton = document.querySelector('#modalDescarte');
+      // @ts-ignore
+      boton.style="display:block";
+      this.ngOnInit();
+    }
+    console.log(this.descartadas)
+    console.log(this.conseguidas)
+    console.log(this.descarte)
+    this.descartadas = [];
+
 this.contadorDesc=0;
   }
   descartar():void{
@@ -482,7 +510,12 @@ this.contadorDesc=0;
 
   }
 
-
+//  Modal
+  cerrar(){
+    let boton = document.querySelector('#modalDescarte');
+    // @ts-ignore
+    boton.style="display:none";
+  }
 
 
 
