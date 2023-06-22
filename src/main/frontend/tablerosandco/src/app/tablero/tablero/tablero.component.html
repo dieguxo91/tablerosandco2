@@ -20,7 +20,7 @@
     <div class="flex justify-content-center position-absolute" style="right: 1%; top:30%"  *ngIf="conseguidas.length>0">
       <h2>Conseguidas</h2>
       <div *ngFor="let carta of conseguidas">
-        <img style="cursor: pointer ;width:60px;" class="col-12" (click)="cartaSeleccionada(carta)"  id="mano{{carta.nombre}}" src="{{carta.url}} " >
+        <img style="cursor: pointer ;width:80px;" class="col-12" (click)="cartaSeleccionada(carta)"  id="mano{{carta.nombre}}" src="{{carta.url}} " >
       </div>
     </div>
   </div>
@@ -41,6 +41,25 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info text-white" (click)="cerrar()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalReiniciar" style="display:none;" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex justify-content-center w-100" >
+          <img class="img-fluid d-flex " src="./assets/images/logo.png" style="width: 30% ;">
+        </div>
+        <button type="button" class="btn-close" (click)="cerrar()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fw-bold">
+        <h3 >{{mensaje}}</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info text-white" (click)="noReiniciar()">Aceptar</button>
       </div>
     </div>
   </div>

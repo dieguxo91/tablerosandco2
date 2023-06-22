@@ -12,6 +12,7 @@ import {Juego_interface} from "../../pages/principal/juego_interface";
 import {Observable} from "rxjs";
 import {PartidaService} from "../partida.service";
 import {Partida_interface} from "../partida_interface";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -53,13 +54,13 @@ export class TableroComponent implements OnInit{
   private  id_juego !: Juego_interface;
 
   private partidaNueva!: Partida_interface;
-  constructor(private barajaService: BarajaService, private juegoService: JuegoService, private usuarioService: UsuarioService, private storageService : StorageService, private partidaService: PartidaService) {
+  constructor(private barajaService: BarajaService, private juegoService: JuegoService, private usuarioService: UsuarioService, private storageService : StorageService, private partidaService: PartidaService, private router: Router) {
 
   }
 
   ngOnInit(): void {
 
-     /*this.juegoService.find(7).subscribe((data: Juego_interface)=>{
+     this.juegoService.find(7).subscribe((data: Juego_interface)=>{
       this.id_juego = data;
        this.usuarioService.find(this.storageService.getUser().id).subscribe((data: Usuario_interface)=>{
          this.id_jugador = data;
@@ -71,7 +72,7 @@ export class TableroComponent implements OnInit{
            console.log('Partida creada');
          })
        });
-    });*/
+    });
   this.descarte=[];
   this.descartadas=[]
   this.contadorDesc = 0;
@@ -238,19 +239,24 @@ export class TableroComponent implements OnInit{
       }
     }
     if(this.conseguidas.length==6){
-      this.mensaje = "Has conseguido todas las cartas"
-      let boton = document.querySelector('#modalDescarte');
+      this.mensaje = "Has conseguido todas las cartas, Enhorabuena!!!"
+      let botonrei = document.querySelector('#modalReiniciar');
       // @ts-ignore
-      boton.style="display:block";
-      this.ngOnInit();
+      botonrei.style="display:block";
     }
     console.log(this.descartadas)
     console.log(this.conseguidas)
     console.log(this.descarte)
     this.descartadas = [];
-
-this.contadorDesc=0;
+    this.contadorDesc=0;
   }
+  noReiniciar():void{
+    let botonrei = document.querySelector('#modalReiniciar');
+    // @ts-ignore
+    botonrei.style="display:none";
+    this.router.navigateByUrl('logueado').then();
+  }
+
   descartar():void{
     this.barajaService.addBaraja(this.descarte, this.descartadas);
   }
