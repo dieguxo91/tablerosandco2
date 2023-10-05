@@ -14,6 +14,7 @@ import {VerUsuarioComponent} from "./pages/usuario/admin/user/ver-usuario/ver-us
 import {LogueadoComponent} from "./pages/logueado/logueado.component";
 import {CommingSoonComponent} from "./pages/principal/comming-soon/comming-soon.component";
 import { SakuraComponent } from './sakura/sakura.component';
+import { MaquinaComponent } from './maquina/maquina.component';
 
 const routes: Routes = [
   { path: 'crear', component: UsuarioComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'usuario/details/:idUsuario', component: VerUsuarioComponent},
   { path: 'logueado/granja', component: TableroComponent },
   { path: 'logueado/sushi', component: SakuraComponent },
-  { path: 'logueado/galaxia', component: CommingSoonComponent },
+  { path: 'logueado/galaxia', component: MaquinaComponent},
   { path: "**", redirectTo: "inicio", pathMatch: 'full'}
 ];
 

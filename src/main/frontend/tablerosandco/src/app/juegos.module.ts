@@ -5,10 +5,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableroComponent} from "./tablero/tablero/tablero.component";
 import {BarajaComponent} from "./baraja/baraja/baraja.component";
 import { SakuraComponent } from './sakura/sakura.component';
+import {MaquinaComponent} from './maquina/maquina.component';
 
 
 @NgModule({
-  declarations: [TableroComponent, BarajaComponent, SakuraComponent],
+  declarations: [TableroComponent, BarajaComponent, SakuraComponent, MaquinaComponent],
   imports: [
     CommonModule,
     DragDropModule,
@@ -16,7 +17,8 @@ import { SakuraComponent } from './sakura/sakura.component';
   ],exports:[
     TableroComponent,
     BarajaComponent, 
-    SakuraComponent
+    SakuraComponent,
+    MaquinaComponent
   ]
 })
 export class TableroModule { }
