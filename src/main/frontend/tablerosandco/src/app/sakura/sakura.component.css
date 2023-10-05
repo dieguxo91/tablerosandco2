@@ -1,0 +1,22 @@
+img{
+    border-radius: 15px;
+    width: 150px;
+}
+.carta{
+    position: relative;
+    left: 0px;
+}
+.carta:not(:first-child){
+    margin-left: -50px;
+}
+.cartas{
+    padding: 16px 0;
+}
+
+.carta:hover{
+    transform: translateY(-20px) ;
+}
+
+.carta:hover ~ .carta{
+    left: 50px;
+}

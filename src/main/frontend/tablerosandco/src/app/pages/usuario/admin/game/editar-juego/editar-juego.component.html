@@ -5,18 +5,38 @@
     <div class="form-group-item my-3" >
       <label class="mb-1 fs-6 fw-bolder" style="font-family:  Arial, Helvetica, sans-serif;">Nombre</label>
       <input   type="text" id="name" formControlName="name" class="form-control" placeholder="Introduzca Nombre del Juego">
+      <span class="form-text text-danger"
+            *ngIf="formlogin.controls['name'].errors &&
+                            formlogin.controls['name'].touched">
+                        No puede estar vacío
+                    </span>
     </div>
     <div class="form-group-item my-3">
       <label class="mb-1 fw-bolder fs-6" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Principal</label>
       <input type="text"  id="url" formControlName="url"  class="form-control" placeholder="Introduzca Foto Inicio juego">
+      <span class="form-text text-danger"
+            *ngIf="formlogin.controls['url'].errors &&
+                            formlogin.controls['url'].touched">
+                        No puede estar vacío
+                    </span>
     </div>
     <div class="form-group-item my-3">
       <label class="mb-1 fw-bolder fs-6" style="font-family:  Arial, Helvetica, sans-serif;">Ruta Foto Hexagonal</label>
       <input type="text" id="urlHexa" formControlName="urlHexa" class="form-control" placeholder="Introduzca Foto Hexagonal">
+      <span class="form-text text-danger"
+            *ngIf="formlogin.controls['urlHexa'].errors &&
+                            formlogin.controls['urlHexa'].touched">
+                        No puede estar vacío
+                    </span>
     </div>
     <div class="form-group-item my-3">
       <label class="mb-1 fw-bolder fs-6" style="font-family:  Arial, Helvetica, sans-serif;">Descripción</label>
       <textarea class="form-control" type="text" id="description" formControlName="description" rows="3"></textarea>
+      <span class="form-text text-danger"
+            *ngIf="this.formlogin.controls['description'].errors &&
+                            formlogin.controls['description'].touched">
+                        No puede estar vacío
+                    </span>
     </div>
     <div class="form-group-item my-3 col-2">
       <label class="mb-1 fw-bolder fs-6" style="font-family:  Arial, Helvetica, sans-serif;">Id Admin</label>

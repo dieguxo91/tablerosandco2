@@ -1,0 +1,8 @@
+<div class="container-xl ">
+<div class="cartas d-flex ">
+    <article *ngFor="let carta of mano" class="carta">
+        <img  src="../../assets/images/Sakura/{{carta}}.jpg" >
+    </article>
+</div>
+<button (click)="agregar()">Agregar</button>
+</div>

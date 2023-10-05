@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {TableroModule} from "./tablero/tablero.module";
+import {TableroModule} from "./juegos.module";
 import { HeaderComponent } from './shared/header/header.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { FooterComponent } from './shared/footer/footer.component';
