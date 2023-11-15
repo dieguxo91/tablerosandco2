@@ -6,6 +6,7 @@ import {TableroComponent} from "./tablero/tablero/tablero.component";
 import {BarajaComponent} from "./baraja/baraja/baraja.component";
 import { SakuraComponent } from './sakura/sakura.component';
 import {MaquinaComponent} from './maquina/maquina.component';
+import { NgxSplideModule } from 'ngx-splide';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MaquinaComponent} from './maquina/maquina.component';
   imports: [
     CommonModule,
     DragDropModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSplideModule
   ],exports:[
     TableroComponent,
     BarajaComponent, 
